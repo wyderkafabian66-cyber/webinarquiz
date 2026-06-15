@@ -78,10 +78,47 @@ html,body{background:var(--black);color:var(--white);font-family:'Inter',sans-se
 .btn-outline{display:inline-block;padding:13px 30px;background:transparent;color:var(--gold);font-size:12px;font-weight:600;letter-spacing:2px;text-transform:uppercase;border:1px solid var(--gold-d);cursor:pointer;transition:all .2s;text-decoration:none}
 .btn-outline:hover{background:rgba(201,168,76,.08)}
 @media(max-width:600px){.cta-block{padding:24px 20px}}
+
+/* ACCOUNTABILITY ROW */
+.accountability-row{display:flex;gap:10px;margin-top:16px;flex-wrap:wrap}
+.acct-btn{flex:1;min-width:140px;padding:13px 16px;font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;cursor:pointer;transition:all .2s;border:1px solid var(--gold-d);background:transparent;color:var(--gold);display:flex;align-items:center;justify-content:center;gap:8px}
+.acct-btn:hover{background:rgba(201,168,76,.08)}
+.acct-btn svg{width:14px;height:14px;fill:currentColor;flex-shrink:0}
+
+/* PRINT */
+@media print{
+  body{background:#fff!important;color:#000!important;font-family:'Inter',sans-serif}
+  .wrap,#result-wrap{display:none!important}
+  #print-content{display:block!important}
+  #print-content *{color:#000!important;background:#fff!important;border-color:#ddd!important}
+  .pp-page{padding:40px 48px;page-break-after:always;min-height:100vh;box-sizing:border-box}
+  .pp-eyebrow{font-size:9px;letter-spacing:3px;text-transform:uppercase;color:#9A7530!important;margin-bottom:8px}
+  .pp-title{font-family:'Cinzel',serif;font-size:32px;font-weight:900;line-height:1.1;margin-bottom:12px}
+  .pp-title em{font-style:normal;color:#C9A84C!important}
+  .pp-lead{font-size:13px;line-height:1.7;color:#444!important;max-width:500px;margin-bottom:32px}
+  .pp-stat-row{display:flex;align-items:center;gap:12px;margin-bottom:10px}
+  .pp-stat-name{width:72px;font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase}
+  .pp-stat-bar{flex:1;height:5px;background:#eee!important;overflow:hidden}
+  .pp-stat-fill{height:100%;background:#C9A84C!important}
+  .pp-stat-fill.low{background:#C47070!important}
+  .pp-stat-pct{width:32px;font-size:10px;font-weight:700;text-align:right}
+  .pp-day-block{margin-bottom:28px;padding-bottom:28px;border-bottom:1px solid #eee!important}
+  .pp-day-block:last-child{border-bottom:none!important}
+  .pp-day-num{font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#9A7530!important;margin-bottom:4px}
+  .pp-day-title{font-family:'Cinzel',serif;font-size:15px;font-weight:700;margin-bottom:4px}
+  .pp-day-mission{font-size:12px;color:#444!important;margin-bottom:10px;font-style:italic}
+  .pp-day-when{font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:#9A7530!important;margin-bottom:8px}
+  .pp-step{font-size:12px;line-height:1.6;margin-bottom:4px;padding-left:16px;position:relative}
+  .pp-step::before{content:'';position:absolute;left:0;top:7px;width:8px;height:8px;border:1px solid #999!important;background:#fff!important}
+  .pp-avoid{font-size:11px;color:#C47070!important;margin-top:8px;padding-left:10px;border-left:2px solid #C47070!important}
+  .pp-reflect{font-size:11px;color:#555!important;margin-top:6px;font-style:italic;padding-left:10px;border-left:2px solid #C9A84C!important}
+  .pp-avoid strong,.pp-reflect strong{font-size:9px;letter-spacing:1.5px;text-transform:uppercase;display:block;margin-bottom:3px}
+}
 </style>
 </head>
 <body>
 <div class="wrap" id="result-wrap"></div>
+<div id="print-content" style="display:none"></div>
 
 <script>
 const WEBHOOK_URL = ''; // ── CONFIG ── Paste your GoHighLevel webhook URL here
@@ -303,6 +340,17 @@ document.getElementById('result-wrap').innerHTML = `
   <div class="proto-week" id="proto-week"></div>
   <div class="proto-card" id="proto-card"></div>
 
+  <div class="accountability-row">
+    <button class="acct-btn" onclick="downloadPDF()">
+      <svg viewBox="0 0 24 24"><path d="M12 16l-4-4h3V4h2v8h3l-4 4zm-7 4v-2h14v2H5z"/></svg>
+      Download My Plan (PDF)
+    </button>
+    <button class="acct-btn" onclick="addToCalendar()">
+      <svg viewBox="0 0 24 24"><path d="M19 4h-1V2h-2v2H8V2H6v2H5C3.9 4 3 4.9 3 6v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V9h14v11zM7 11h2v2H7zm4 0h2v2h-2zm4 0h2v2h-2z"/></svg>
+      Add to My Calendar
+    </button>
+  </div>
+
   <div class="sec-label" style="margin-top:48px">What Is Coming Next</div>
   <div class="locked-wrap">
     <div class="locked-blur">${fakeRow()}${fakeRow()}${fakeRow()}</div>
@@ -417,6 +465,60 @@ function completeDay(){
   if(_protoDay < 6) _protoDay++;
   _renderWeek();
   _renderDay();
+}
+
+function downloadPDF(){
+  const LABELS = {fit:'FIT',fight:'FIGHT',freedom:'FREEDOM',faith:'FAITH',family:'FAMILY'};
+  const pc = document.getElementById('print-content');
+  pc.innerHTML = `
+    <div class="pp-page">
+      <p class="pp-eyebrow">King Azoulay &middot; Character Blueprint</p>
+      <h1 class="pp-title">${r.title}</h1>
+      <p class="pp-lead">${r.lead}</p>
+      <div style="margin-bottom:24px">
+        ${Object.entries(LABELS).map(([k,l])=>{
+          const pct=stat[k],bot=k===curResult;
+          return `<div class="pp-stat-row">
+            <div class="pp-stat-name">${l}</div>
+            <div class="pp-stat-bar"><div class="pp-stat-fill${bot?' low':''}" style="width:${pct}%"></div></div>
+            <div class="pp-stat-pct">${pct}%</div>
+          </div>`;
+        }).join('')}
+      </div>
+    </div>
+    <div class="pp-page">
+      <p class="pp-eyebrow">Your 7-Day Training Arc</p>
+      ${r.days.map((d,i)=>`
+        <div class="pp-day-block">
+          <p class="pp-day-num">Day ${i+1}</p>
+          <h3 class="pp-day-title">${d.title}</h3>
+          <p class="pp-day-mission">${d.mission}</p>
+          <p class="pp-day-when">${d.when}</p>
+          ${d.steps.map(s=>`<p class="pp-step">${s}</p>`).join('')}
+          <p class="pp-avoid"><strong>Avoid</strong>${d.avoid}</p>
+          <p class="pp-reflect"><strong>Reflect</strong>${d.reflection}</p>
+        </div>`).join('')}
+    </div>`;
+  window.print();
+}
+
+function addToCalendar(){
+  const today = new Date();
+  let ical = 'BEGIN:VCALENDAR\r\nVERSION:2.0\r\nPRODID:-//King Azoulay//Character Blueprint//EN\r\nCALSCALE:GREGORIAN\r\n';
+  r.days.forEach((day,i) => {
+    const d = new Date(today);
+    d.setDate(today.getDate() + i);
+    const ds = d.toISOString().replace(/-/g,'').substring(0,8);
+    const steps = day.steps.map((s,j)=>`${j+1}. ${s}`).join('\\n');
+    const desc = `${day.mission}\\n\\nWHEN: ${day.when}\\n\\n${steps}\\n\\nREFLECT: ${day.reflection}`;
+    ical += `BEGIN:VEVENT\r\nDTSTART;VALUE=DATE:${ds}\r\nSUMMARY:Day ${i+1}: ${day.title} (${curResult.toUpperCase()} Protocol)\r\nDESCRIPTION:${desc}\r\nEND:VEVENT\r\n`;
+  });
+  ical += 'END:VCALENDAR';
+  const blob = new Blob([ical], {type:'text/calendar;charset=utf-8'});
+  const url  = URL.createObjectURL(blob);
+  const a    = document.createElement('a');
+  a.href = url; a.download = `ka-${curResult}-protocol.ics`; a.click();
+  URL.revokeObjectURL(url);
 }
 
 function retake(){
