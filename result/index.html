@@ -21,6 +21,8 @@ html,body{background:var(--black);color:var(--white);font-family:'Inter',sans-se
 .result-title em{font-style:normal;color:var(--gold)}
 .result-lead{font-size:16px;line-height:1.75;color:#BDB097;max-width:540px;margin:0 auto}
 .greeting{font-size:13px;color:var(--gray);margin-bottom:8px}
+
+/* STAT BARS */
 .stats-block{border:1px solid #222;padding:28px 24px;margin-bottom:8px}
 .stat-row{display:flex;align-items:center;gap:14px;margin-bottom:14px}
 .stat-row:last-child{margin-bottom:0}
@@ -33,7 +35,29 @@ html,body{background:var(--black);color:var(--white);font-family:'Inter',sans-se
 .stat-pct{width:34px;font-size:11px;font-weight:700;text-align:right;flex-shrink:0;color:var(--gray)}
 .stat-pct.bot{color:var(--red)}
 .bot-note{font-size:12px;color:var(--red);margin-top:16px;padding-top:16px;border-top:1px solid #1A1A1A}
-.proto-week{display:flex;gap:6px;justify-content:center;margin-bottom:24px;flex-wrap:wrap}
+
+/* PROTOCOL TABS */
+.proto-tabs{display:flex;gap:4px;flex-wrap:wrap;margin-bottom:16px}
+.proto-tab{flex:1;min-width:80px;padding:10px 8px;border:1px solid #2A2A2A;background:var(--d2);cursor:pointer;transition:all .2s;text-align:center;position:relative}
+.proto-tab-name{font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--gray);display:block}
+.proto-tab-prog{font-size:9px;color:#444;display:block;margin-top:3px}
+.proto-tab.active .proto-tab-name{color:var(--gold)}
+.proto-tab.active{border-color:var(--gold);background:rgba(201,168,76,.06)}
+.proto-tab.has-progress .proto-tab-name{color:var(--gold-d)}
+.proto-tab.has-progress{border-color:var(--gold-d)}
+.proto-tab.primary-tab::before{content:'#1';position:absolute;top:-1px;left:-1px;background:var(--gold);color:var(--black);font-size:7px;font-weight:700;padding:2px 5px;letter-spacing:1px}
+
+/* PROTOCOL CARD */
+.proto-header{margin-bottom:20px}
+.proto-header-label{font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin-bottom:6px}
+.proto-header-title{font-family:'Cinzel',serif;font-size:20px;font-weight:700;color:var(--white);margin-bottom:8px}
+.proto-header-title em{font-style:normal;color:var(--gold)}
+.proto-header-lead{font-size:13px;color:#BDB097;line-height:1.65}
+.proto-prog-row{display:flex;align-items:center;gap:12px;margin-bottom:20px}
+.proto-prog-bar{flex:1;height:3px;background:#1A1A1A;overflow:hidden}
+.proto-prog-fill{height:100%;background:linear-gradient(90deg,var(--gold-d),var(--gold-l));transition:width .5s ease}
+.proto-prog-label{font-size:11px;color:var(--gray);white-space:nowrap}
+.proto-week{display:flex;gap:6px;justify-content:center;margin-bottom:20px;flex-wrap:wrap}
 .proto-day-btn{width:38px;height:38px;border:1px solid #2A2A2A;background:var(--d2);font-size:11px;font-weight:700;color:var(--gray);cursor:pointer;transition:all .2s;display:flex;align-items:center;justify-content:center}
 .proto-day-btn:hover:not(:disabled){border-color:var(--gold-d);color:var(--white)}
 .proto-day-btn.active{border-color:var(--gold);color:var(--gold);background:rgba(201,168,76,.08)}
@@ -58,10 +82,17 @@ html,body{background:var(--black);color:var(--white);font-family:'Inter',sans-se
 .proto-complete-btn{width:100%;padding:14px;background:var(--gold);color:var(--black);font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase;border:none;cursor:pointer;transition:background .2s}
 .proto-complete-btn:hover{background:var(--gold-l)}
 .proto-done-card{background:rgba(201,168,76,.08);border:1px solid var(--gold-d);padding:16px;text-align:center;font-size:13px;color:var(--gold);font-weight:600}
-.proto-prog-row{display:flex;align-items:center;gap:12px;margin-bottom:24px}
-.proto-prog-bar{flex:1;height:3px;background:#1A1A1A;overflow:hidden}
-.proto-prog-fill{height:100%;background:linear-gradient(90deg,var(--gold-d),var(--gold-l));transition:width .5s ease}
-.proto-prog-label{font-size:11px;color:var(--gray);white-space:nowrap}
+.proto-all-done{background:rgba(201,168,76,.1);border:1px solid var(--gold);padding:20px;text-align:center;margin-top:12px}
+.proto-all-done p{font-family:'Cinzel',serif;font-size:16px;color:var(--gold);margin-bottom:6px}
+.proto-all-done span{font-size:12px;color:var(--gray)}
+
+/* ACCOUNTABILITY */
+.accountability-row{display:flex;gap:10px;margin-top:16px;flex-wrap:wrap}
+.acct-btn{flex:1;min-width:140px;padding:13px 16px;font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;cursor:pointer;transition:all .2s;border:1px solid var(--gold-d);background:transparent;color:var(--gold);display:flex;align-items:center;justify-content:center;gap:8px}
+.acct-btn:hover{background:rgba(201,168,76,.08)}
+.acct-btn svg{width:14px;height:14px;fill:currentColor;flex-shrink:0}
+
+/* LOCKED */
 .locked-wrap{position:relative;border:1px solid #222;overflow:hidden;margin-bottom:40px;min-height:240px}
 .locked-blur{filter:blur(5px);pointer-events:none;padding:24px 24px 32px;opacity:.35}
 .locked-overlay{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;background:rgba(10,10,10,.88);gap:10px;padding:24px;text-align:center}
@@ -69,50 +100,47 @@ html,body{background:var(--black);color:var(--white);font-family:'Inter',sans-se
 .locked-hed{font-family:'Cinzel',serif;font-size:17px;font-weight:700;color:var(--white)}
 .locked-sub{font-size:13px;color:var(--gray);max-width:320px;line-height:1.6}
 .unlock-tag{font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--gold);border:1px solid var(--gold-d);padding:5px 14px;margin-top:4px}
+
+/* CTA */
 .cta-block{background:linear-gradient(135deg,#1A1508,#0F0F0F);border:1px solid var(--gold-d);padding:36px 40px;text-align:center;margin-bottom:16px}
 .cta-block h3{font-family:'Cinzel',serif;font-size:20px;color:var(--white);margin-bottom:10px}
 .cta-block p{font-size:14px;color:#BDB097;line-height:1.7;margin-bottom:24px;max-width:480px;margin-left:auto;margin-right:auto}
 .cta-note{font-size:11px;color:var(--gray);margin-top:20px}
-.btn-gold{display:inline-block;padding:16px 44px;background:var(--gold);color:var(--black);font-size:13px;font-weight:700;letter-spacing:2px;text-transform:uppercase;border:none;cursor:pointer;transition:background .2s,transform .15s;text-decoration:none}
+.btn-gold{display:inline-block;padding:16px 44px;background:var(--gold);color:var(--black);font-size:13px;font-weight:700;letter-spacing:2px;text-transform:uppercase;border:none;cursor:pointer;transition:background .2s;text-decoration:none}
 .btn-gold:hover{background:var(--gold-l)}
 .btn-outline{display:inline-block;padding:13px 30px;background:transparent;color:var(--gold);font-size:12px;font-weight:600;letter-spacing:2px;text-transform:uppercase;border:1px solid var(--gold-d);cursor:pointer;transition:all .2s;text-decoration:none}
 .btn-outline:hover{background:rgba(201,168,76,.08)}
-@media(max-width:600px){.cta-block{padding:24px 20px}}
-
-/* ACCOUNTABILITY ROW */
-.accountability-row{display:flex;gap:10px;margin-top:16px;flex-wrap:wrap}
-.acct-btn{flex:1;min-width:140px;padding:13px 16px;font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;cursor:pointer;transition:all .2s;border:1px solid var(--gold-d);background:transparent;color:var(--gold);display:flex;align-items:center;justify-content:center;gap:8px}
-.acct-btn:hover{background:rgba(201,168,76,.08)}
-.acct-btn svg{width:14px;height:14px;fill:currentColor;flex-shrink:0}
+@media(max-width:600px){.cta-block{padding:24px 20px}.proto-tab{min-width:60px;padding:8px 4px}}
 
 /* PRINT */
 @media print{
-  body{background:#fff!important;color:#000!important;font-family:'Inter',sans-serif}
+  body{background:#fff!important;color:#000!important}
   .wrap,#result-wrap{display:none!important}
   #print-content{display:block!important}
   #print-content *{color:#000!important;background:#fff!important;border-color:#ddd!important}
-  .pp-page{padding:40px 48px;page-break-after:always;min-height:100vh;box-sizing:border-box}
+  .pp-page{padding:36px 48px;page-break-after:always;box-sizing:border-box}
   .pp-eyebrow{font-size:9px;letter-spacing:3px;text-transform:uppercase;color:#9A7530!important;margin-bottom:8px}
-  .pp-title{font-family:'Cinzel',serif;font-size:32px;font-weight:900;line-height:1.1;margin-bottom:12px}
+  .pp-title{font-family:'Cinzel',serif;font-size:28px;font-weight:900;line-height:1.1;margin-bottom:10px}
   .pp-title em{font-style:normal;color:#C9A84C!important}
-  .pp-lead{font-size:13px;line-height:1.7;color:#444!important;max-width:500px;margin-bottom:32px}
-  .pp-stat-row{display:flex;align-items:center;gap:12px;margin-bottom:10px}
-  .pp-stat-name{width:72px;font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase}
-  .pp-stat-bar{flex:1;height:5px;background:#eee!important;overflow:hidden}
+  .pp-lead{font-size:12px;line-height:1.65;color:#444!important;margin-bottom:24px}
+  .pp-stat-row{display:flex;align-items:center;gap:10px;margin-bottom:8px}
+  .pp-stat-name{width:70px;font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase}
+  .pp-stat-bar{flex:1;height:4px;background:#eee!important;overflow:hidden}
   .pp-stat-fill{height:100%;background:#C9A84C!important}
   .pp-stat-fill.low{background:#C47070!important}
-  .pp-stat-pct{width:32px;font-size:10px;font-weight:700;text-align:right}
-  .pp-day-block{margin-bottom:28px;padding-bottom:28px;border-bottom:1px solid #eee!important}
+  .pp-stat-pct{width:30px;font-size:9px;font-weight:700;text-align:right}
+  .pp-section-title{font-family:'Cinzel',serif;font-size:18px;font-weight:700;margin:20px 0 12px;padding-top:16px;border-top:2px solid #C9A84C!important}
+  .pp-day-block{margin-bottom:20px;padding-bottom:20px;border-bottom:1px solid #eee!important}
   .pp-day-block:last-child{border-bottom:none!important}
-  .pp-day-num{font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#9A7530!important;margin-bottom:4px}
-  .pp-day-title{font-family:'Cinzel',serif;font-size:15px;font-weight:700;margin-bottom:4px}
-  .pp-day-mission{font-size:12px;color:#444!important;margin-bottom:10px;font-style:italic}
-  .pp-day-when{font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:#9A7530!important;margin-bottom:8px}
-  .pp-step{font-size:12px;line-height:1.6;margin-bottom:4px;padding-left:16px;position:relative}
-  .pp-step::before{content:'';position:absolute;left:0;top:7px;width:8px;height:8px;border:1px solid #999!important;background:#fff!important}
-  .pp-avoid{font-size:11px;color:#C47070!important;margin-top:8px;padding-left:10px;border-left:2px solid #C47070!important}
-  .pp-reflect{font-size:11px;color:#555!important;margin-top:6px;font-style:italic;padding-left:10px;border-left:2px solid #C9A84C!important}
-  .pp-avoid strong,.pp-reflect strong{font-size:9px;letter-spacing:1.5px;text-transform:uppercase;display:block;margin-bottom:3px}
+  .pp-day-num{font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#9A7530!important;margin-bottom:3px}
+  .pp-day-title{font-family:'Cinzel',serif;font-size:13px;font-weight:700;margin-bottom:3px}
+  .pp-day-mission{font-size:11px;color:#444!important;margin-bottom:8px;font-style:italic}
+  .pp-day-when{font-size:9px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:#9A7530!important;margin-bottom:6px}
+  .pp-step{font-size:11px;line-height:1.5;margin-bottom:3px;padding-left:14px;position:relative}
+  .pp-step::before{content:'';position:absolute;left:0;top:5px;width:7px;height:7px;border:1px solid #999!important}
+  .pp-avoid{font-size:10px;color:#C47070!important;margin-top:6px;padding-left:8px;border-left:2px solid #C47070!important}
+  .pp-avoid strong,.pp-reflect strong{font-size:8px;letter-spacing:1px;text-transform:uppercase;display:block;margin-bottom:2px}
+  .pp-reflect{font-size:10px;color:#555!important;margin-top:4px;font-style:italic;padding-left:8px;border-left:2px solid #C9A84C!important}
 }
 </style>
 </head>
@@ -127,8 +155,8 @@ const stored     = JSON.parse(localStorage.getItem('ka_result')||'null');
 const storedUser = JSON.parse(localStorage.getItem('ka_user')||'null');
 if(!stored){ window.location.replace('/'); }
 
-const curResult = stored.type;
-let _proto = null, _protoDay = 0;
+const primaryResult = stored.type;
+const uName = storedUser && storedUser.name ? storedUser.name : null;
 
 const STAT_SCORES = {
   fit:     {fit:22, fight:68, freedom:72, faith:65, family:70},
@@ -138,73 +166,74 @@ const STAT_SCORES = {
   family:  {fit:65, fight:70, freedom:64, faith:68, family:22}
 };
 
+const STAT_LABELS = {fit:'FIT',fight:'FIGHT',freedom:'FREEDOM',faith:'FAITH',family:'FAMILY'};
+const stat = STAT_SCORES[primaryResult];
+
 const RESULTS = {
   fit:{
-    badge:'BOTTLENECK DETECTED: FIT',
+    badge:'FIT',
     title:'The <em>Fit</em> Protocol',
-    lead:"Your body is the machine that runs everything else. Right now it is running on low. You cannot build a life at full speed from a body running at half capacity.",
+    lead:"Your body is the machine that runs everything else. You cannot build a life at full speed from a body running at half capacity.",
     lockedSub:"Your strength score, wealth readiness, and performance ceiling unlock at the free session.",
     ctaTitle:"Level up your whole character.",
-    ctaBody:"King Azoulay's free live session breaks down the direct link between physical discipline and every other stat in your life. Come ready to move.",
+    ctaBody:"King Azoulay's free live session breaks down the direct connection between physical discipline and every other stat in your life.",
     days:[
-      {n:"01",title:"Take the Baseline",mission:"You cannot improve what you refuse to measure. Today is about honesty.",when:"First thing in the morning, before anything else.",
-       steps:["Take a photo. Front and side. Same spot you will use again on Day 7. Do not skip this.","Write down three words that describe how your body feels right now. Be specific.","Write down the one physical habit you have been avoiding the longest. Name it exactly.","Drink one full glass of water before you eat anything today. That is your first act of physical discipline."],
-       avoid:"Do not turn today into a plan. Just take the baseline. The protocol does the rest.",reflection:"What has avoiding my physical health actually cost me?"},
+      {n:"01",title:"Take the Baseline",mission:"You cannot improve what you refuse to measure.",when:"First thing in the morning, before anything else.",
+       steps:["Take a photo. Front and side. Same spot you will use again on Day 7.","Write three words that describe how your body actually feels right now.","Write the one physical habit you have been avoiding the longest.","Drink one full glass of water before you eat anything. That is your first act of discipline today."],
+       avoid:"Do not turn today into a full plan. Just take the baseline. The protocol does the rest.",reflection:"What has avoiding my physical health actually cost me?"},
       {n:"02",title:"Own Your Morning",mission:"Movement before the world gets access to you changes everything that comes after.",when:"The moment your alarm goes off. No negotiation.",
        steps:["Feet on the floor before your brain argues. No snooze. Not once.","Ten minutes of movement before you touch your phone. Push-ups, a walk, anything physical.","Drink water. Eat something real within the first hour.","Write one sentence: what would it feel like to own every morning this week?"],
-       avoid:"Do not check your phone until after you have moved. One exception breaks the habit.",reflection:"What does my morning say about the person I am becoming?"},
-      {n:"03",title:"Find Your Line",mission:"Your body invented a stopping point. Today you go past it.",when:"Morning. Before eating. Within ninety minutes of waking.",
+       avoid:"Do not check your phone until after you have moved.",reflection:"What does my morning say about the person I am becoming?"},
+      {n:"03",title:"Find Your Line",mission:"Your body invented a stopping point. Today you go past it.",when:"Morning. Before eating.",
        steps:["Push-ups until your body says stop. Rest sixty seconds.","Bodyweight squats until your body says stop. Rest sixty seconds.","Plank until your body shakes and stops. Rest sixty seconds.","When your body says stop on each movement, add ten more seconds. That ten seconds is the only part that matters.","Write one word describing how you feel right now."],
-       avoid:"Do not count reps. Track only time.",reflection:"At exactly what point did I want to quit, and what made me keep going?"},
+       avoid:"Do not count reps. Track only time.",reflection:"At what point did I want to quit, and what made me keep going?"},
       {n:"04",title:"Cut One Thing",mission:"The body you want and the habits you have right now cannot both exist.",when:"Decision made in the morning. Executed all day.",
-       steps:["Identify the one food or drink doing the most damage to your energy. Write it down.","Cut it completely today. Not reduced. Cut.","Replace it with water or something clean.","At the end of the day write what you noticed about your energy."],
-       avoid:"Do not try to cut five things. One cut executed beats ten cuts planned.",reflection:"What am I feeding my body that I would be embarrassed to admit?"},
-      {n:"05",title:"Fix Your Recovery",mission:"Sleep is not rest. Sleep is when your body actually builds.",when:"This protocol starts the night before.",
-       steps:["Decide what time you are sleeping tonight and commit to it.","Phone leaves the bedroom or goes face down across the room.","Ten minutes before bed with no screen. Sit in quiet, pray, or breathe.","When you wake up, write down whether you feel different after one night of intentional recovery."],
-       avoid:"Do not underestimate this day because it feels passive. Recovery is where gains happen.",reflection:"What would change if I protected my sleep the way I protect my phone?"},
-      {n:"06",title:"Show Up Again",mission:"Consistency is the only thing that separates a workout from a lifestyle.",when:"Same time as Day 3. Non-negotiable.",
-       steps:["Repeat the Day 3 circuit completely.","After finishing, add one full extra round. Your body survived Day 3. It survives this.","Walk fifteen minutes with no phone. Think about who you are becoming.","Write two things: what improved since Day 3, and one thing to build on next week."],
-       avoid:"Do not measure success by how your body looks. Measure it by whether you showed up.",reflection:"What does doing this twice in one week say about who I am becoming?"},
-      {n:"07",title:"The After",mission:"Day 7 is not the end. It is the moment you decide if this was an experiment or a beginning.",when:"Morning. Same conditions as Day 1.",
-       steps:["Take the after photo. Same room, same angle, same lighting as Day 1.","Place both photos side by side and look at them for sixty seconds.","Write what changed. Not just the body. The discipline, the self-respect, the proof.","Write one sentence to the person in the Day 1 photo.","Choose one habit from this week to make permanent. One. Write it down.","The free session is your next step. Bring what you found this week."],
-       avoid:"Do not minimize what changed because the physical difference looks small. Seven days of discipline is rare. Honor it.",reflection:"Which habit from this week am I committing to permanently?"}
+       steps:["Name the one food or drink doing the most damage to your energy.","Cut it completely today. Not reduced. Gone.","Replace it with water or something clean.","At the end of the day write what you noticed about your energy."],
+       avoid:"Do not try to cut five things. One cut that actually happens beats ten cuts that stay on paper.",reflection:"What am I feeding my body that I would be embarrassed to admit?"},
+      {n:"05",title:"Fix Your Recovery",mission:"Sleep is not rest. Sleep is when your body builds.",when:"This one starts the night before.",
+       steps:["Decide what time you are going to sleep tonight and commit to it.","Phone leaves the bedroom or goes face down across the room.","Ten minutes before bed with no screen. Sit quiet, breathe, or pray.","When you wake up, write whether you feel different after one night of intentional recovery."],
+       avoid:"Do not underestimate this day because it feels passive. Recovery is where the gains actually happen.",reflection:"What would change if I protected my sleep the way I protect my phone?"},
+      {n:"06",title:"Show Up Again",mission:"Consistency is the only thing that separates a workout from a lifestyle.",when:"Same time as Day 3.",
+       steps:["Repeat the Day 3 circuit completely.","After finishing, add one full extra round.","Walk fifteen minutes with no phone. Think about who you are becoming.","Write two things: what improved since Day 3 and one thing to build on next week."],
+       avoid:"Do not measure success by how your body looks today. Measure it by whether you showed up.",reflection:"What does doing this twice in one week say about who I am choosing to become?"},
+      {n:"07",title:"The After",mission:"Day 7 is the moment you decide if this was an experiment or a beginning.",when:"Morning. Same conditions as Day 1.",
+       steps:["Take the after photo. Same room, same angle, same lighting.","Put both photos side by side and look at them for sixty seconds.","Write what changed. Not just the body. The discipline, the self-respect, the proof.","Write one sentence to the person in the Day 1 photo.","Choose one habit from this week to make permanent. One."],
+       avoid:"Do not minimize what changed because the physical difference looks small. Seven days of discipline is rare.",reflection:"Which habit from this week am I committing to permanently?"}
     ]
   },
-
   fight:{
-    badge:'BOTTLENECK DETECTED: FIGHT',
+    badge:'FIGHT',
     title:'The <em>Fight</em> Protocol',
     lead:"Your biggest opponent is not outside. It is the version of you that quits, doubts, and overthinks. Every other stat suffers because of this one.",
     lockedSub:"Your mental performance score, discipline ceiling, and wealth readiness unlock at the free session.",
     ctaTitle:"The mind is the first battlefield.",
     ctaBody:"King Azoulay's free live session goes deep on why high-potential people stay stuck in their own head, and the exact method he uses to break through.",
     days:[
-      {n:"01",title:"Name Your Enemy",mission:"You cannot fight what you refuse to name. Today you identify the exact pattern stopping you.",when:"Morning. Quiet. No distractions.",
-       steps:["Write the one thought pattern that kills your momentum most. Specific. Not 'fear' but 'I tell myself it will not work before I even start.'","Write the last three times this pattern showed up and what happened.","Write what it has cost you. Money, time, opportunities. Be honest.","Read it out loud. Once."],
-       avoid:"Do not write about what you want to change. Write about what you are actually doing.",reflection:"If this pattern disappeared tomorrow, what becomes possible?"},
+      {n:"01",title:"Name Your Enemy",mission:"You cannot fight what you refuse to name.",when:"Morning. Quiet. No distractions.",
+       steps:["Write the one thought pattern that kills your momentum most. Be specific. Not 'fear' but 'I tell myself it will not work before I even start.'","Write the last three times this pattern showed up and what happened each time.","Write what it has actually cost you. Money, time, opportunities. Real things.","Read it out loud. Once."],
+       avoid:"Do not write about what you want to change. Write about what you are actually doing right now.",reflection:"If this pattern disappeared tomorrow, what becomes possible?"},
       {n:"02",title:"Do It Before You Feel Like It",mission:"Discipline is not a feeling. It is a decision made before the feeling arrives.",when:"Before 8am. Before checking your phone.",
-       steps:["Pick one hard thing to do before 8am. Something you would normally avoid.","Do it before your brain argues. Move toward it the moment you wake up.","Write down what it felt like before, during, and after.","Set your alarm fifteen minutes earlier tomorrow."],
-       avoid:"Do not wait until you feel motivated. The feeling follows action, not the other way around.",reflection:"What did doing the hard thing early prove about myself?"},
+       steps:["Pick one hard thing to do before 8am. Something you would normally push back.","Do it before your brain starts arguing. Move toward it the moment you wake up.","Write what it felt like before, during, and after.","Set your alarm fifteen minutes earlier tomorrow."],
+       avoid:"Do not wait until you feel motivated. The feeling follows the action.",reflection:"What did doing the hard thing early prove about myself?"},
       {n:"03",title:"Face What You Have Been Avoiding",mission:"The thing you keep skipping is the thing holding everything else back.",when:"Today. Not tomorrow.",
-       steps:["Write down the one task or decision you have been avoiding the longest.","Set a timer for thirty minutes.","Work on it for those thirty minutes with no other tabs, no phone, nothing else.","Write one sentence about what you did when the timer ends."],
-       avoid:"Do not redefine avoiding to mean something easier. You know exactly what it is.",reflection:"Why have I been avoiding this, and what has that avoidance actually protected me from?"},
+       steps:["Write the one task or decision you have been avoiding the longest.","Set a timer for thirty minutes.","Work on it for those thirty minutes. No other tabs. No phone. Nothing else.","Write one sentence about what you did when the timer ends."],
+       avoid:"Do not redefine avoiding to mean something easier. You already know what it is.",reflection:"Why have I been avoiding this, and what has that actually protected me from?"},
       {n:"04",title:"Cut the Input",mission:"Your mind cannot perform when it is full of everyone else's noise.",when:"All day. Starts the moment you wake up.",
-       steps:["No social media before noon. Not a quick check. Nothing.","No news. No opinions. No content not tied to something you are building.","In the silence, write what thoughts come up naturally.","At the end of the day, write what you noticed about your clarity."],
+       steps:["No social media before noon. Not a quick check. Nothing.","No news. No other people's opinions before you have done your own thinking.","In the silence, write what thoughts come up naturally when nobody is filling your head.","At the end of the day write what you noticed about your clarity."],
        avoid:"Do not replace social media with something equally passive. The point is the silence.",reflection:"What do I actually think about when the noise stops?"},
-      {n:"05",title:"Build the Proof",mission:"Your mind argues you cannot. Your track record argues otherwise. Build the evidence.",when:"Thirty minutes. Morning or evening.",
-       steps:["Write every time you followed through on something hard in the last year.","Write every skill you developed through effort, not talent.","Write one person who believed in your capability before you did.","Read the list slowly. These are facts. The doubt is the lie."],
-       avoid:"Do not dismiss small wins. Proof is proof regardless of scale.",reflection:"What does this list prove about who I actually am under pressure?"},
+      {n:"05",title:"Build the Proof",mission:"Your mind says you cannot. Your track record says otherwise.",when:"Thirty minutes. Morning or evening.",
+       steps:["Write every time you followed through on something hard in the last year. Big or small.","Write every skill you developed through actual effort.","Write one person who believed in your ability before you did. What did they see?","Read the list slowly. These are facts. The doubt is the lie."],
+       avoid:"Do not dismiss small wins. Proof is proof.",reflection:"What does this list prove about who I actually am under pressure?"},
       {n:"06",title:"Hold the Line",mission:"Consistency is the proof that Day 2 and Day 3 were not accidents.",when:"Same conditions as Day 2 and Day 3.",
        steps:["Repeat the hard early morning action from Day 2.","Put another thirty minutes into the avoided task from Day 3.","Write what feels different about doing this a second time.","Say this out loud before the day ends: I keep my word to myself."],
        avoid:"Do not reward yourself by relaxing the standard. The standard is the reward.",reflection:"What changes when I prove to myself twice in a row that I follow through?"},
       {n:"07",title:"Declare the Identity",mission:"You are not building better habits. You are becoming a different person.",when:"Morning. Before the day begins.",
-       steps:["Read everything you wrote this week.","Write one paragraph in present tense: I am the kind of man who does the hard thing first. I protect my focus because. I was built for this because.","Make one real decision today. Something the old version of you kept postponing.","The free session is your next step. Bring your declaration."],
+       steps:["Read everything you wrote this week.","Write one paragraph in present tense: I am the kind of man who does the hard thing first. I protect my focus because. I was built for this because.","Make one real decision today. Something the old version of you kept postponing.","The free session is your next step."],
        avoid:"Do not let Day 7 be only journaling. A real decision means a real move today.",reflection:"Who is the person I declared myself to be today, and what does he do tomorrow?"}
     ]
   },
-
   freedom:{
-    badge:'BOTTLENECK DETECTED: FREEDOM',
+    badge:'FREEDOM',
     title:'The <em>Freedom</em> Protocol',
     lead:"Money or time. One of them owns you right now. Maybe both. Nothing else levels up until you take that back.",
     lockedSub:"Your wealth readiness score, income ceiling, and time freedom index unlock at the free session.",
@@ -212,104 +241,121 @@ const RESULTS = {
     ctaBody:"King Azoulay's free live session breaks down the exact system he used to go from trapped to free, and why most people never make the move that changes everything.",
     days:[
       {n:"01",title:"The Honest Number",mission:"You cannot build freedom on a number you refuse to look at.",when:"Morning. Quiet. No interruptions.",
-       steps:["Write exactly how much money you have right now. Every account. No rounding.","Write exactly how much goes out every month. Every bill, every subscription.","Write the gap between what comes in and what it costs to live.","Write one sentence: this is where I actually am, and I am not looking away anymore."],
-       avoid:"Do not soften the number. What is real right now.",reflection:"What has not knowing this number actually cost me?"},
-      {n:"02",title:"Find the Bleeding",mission:"Before you add income, stop the loss.",when:"Afternoon. Go through your last thirty days of transactions.",
-       steps:["Go through your bank and card statements from the last thirty days.","Write every charge that did not move your life forward.","Add up the total. Write the number.","Circle the single biggest non-essential expense. Cancel or cut it today."],
-       avoid:"Do not justify. You are not being punished. You are getting honest.",reflection:"What am I paying for that keeps me comfortable instead of free?"},
+       steps:["Write exactly how much money you have right now. Every account. No rounding.","Write exactly how much goes out every month. Every bill and subscription.","Write the gap between what comes in and what it costs to live.","Write one sentence: this is where I actually am, and I am not looking away anymore."],
+       avoid:"Do not soften the number or add money you are expecting.",reflection:"What has not knowing this number actually cost me?"},
+      {n:"02",title:"Find the Bleeding",mission:"Before you add income, stop the loss.",when:"Afternoon. Go through your last thirty days of spending.",
+       steps:["Go through your bank and card statements from the last thirty days.","Write every charge that did not move your life forward.","Add them up. Write the number.","Circle the single biggest non-essential expense and cut it today."],
+       avoid:"Do not justify the spending. Just see it clearly.",reflection:"What am I paying for that keeps me comfortable instead of free?"},
       {n:"03",title:"The One Move",mission:"You do not need a business plan. You need one income action.",when:"Morning. Two hours. No phone.",
-       steps:["Write every way you could produce income with skills you already have. Fifteen minutes. Do not stop.","Circle the one that could move fastest with the least setup.","Write exactly what the first physical step of that option looks like.","Execute that step today. Something that exists after today that did not exist before."],
-       avoid:"Do not plan the entire business. Execute one action.",reflection:"What skill do I already have that someone would pay for?"},
+       steps:["Write every way you could produce income with skills you already have. Fifteen minutes. Do not stop writing.","Circle the one that could move fastest with the least setup.","Write exactly what the first physical step of that option looks like.","Execute that step today. Something that exists after today that did not exist before."],
+       avoid:"Do not plan the whole business. Execute one action.",reflection:"What skill do I already have that someone would pay for?"},
       {n:"04",title:"The Time Audit",mission:"Time is the only currency you cannot make back. Find out where yours actually goes.",when:"Today. Track everything.",
-       steps:["From the moment you wake up, track every thirty-minute block.","At the end of the day divide your activities into three categories: building, maintaining, wasting.","Add up the hours in each category.","Write one hour per day you could reclaim starting tomorrow."],
-       avoid:"Do not judge the audit. Just see it clearly.",reflection:"If I could buy back two hours per day, what would I build with them?"},
-      {n:"05",title:"Cut the Anchor",mission:"One thing is keeping you where you are. Name it and remove it.",when:"Morning decision. Executed today.",
-       steps:["Write down the single biggest thing anchoring you to where you are. The job, the commitment, the relationship taking more than it gives.","Write what your life looks like in six months if this anchor is gone.","Write what your life looks like in six months if it stays.","Make one concrete move today toward removing it."],
-       avoid:"Do not wait for the perfect moment to remove what is holding you back.",reflection:"What am I afraid happens if I actually get free?"},
+       steps:["From the moment you wake up, track every thirty-minute block. Write what you did.","At the end of the day divide your activities: building, maintaining, or wasting.","Add up the hours in each category.","Write one hour per day you could reclaim starting tomorrow."],
+       avoid:"Do not judge the audit. Just see it.",reflection:"If I could buy back two hours per day, what would I build with them?"},
+      {n:"05",title:"Cut the Anchor",mission:"One thing is keeping you exactly where you are. Name it and remove it.",when:"Morning decision. Executed today.",
+       steps:["Write the one biggest thing anchoring you to where you are right now.","Write what your life looks like in six months if this anchor is gone.","Write what your life looks like in six months if it stays.","Make one concrete move today toward removing it."],
+       avoid:"Do not wait for the perfect moment. That moment is today.",reflection:"What am I afraid happens if I actually get free?"},
       {n:"06",title:"The 90-Day Map",mission:"Freedom is not a feeling. It is a direction.",when:"Morning. Ninety minutes. No interruptions.",
-       steps:["Write what financial freedom looks like for you in specific numbers: monthly income, debts gone, time owned per week.","Write where you need to be in ninety days to be on track.","Put a date on the next step of your Day 3 move.","Write one sentence about why this matters beyond the money."],
+       steps:["Write what financial freedom looks like for you in actual numbers: monthly income, debts gone, time owned per week.","Write where you need to be in ninety days to be on track for that.","Put a date on the next step of your Day 3 move.","Write one sentence about why this matters beyond the money."],
        avoid:"Do not make the map complicated. One direction, one first move, one date.",reflection:"What becomes possible for my family when I am financially free?"},
       {n:"07",title:"Make the Move",mission:"This week ends with action. Not a plan. A move.",when:"Morning. First thing.",
-       steps:["Read everything you wrote this week.","Take one action from your Day 3 or Day 6 plan today. Something that did not exist before today.","Write down what you did and what it proves about the direction you are moving.","The free session is your next step. Bring your one move and your ninety-day map."],
+       steps:["Read everything you wrote this week.","Take one action from your Day 3 or Day 6 plan today. Something that did not exist before today.","Write what you did and what it proves about the direction you are moving.","The free session is your next step."],
        avoid:"Do not end this week with only clarity. Clarity without action is educated comfort.",reflection:"What did making the move today prove that planning never could?"}
     ]
   },
-
   faith:{
-    badge:'BOTTLENECK DETECTED: FAITH',
+    badge:'FAITH',
     title:'The <em>Faith</em> Protocol',
     lead:"You are not stuck because of what you lack. You are stuck because you do not fully trust the direction you are moving. That changes now.",
     lockedSub:"Your purpose alignment score, direction clarity, and calling confidence unlock at the free session.",
     ctaTitle:"There is a specific plan for your life.",
-    ctaBody:"King Azoulay's free live session breaks down how to find it, trust it, and start moving in it. This is not motivation. This is method.",
+    ctaBody:"King Azoulay's free live session breaks down how to find it, trust it, and start moving in it. Not motivation. Method.",
     days:[
       {n:"01",title:"The Quiet",mission:"You cannot hear direction in noise. Today you get quiet enough to listen.",when:"Morning. Thirty minutes. Phone in another room.",
        steps:["Sit in complete silence for ten minutes. No music, no content. Just you.","Write what comes up when the noise is gone. Thoughts, fears, desires.","Write three things you actually believe about your life right now.","Write one thing you want to believe but are afraid to."],
        avoid:"Do not fill the silence with productivity. The quiet is the work today.",reflection:"What do I actually hear when I stop filling the space?"},
-      {n:"02",title:"The Inventory",mission:"Before you move forward with clarity, you need to see what you actually believe right now.",when:"Morning. Forty-five minutes.",
-       steps:["Write what you believe about your potential. Honest, not aspirational.","Write what you believe about whether there is a specific plan for your life.","Write where those beliefs came from. Who told you that? What experience created it?","Circle one belief that is running your life that was given to you, not chosen."],
+      {n:"02",title:"The Inventory",mission:"Before you move forward, see what you actually believe right now.",when:"Morning. Forty-five minutes.",
+       steps:["Write what you believe about your potential. Honest, not aspirational.","Write what you believe about whether there is a specific plan for your life.","Write where those beliefs came from. Who told you that? What experience created it?","Circle one belief running your life that was given to you, not chosen by you."],
        avoid:"Do not write what you wish you believed. Write what you actually believe right now.",reflection:"Whose voice am I living by that is not my own?"},
       {n:"03",title:"Find the Evidence",mission:"Life has already shown you the direction. You stopped looking.",when:"Morning. Reflect on the last five years.",
-       steps:["Write every moment in the last five years where something felt exactly right. A conversation, a project, a moment where you were fully alive.","Write the common thread. What were you doing? Who were you serving?","Write one moment where a door opened at the right time without you forcing it.","Write: based on the evidence of my own life, here is where I am being guided."],
+       steps:["Write every moment in the last five years where something felt exactly right. A conversation, a project, a moment where you were fully alive.","Write the common thread. What were you doing? Who were you serving?","Write one moment where a door opened at exactly the right time without you forcing it.","Write: based on the evidence of my own life, here is where I am being guided."],
        avoid:"Do not dismiss small moments. The pattern is in the details.",reflection:"If I trusted the evidence of my own life, what direction does it point?"},
       {n:"04",title:"Choose One Direction",mission:"The inability to commit to one direction is fear dressed up as options.",when:"Morning. The most important decision of this week.",
        steps:["Write every path or direction you are currently considering or avoiding.","Read each one and write one word next to it: alive or dead.","Choose the one that made you write alive.","Write five reasons this direction is already supported by the evidence from Day 3."],
        avoid:"Do not choose the safest option. Choose the one that makes you come alive.",reflection:"What would I pursue if I knew it was backed?"},
       {n:"05",title:"Name the Doubt",mission:"The thing blocking your faith is specific. Not 'I do not believe.' Something exact.",when:"Morning. Quiet.",
-       steps:["Write the exact doubt keeping you from moving in the direction you chose yesterday.","Write where that doubt came from. What failure or experience planted it.","Write what it would cost you if that doubt is wrong. What have you already lost believing it?","Write one sentence that challenges the doubt with evidence from your own life."],
+       steps:["Write the exact doubt keeping you from moving in the direction you chose yesterday.","Write where that doubt came from. What failure or experience planted it.","Write what it would cost you if that doubt is wrong.","Write one sentence that challenges the doubt with evidence from your own life."],
        avoid:"Do not spiritualize the doubt to avoid naming it. Name it exactly.",reflection:"What if the doubt is the lie and the direction is the truth?"},
-      {n:"06",title:"Build the Practice",mission:"Belief without daily action is just a feeling. Build the habit.",when:"Today. Build it and do it.",
-       steps:["Choose one daily practice that connects you to your direction. Prayer, a focused work hour, a specific conversation.","Do it today, fully, for the first time.","Write what felt different about moving intentionally toward your direction.","Commit to doing it every day for the next thirty days."],
+      {n:"06",title:"Build the Practice",mission:"Belief without daily action is just a feeling.",when:"Today. Build it and do it.",
+       steps:["Choose one daily practice that connects you to your direction. Prayer, focused work, a specific conversation.","Do it today, fully, for the first time.","Write what felt different about moving intentionally toward your direction.","Commit to doing it every day for the next thirty days."],
        avoid:"Do not build a complicated practice. One simple action done consistently is enough.",reflection:"What daily habit would prove, through repetition, that I believe in the direction I chose?"},
       {n:"07",title:"Write Your Mission",mission:"You cannot build toward something you have never put into words.",when:"Morning. Thirty minutes.",
-       steps:["Read everything you wrote this week.","Write your mission in one sentence in present tense. Not 'I want to' or 'I am trying to.' Start with: I am the man who.","Write what the next ninety days look like if you actually live by that sentence.","The free session is your next step. Bring your mission sentence and your direction."],
+       steps:["Read everything you wrote this week.","Write your mission in one sentence in present tense. Start with: I am the man who.","Write what the next ninety days look like if you actually live by that sentence.","The free session is your next step. Bring your mission sentence."],
        avoid:"Do not wait until the sentence is perfect. Write it and refine through action.",reflection:"What does my life look like in one year if I actually live by the mission I just wrote?"}
     ]
   },
-
   family:{
-    badge:'BOTTLENECK DETECTED: FAMILY',
+    badge:'FAMILY',
     title:'The <em>Family</em> Protocol',
-    lead:"You are building in a bubble. The people around you either do not see the version you are becoming or they are actively pulling you away from it.",
-    lockedSub:"Your relationship capital score, circle quality index, and legacy readiness unlock at the free session.",
+    lead:"You are building in a bubble. The people around you either do not see the version you are becoming or they are pulling you away from it.",
+    lockedSub:"Your relationship capital score, circle quality, and legacy readiness unlock at the free session.",
     ctaTitle:"The people around you are your superpower or your ceiling.",
     ctaBody:"King Azoulay's free live session breaks down how to build a circle that accelerates you and a family legacy that actually lasts.",
     days:[
       {n:"01",title:"The Circle Audit",mission:"You cannot outgrow a circle you refuse to evaluate.",when:"Morning. Honest and private.",
-       steps:["Write the five people you spend the most time with.","Next to each name write one word: growing or static. No grey area.","Write who in your circle is actively building and who is just existing.","Write: based on this circle, who am I most likely to become in five years?"],
-       avoid:"Do not soften the audit to protect feelings. This is private. Be honest.",reflection:"If I become the average of the five people I spend the most time with, what does that make me?"},
-      {n:"02",title:"The Real Conversation",mission:"There is one conversation you have been avoiding. Today you have it.",when:"Today. Not next week.",
-       steps:["Write down the one conversation you have been avoiding with someone important.","Write what you would say if there were no consequences and no filters.","Have the conversation today. Not the perfect version. The real one.","Write what happened and what changed."],
-       avoid:"Do not script it so much that it becomes a performance. Say what needs to be said.",reflection:"What has avoiding this conversation cost both of us?"},
+       steps:["Write the five people you spend the most time with.","Next to each name write one word: growing or static. No grey area.","Write who in your circle is actually building something and who is just existing.","Write: based on this circle, who am I most likely to become in five years?"],
+       avoid:"Do not soften this to protect feelings. It is private. Be honest.",reflection:"If I become the average of the five people I spend most time with, what does that make me?"},
+      {n:"02",title:"The Real Conversation",mission:"There is one conversation you have been avoiding. Today you have it.",when:"Today.",
+       steps:["Write the one conversation you have been avoiding with someone important.","Write what you would say if there were no consequences and no filters.","Have the conversation today. Not the perfect version. The real one.","Write what happened and what changed."],
+       avoid:"Do not script it so much that it becomes a performance. Say what actually needs to be said.",reflection:"What has avoiding this conversation cost both of us?"},
       {n:"03",title:"Show Up",mission:"Presence is the first form of love. Today you give it fully.",when:"Today. Scheduled and protected.",
-       steps:["Choose the one person who most needs your full presence right now.","Block two hours for them today. Phone away. No agenda. Just present.","Ask one real question and actually listen. Do not fix. Listen.","Write what you noticed when you were actually present."],
-       avoid:"Do not multitask during this time. Divided presence is not presence.",reflection:"Who in my life has needed me to just show up and I keep making them wait?"},
+       steps:["Choose the one person who most needs your full presence right now.","Block two hours for them. Phone away. No agenda.","Ask one real question and actually listen. Do not fix. Just listen.","Write what you noticed when you were actually present with someone."],
+       avoid:"Do not multitask during this time. Divided presence is not presence.",reflection:"Who in my life has needed me to show up and I keep making them wait?"},
       {n:"04",title:"Identify the Drain",mission:"One relationship is costing you more than it is giving. You already know which one.",when:"Morning. Private reflection.",
        steps:["Write the one relationship that consistently leaves you drained or smaller.","Write exactly how it drains you. Specific behaviors and patterns.","Write what it would look like to change the dynamic or create distance.","Make one decision about this relationship today."],
        avoid:"Do not let loyalty become an excuse to stay in something pulling you down.",reflection:"What am I protecting by keeping a draining relationship exactly as it is?"},
-      {n:"05",title:"Invest Deliberately",mission:"The relationships that carry your life forward require intentional investment.",when:"Today. Scheduled.",
-       steps:["Identify one person in your circle who is ahead of you in an area you want to grow.","Reach out today with something specific: a question, a resource, a genuine acknowledgment.","Write what you want to learn from them and ask for one conversation.","Write what you have to offer in return."],
-       avoid:"Do not reach out with nothing to give. Think about what you bring to the exchange.",reflection:"Who has built what I am trying to build, and what is stopping me from learning from them directly?"},
+      {n:"05",title:"Invest Deliberately",mission:"The relationships that carry your life forward need intentional investment.",when:"Today. Scheduled.",
+       steps:["Find one person in your circle who is ahead of you in an area you want to grow.","Reach out today with something real: a question, a resource, a genuine acknowledgment.","Ask for one conversation.","Write what you have to offer in return. Relationships are exchanges."],
+       avoid:"Do not reach out with nothing to give.",reflection:"Who has built what I am trying to build, and what is stopping me from learning from them?"},
       {n:"06",title:"Lead",mission:"The people around you are watching how you live. You are either an example or an excuse.",when:"All day. Every interaction.",
-       steps:["Today act as if the version of you that you are becoming is already here.","In every interaction, be the most intentional person in the room.","At the end of the day write three moments where you led instead of reacted.","Write one way your standard lifted the people around you today."],
+       steps:["Act today as if the version of you that you are becoming is already here.","In every interaction, be the most intentional person in the room.","At the end of the day write three moments where you led instead of reacted.","Write one way your standard lifted the people around you today."],
        avoid:"Do not wait to lead until you feel credible. Lead now with what you have.",reflection:"What does it look like when I am the example instead of waiting for one?"},
       {n:"07",title:"Set the Standard",mission:"You teach people how to treat you by what you accept. Decide what you accept.",when:"Morning. The most important decision of this week.",
-       steps:["Write what you will and will not accept in your closest relationships from this point forward.","Write what kind of father, partner, friend, or leader you are committing to be.","Share one of those standards with one important person in your life today.","The free session is your next step. Bring what you discovered about your circle this week."],
+       steps:["Write what you will and will not accept in your closest relationships from this point forward.","Write what kind of father, partner, friend, or leader you are committing to be.","Share one of those standards with someone important today.","The free session is your next step."],
        avoid:"Do not set standards you are not willing to hold for yourself first.",reflection:"What standard am I setting for my family by the way I am living right now?"}
     ]
   }
 };
 
-const r    = RESULTS[curResult];
-const stat = STAT_SCORES[curResult];
-const uName = storedUser && storedUser.name ? storedUser.name : null;
+// Order protocols by how much the person talked about each area (biggest gap first)
+const scores = stored.scores || {fit:0,fight:0,freedom:0,faith:0,family:0};
+const orderedKeys = Object.keys(RESULTS).sort((a,b) => (scores[b]||0) - (scores[a]||0));
+
+// If scores are all 0 (old result), fall back to primary first
+if(Object.values(scores).every(v => v === 0)){
+  orderedKeys.sort((a,b) => a === primaryResult ? -1 : b === primaryResult ? 1 : 0);
+}
+
+let activeProto = orderedKeys[0];
+const protoState = {};
+orderedKeys.forEach(key => {
+  const saved = JSON.parse(localStorage.getItem('ka_proto_'+key)||'null');
+  protoState[key] = {
+    key: 'ka_proto_'+key,
+    curDay: 0,
+    daysCompleted: saved ? saved.daysCompleted : [],
+    stepsChecked:  saved ? saved.stepsChecked  : {}
+  };
+  for(let i=0;i<7;i++){
+    if(protoState[key].daysCompleted.includes(i)) protoState[key].curDay = Math.min(i+1,6);
+  }
+});
 
 function fakeRow(){ return `<div style="display:flex;gap:3px;margin-bottom:10px">${Array(10).fill('<div style="flex:1;height:6px;background:#222"></div>').join('')}</div>`; }
 
 function statBars(){
-  const LABELS = {fit:'FIT',fight:'FIGHT',freedom:'FREEDOM',faith:'FAITH',family:'FAMILY'};
-  return Object.entries(LABELS).map(([k,l]) => {
-    const pct = stat[k], bot = k === curResult;
+  return Object.entries(STAT_LABELS).map(([k,l]) => {
+    const pct = stat[k], bot = k === primaryResult;
     return `<div class="stat-row">
       <div class="stat-name${bot?' bot':''}">${l}</div>
       <div class="stat-bar"><div class="stat-fill${bot?' low':' ok'}" data-pct="${pct}"></div></div>
@@ -318,108 +364,64 @@ function statBars(){
   }).join('');
 }
 
-document.getElementById('result-wrap').innerHTML = `
-  <div class="result-header">
-    ${uName?`<p class="greeting">Hey ${uName}.</p>`:''}
-    <div class="bottleneck-tag">${r.badge}</div>
-    <h1 class="result-title">${r.title}</h1>
-    <p class="result-lead">${r.lead}</p>
-  </div>
-
-  <div class="sec-label">Your Character Stats</div>
-  <div class="stats-block">
-    ${statBars()}
-    <p class="bot-note">Your <strong>${curResult.toUpperCase()}</strong> stat is your current bottleneck. Level this up first and everything else moves.</p>
-  </div>
-
-  <div class="sec-label">Your 7-Day Training Arc</div>
-  <div class="proto-prog-row">
-    <div class="proto-prog-bar"><div class="proto-prog-fill" id="proto-prog-fill" style="width:0%"></div></div>
-    <div class="proto-prog-label" id="proto-prog-label">0 of 7 complete</div>
-  </div>
-  <div class="proto-week" id="proto-week"></div>
-  <div class="proto-card" id="proto-card"></div>
-
-  <div class="accountability-row">
-    <button class="acct-btn" onclick="downloadPDF()">
-      <svg viewBox="0 0 24 24"><path d="M12 16l-4-4h3V4h2v8h3l-4 4zm-7 4v-2h14v2H5z"/></svg>
-      Download My Plan (PDF)
-    </button>
-    <button class="acct-btn" onclick="addToCalendar()">
-      <svg viewBox="0 0 24 24"><path d="M19 4h-1V2h-2v2H8V2H6v2H5C3.9 4 3 4.9 3 6v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V9h14v11zM7 11h2v2H7zm4 0h2v2h-2zm4 0h2v2h-2z"/></svg>
-      Add to My Calendar
-    </button>
-  </div>
-
-  <div class="sec-label" style="margin-top:48px">What Is Coming Next</div>
-  <div class="locked-wrap">
-    <div class="locked-blur">${fakeRow()}${fakeRow()}${fakeRow()}</div>
-    <div class="locked-overlay">
-      <div class="lock-icon">&#x1F512;</div>
-      <div class="locked-hed">Your Full Character Report</div>
-      <div class="locked-sub">${r.lockedSub}</div>
-      <div class="unlock-tag">Unlocks at the Free Session</div>
-    </div>
-  </div>
-
-  <div class="cta-block">
-    <h3>${r.ctaTitle}</h3>
-    <p>${r.ctaBody}</p>
-    <a href="#session" class="btn-gold">Join the Free Session</a>
-    <p class="cta-note">Free. Live. Real value before anyone asks you for anything.</p>
-  </div>
-  <button class="btn-outline" onclick="retake()" style="margin-top:8px">Retake the Assessment</button>
-`;
-
-setTimeout(() => {
-  document.querySelectorAll('.stat-fill').forEach(el => { el.style.width = el.dataset.pct + '%'; });
-}, 120);
-
-initProtocol(r);
-
-function initProtocol(r){
-  const key = 'ka_proto_' + curResult;
-  const saved = JSON.parse(localStorage.getItem(key)||'null');
-  _proto = {
-    r,
-    key,
-    daysCompleted: saved ? saved.daysCompleted : [],
-    stepsChecked:  saved ? saved.stepsChecked  : {}
-  };
-  _protoDay = 0;
-  for(let i=0;i<7;i++){
-    if(_proto.daysCompleted.includes(i)) _protoDay = Math.min(i+1,6);
-  }
-  _renderWeek();
-  _renderDay();
+function renderTabs(){
+  document.getElementById('proto-tabs').innerHTML = orderedKeys.map((key,i) => {
+    const ps = protoState[key];
+    const done = ps.daysCompleted.length;
+    const isPrimary = i === 0;
+    const isActive = key === activeProto;
+    let cls = 'proto-tab';
+    if(isActive) cls += ' active';
+    if(done > 0 && !isActive) cls += ' has-progress';
+    if(isPrimary) cls += ' primary-tab';
+    return `<button class="${cls}" onclick="switchProto('${key}')">
+      <span class="proto-tab-name">${STAT_LABELS[key]}</span>
+      <span class="proto-tab-prog">${done}/7 done</span>
+    </button>`;
+  }).join('');
 }
 
-function _saveProto(){
-  localStorage.setItem(_proto.key, JSON.stringify({daysCompleted:_proto.daysCompleted, stepsChecked:_proto.stepsChecked}));
+function switchProto(key){
+  activeProto = key;
+  renderTabs();
+  renderProtoHeader();
+  renderWeek();
+  renderDay();
 }
 
-function _renderWeek(){
-  const maxU = _proto.daysCompleted.length > 0 ? Math.min(Math.max(..._proto.daysCompleted)+1, 6) : 0;
-  document.getElementById('proto-week').innerHTML = _proto.r.days.map((d,i) => {
-    const done = _proto.daysCompleted.includes(i);
+function renderProtoHeader(){
+  const r = RESULTS[activeProto];
+  const idx = orderedKeys.indexOf(activeProto);
+  const label = idx === 0 ? 'Start Here' : `Protocol ${idx+1} of 5`;
+  document.getElementById('proto-header').innerHTML = `
+    <p class="proto-header-label">${label}</p>
+    <h2 class="proto-header-title">${r.title}</h2>
+    <p class="proto-header-lead">${r.lead}</p>`;
+}
+
+function renderWeek(){
+  const ps = protoState[activeProto];
+  const maxU = ps.daysCompleted.length > 0 ? Math.min(Math.max(...ps.daysCompleted)+1, 6) : 0;
+  document.getElementById('proto-week').innerHTML = RESULTS[activeProto].days.map((_,i) => {
+    const done = ps.daysCompleted.includes(i);
     const locked = i > maxU;
-    const active = i === _protoDay;
-    let cls = 'proto-day-btn' + (done?' done':locked?'':active?' active':'');
+    const active = i === ps.curDay;
+    let cls = 'proto-day-btn' + (done?' done':active?' active':'');
     return `<button class="${cls}" onclick="goDay(${i})" ${locked?'disabled':''}>${i+1}</button>`;
   }).join('');
-  const c = _proto.daysCompleted.length;
+  const c = ps.daysCompleted.length;
   document.getElementById('proto-prog-fill').style.width = ((c/7)*100)+'%';
-  document.getElementById('proto-prog-label').textContent = `${c} of 7 complete`;
+  document.getElementById('proto-prog-label').textContent = `${c} of 7 days done`;
 }
 
-function _renderDay(){
-  const day = _proto.r.days[_protoDay];
-  const checked = _proto.stepsChecked[_protoDay] || [];
-  const done = _proto.daysCompleted.includes(_protoDay);
+function renderDay(){
+  const ps = protoState[activeProto];
+  const day = RESULTS[activeProto].days[ps.curDay];
+  const checked = ps.stepsChecked[ps.curDay] || [];
+  const done = ps.daysCompleted.includes(ps.curDay);
   const allChk = checked.length >= day.steps.length;
-
   document.getElementById('proto-card').innerHTML = `
-    <p class="proto-day-label">Day ${_protoDay+1} of 7</p>
+    <p class="proto-day-label">Day ${ps.curDay+1} of 7</p>
     <h3 class="proto-day-title">${day.title}</h3>
     <p class="proto-day-mission">${day.mission}</p>
     <p class="proto-when">${day.when}</p>
@@ -433,61 +435,70 @@ function _renderDay(){
     <div class="proto-avoid"><strong>Avoid</strong>${day.avoid}</div>
     <div class="proto-reflect"><strong>Reflect</strong>${day.reflection}</div>
     ${done
-      ? `<div class="proto-done-card">&#10003; Day ${_protoDay+1} complete. Keep going.</div>`
-      : `<button class="proto-complete-btn" onclick="completeDay()" style="display:${allChk?'block':'none'}">Mark Day ${_protoDay+1} Complete</button>`
-    }`;
+      ? `<div class="proto-done-card">Day ${ps.curDay+1} complete. Keep going.</div>`
+      : `<button class="proto-complete-btn" onclick="completeDay()" style="display:${allChk?'block':'none'}">Mark Day ${ps.curDay+1} Complete</button>`}`;
 }
 
 function goDay(i){
-  const maxU = _proto.daysCompleted.length > 0 ? Math.min(Math.max(..._proto.daysCompleted)+1, 6) : 0;
+  const ps = protoState[activeProto];
+  const maxU = ps.daysCompleted.length > 0 ? Math.min(Math.max(...ps.daysCompleted)+1, 6) : 0;
   if(i > maxU) return;
-  _protoDay = i;
-  _renderWeek();
-  _renderDay();
+  ps.curDay = i;
+  renderWeek();
+  renderDay();
 }
 
 function toggleStep(i){
-  if(_proto.daysCompleted.includes(_protoDay)) return;
-  if(!_proto.stepsChecked[_protoDay]) _proto.stepsChecked[_protoDay] = [];
-  const idx = _proto.stepsChecked[_protoDay].indexOf(i);
-  if(idx > -1) _proto.stepsChecked[_protoDay].splice(idx,1);
-  else _proto.stepsChecked[_protoDay].push(i);
-  _saveProto();
-  _renderDay();
+  const ps = protoState[activeProto];
+  if(ps.daysCompleted.includes(ps.curDay)) return;
+  if(!ps.stepsChecked[ps.curDay]) ps.stepsChecked[ps.curDay] = [];
+  const idx = ps.stepsChecked[ps.curDay].indexOf(i);
+  if(idx > -1) ps.stepsChecked[ps.curDay].splice(idx,1);
+  else ps.stepsChecked[ps.curDay].push(i);
+  saveProto(activeProto);
+  renderDay();
 }
 
 function completeDay(){
-  if(!_proto.daysCompleted.includes(_protoDay)) _proto.daysCompleted.push(_protoDay);
-  _saveProto();
+  const ps = protoState[activeProto];
+  if(!ps.daysCompleted.includes(ps.curDay)) ps.daysCompleted.push(ps.curDay);
+  saveProto(activeProto);
   const user = JSON.parse(localStorage.getItem('ka_user')||'{}');
-  fireWebhook({event:'day_completed',email:user.email||'',first_name:user.name||'',result_type:curResult,day_number:_protoDay+1,day_title:_proto.r.days[_protoDay].title,days_completed_count:_proto.daysCompleted.length,completed_at:new Date().toISOString(),source:'character-blueprint-quiz'});
-  if(_proto.daysCompleted.length===7) fireWebhook({event:'protocol_completed',email:user.email||'',first_name:user.name||'',result_type:curResult,completed_at:new Date().toISOString(),source:'character-blueprint-quiz'});
-  if(_protoDay < 6) _protoDay++;
-  _renderWeek();
-  _renderDay();
+  fireWebhook({event:'day_completed',email:user.email||'',first_name:user.name||'',result_type:activeProto,day_number:ps.curDay+1,day_title:RESULTS[activeProto].days[ps.curDay].title,days_completed_count:ps.daysCompleted.length,completed_at:new Date().toISOString(),source:'character-blueprint-quiz'});
+  if(ps.daysCompleted.length===7) fireWebhook({event:'protocol_completed',email:user.email||'',first_name:user.name||'',result_type:activeProto,completed_at:new Date().toISOString(),source:'character-blueprint-quiz'});
+  if(ps.curDay < 6) ps.curDay++;
+  renderTabs();
+  renderWeek();
+  renderDay();
+}
+
+function saveProto(key){
+  localStorage.setItem('ka_proto_'+key, JSON.stringify({daysCompleted:protoState[key].daysCompleted, stepsChecked:protoState[key].stepsChecked}));
 }
 
 function downloadPDF(){
-  const LABELS = {fit:'FIT',fight:'FIGHT',freedom:'FREEDOM',faith:'FAITH',family:'FAMILY'};
   const pc = document.getElementById('print-content');
-  pc.innerHTML = `
-    <div class="pp-page">
-      <p class="pp-eyebrow">King Azoulay &middot; Character Blueprint</p>
-      <h1 class="pp-title">${r.title}</h1>
-      <p class="pp-lead">${r.lead}</p>
-      <div style="margin-bottom:24px">
-        ${Object.entries(LABELS).map(([k,l])=>{
-          const pct=stat[k],bot=k===curResult;
-          return `<div class="pp-stat-row">
-            <div class="pp-stat-name">${l}</div>
-            <div class="pp-stat-bar"><div class="pp-stat-fill${bot?' low':''}" style="width:${pct}%"></div></div>
-            <div class="pp-stat-pct">${pct}%</div>
-          </div>`;
-        }).join('')}
-      </div>
+  let html = `<div class="pp-page">
+    <p class="pp-eyebrow">King Azoulay &middot; Character Blueprint</p>
+    <h1 class="pp-title">Your 5 Protocols</h1>
+    <p class="pp-lead">Work through all five. Start with the one that hits hardest. The order is yours.</p>
+    <div style="margin:20px 0">
+      ${Object.entries(STAT_LABELS).map(([k,l])=>{
+        const pct=stat[k],bot=k===primaryResult;
+        return `<div class="pp-stat-row">
+          <div class="pp-stat-name">${l}</div>
+          <div class="pp-stat-bar"><div class="pp-stat-fill${bot?' low':''}" style="width:${pct}%"></div></div>
+          <div class="pp-stat-pct">${pct}%</div>
+        </div>`;
+      }).join('')}
     </div>
-    <div class="pp-page">
-      <p class="pp-eyebrow">Your 7-Day Training Arc</p>
+  </div>`;
+  orderedKeys.forEach((key,ki) => {
+    const r = RESULTS[key];
+    html += `<div class="pp-page">
+      <p class="pp-eyebrow">Protocol ${ki+1} of 5</p>
+      <h2 class="pp-title">${r.title}</h2>
+      <p class="pp-lead">${r.lead}</p>
       ${r.days.map((d,i)=>`
         <div class="pp-day-block">
           <p class="pp-day-num">Day ${i+1}</p>
@@ -499,32 +510,34 @@ function downloadPDF(){
           <p class="pp-reflect"><strong>Reflect</strong>${d.reflection}</p>
         </div>`).join('')}
     </div>`;
+  });
+  pc.innerHTML = html;
   window.print();
 }
 
 function addToCalendar(){
   const today = new Date();
   let ical = 'BEGIN:VCALENDAR\r\nVERSION:2.0\r\nPRODID:-//King Azoulay//Character Blueprint//EN\r\nCALSCALE:GREGORIAN\r\n';
+  const r = RESULTS[orderedKeys[0]];
   r.days.forEach((day,i) => {
     const d = new Date(today);
     d.setDate(today.getDate() + i);
     const ds = d.toISOString().replace(/-/g,'').substring(0,8);
-    const steps = day.steps.map((s,j)=>`${j+1}. ${s}`).join('\\n');
-    const desc = `${day.mission}\\n\\nWHEN: ${day.when}\\n\\n${steps}\\n\\nREFLECT: ${day.reflection}`;
-    ical += `BEGIN:VEVENT\r\nDTSTART;VALUE=DATE:${ds}\r\nSUMMARY:Day ${i+1}: ${day.title} (${curResult.toUpperCase()} Protocol)\r\nDESCRIPTION:${desc}\r\nEND:VEVENT\r\n`;
+    const desc = `${day.mission}\\n\\nWHEN: ${day.when}\\n\\n${day.steps.map((s,j)=>`${j+1}. ${s}`).join('\\n')}\\n\\nREFLECT: ${day.reflection}`;
+    ical += `BEGIN:VEVENT\r\nDTSTART;VALUE=DATE:${ds}\r\nSUMMARY:Day ${i+1}: ${day.title} (${STAT_LABELS[orderedKeys[0]]} Protocol)\r\nDESCRIPTION:${desc}\r\nEND:VEVENT\r\n`;
   });
   ical += 'END:VCALENDAR';
-  const blob = new Blob([ical], {type:'text/calendar;charset=utf-8'});
+  const blob = new Blob([ical],{type:'text/calendar;charset=utf-8'});
   const url  = URL.createObjectURL(blob);
   const a    = document.createElement('a');
-  a.href = url; a.download = `ka-${curResult}-protocol.ics`; a.click();
+  a.href=url; a.download=`ka-${orderedKeys[0]}-protocol.ics`; a.click();
   URL.revokeObjectURL(url);
 }
 
 function retake(){
   localStorage.removeItem('ka_result');
   localStorage.removeItem('ka_user');
-  ['fit','fight','freedom','faith','family'].forEach(k => localStorage.removeItem('ka_proto_'+k));
+  ['fit','fight','freedom','faith','family'].forEach(k=>localStorage.removeItem('ka_proto_'+k));
   window.location.replace('/');
 }
 
@@ -532,6 +545,72 @@ async function fireWebhook(payload){
   if(!WEBHOOK_URL) return;
   try{ await fetch(WEBHOOK_URL,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)}); }catch(e){}
 }
+
+// RENDER PAGE
+const r0 = RESULTS[primaryResult];
+document.getElementById('result-wrap').innerHTML = `
+  <div class="result-header">
+    ${uName?`<p class="greeting">Hey ${uName}.</p>`:''}
+    <div class="bottleneck-tag">Your Character Blueprint</div>
+    <h1 class="result-title">You lack in more than one area.<br><em>Here are all 5 protocols.</em></h1>
+    <p class="result-lead">Work through all of them. Start with the one that hits hardest. Most people need all five. That is why all five are here.</p>
+  </div>
+
+  <div class="sec-label">Your Character Stats</div>
+  <div class="stats-block">
+    ${statBars()}
+    <p class="bot-note">Your biggest gap right now: <strong>${STAT_LABELS[primaryResult]}</strong>. Start there, then work through the rest.</p>
+  </div>
+
+  <div class="sec-label">All 5 Protocols</div>
+  <div class="proto-tabs" id="proto-tabs"></div>
+  <div class="proto-header" id="proto-header"></div>
+  <div class="proto-prog-row">
+    <div class="proto-prog-bar"><div class="proto-prog-fill" id="proto-prog-fill" style="width:0%"></div></div>
+    <div class="proto-prog-label" id="proto-prog-label">0 of 7 days done</div>
+  </div>
+  <div class="proto-week" id="proto-week"></div>
+  <div class="proto-card" id="proto-card"></div>
+
+  <div class="accountability-row">
+    <button class="acct-btn" onclick="downloadPDF()">
+      <svg viewBox="0 0 24 24"><path d="M12 16l-4-4h3V4h2v8h3l-4 4zm-7 4v-2h14v2H5z"/></svg>
+      Download All 5 Plans (PDF)
+    </button>
+    <button class="acct-btn" onclick="addToCalendar()">
+      <svg viewBox="0 0 24 24"><path d="M19 4h-1V2h-2v2H8V2H6v2H5C3.9 4 3 4.9 3 6v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V9h14v11zM7 11h2v2H7zm4 0h2v2h-2zm4 0h2v2h-2z"/></svg>
+      Add Primary Protocol to Calendar
+    </button>
+  </div>
+
+  <div class="sec-label" style="margin-top:48px">What Is Coming Next</div>
+  <div class="locked-wrap">
+    <div class="locked-blur">${fakeRow()}${fakeRow()}${fakeRow()}</div>
+    <div class="locked-overlay">
+      <div class="lock-icon">&#x1F512;</div>
+      <div class="locked-hed">Your Full Character Report</div>
+      <div class="locked-sub">${r0.lockedSub}</div>
+      <div class="unlock-tag">Unlocks at the Free Session</div>
+    </div>
+  </div>
+
+  <div class="cta-block">
+    <h3>${r0.ctaTitle}</h3>
+    <p>${r0.ctaBody}</p>
+    <a href="#session" class="btn-gold">Join the Free Session</a>
+    <p class="cta-note">Free. Live. Real value before anyone asks you for anything.</p>
+  </div>
+  <button class="btn-outline" onclick="retake()" style="margin-top:8px">Retake the Assessment</button>
+`;
+
+setTimeout(()=>{
+  document.querySelectorAll('.stat-fill').forEach(el=>{ el.style.width=el.dataset.pct+'%'; });
+}, 120);
+
+renderTabs();
+renderProtoHeader();
+renderWeek();
+renderDay();
 </script>
 </body>
 </html>
