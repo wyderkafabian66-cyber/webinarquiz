@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
-<title>Discover Your Divine Blueprint | King Azoulay</title>
+<title>Character Blueprint | King Azoulay</title>
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
@@ -14,30 +14,41 @@ html,body{background:var(--black);color:var(--white);font-family:'Inter',sans-se
 .logo-wrap{width:86px;height:86px;margin:0 auto 28px}
 .logo-wrap svg{width:100%;height:100%}
 .eyebrow{font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:16px}
-h1{font-family:'Cinzel',serif;font-size:clamp(32px,5.5vw,58px);font-weight:900;line-height:1.1;color:var(--white);max-width:640px;margin:0 auto 22px}
+h1{font-family:'Cinzel',serif;font-size:clamp(28px,5vw,54px);font-weight:900;line-height:1.1;color:var(--white);max-width:640px;margin:0 auto 22px}
 h1 em{font-style:normal;color:var(--gold)}
-.body-copy{font-size:clamp(15px,2vw,17px);line-height:1.75;color:#BDB097;max-width:480px;margin:0 auto 40px}
+.stats-row{display:flex;gap:8px;justify-content:center;margin:0 auto 32px;flex-wrap:wrap;max-width:420px}
+.stat-chip{font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--gold);border:1px solid var(--gold-d);padding:5px 14px}
+.body-copy{font-size:clamp(15px,2vw,17px);line-height:1.75;color:#BDB097;max-width:460px;margin:0 auto 32px}
 .body-copy strong{color:var(--white);font-weight:600}
 .divider{width:48px;height:1px;background:var(--gold);margin:0 auto 28px;opacity:.4}
 .btn-gold{display:inline-block;padding:16px 44px;background:var(--gold);color:var(--black);font-size:13px;font-weight:700;letter-spacing:2px;text-transform:uppercase;border:none;cursor:pointer;transition:background .2s,transform .15s;text-decoration:none}
 .btn-gold:hover{background:var(--gold-l);transform:translateY(-2px)}
+.sub-note{font-size:11px;color:#444;margin-top:16px;letter-spacing:1px}
 </style>
 </head>
 <body>
 <script>
-if(localStorage.getItem('ka_result')){window.location.replace('/result/');}
+if(localStorage.getItem('ka_result')){ window.location.replace('/result/'); }
 </script>
 <div class="screen">
   <div class="logo-wrap"><svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="g1" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="#F2D060"/><stop offset="45%" stop-color="#C9A84C"/><stop offset="100%" stop-color="#8A6018"/></linearGradient><linearGradient id="g2" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="#F0CE58"/><stop offset="100%" stop-color="#9A7530"/></linearGradient></defs><circle cx="100" cy="100" r="100" fill="#0A0A0A"/><circle cx="100" cy="100" r="93" fill="none" stroke="url(#g2)" stroke-width="3.5"/><path d="M77,78 L77,59 L88,72 L100,44 L112,72 L123,59 L123,78 Z" fill="url(#g1)"/><rect x="74" y="74" width="52" height="12" rx="2" fill="url(#g1)"/><circle cx="87" cy="80" r="2.5" fill="#0A0A0A"/><circle cx="100" cy="80" r="2.5" fill="#0A0A0A"/><circle cx="113" cy="80" r="2.5" fill="#0A0A0A"/><polygon points="107,90 93,90 46,163 64,163" fill="url(#g1)"/><polygon points="93,90 107,90 136,163 154,163" fill="url(#g1)"/><rect x="71" y="126" width="58" height="11" rx="1" fill="url(#g1)"/><rect x="38" y="157" width="32" height="9" rx="1" fill="url(#g1)"/><rect x="130" y="157" width="32" height="9" rx="1" fill="url(#g1)"/></svg></div>
   <p class="eyebrow">King Azoulay</p>
-  <h1>You feel it.<br><em>Something's off.</em></h1>
+  <h1>Your life is the game.<br><em>Find your weak stat.</em></h1>
+  <div class="stats-row">
+    <span class="stat-chip">Family</span>
+    <span class="stat-chip">Faith</span>
+    <span class="stat-chip">Freedom</span>
+    <span class="stat-chip">Fight</span>
+    <span class="stat-chip">Fit</span>
+  </div>
   <div class="body-copy">
-    The life you have and the life you know you're supposed to have are not the same thing.<br><br>
-    Something is blocking you. Most people never find out what. This quiz does.<br><br>
-    <strong>7 questions. Real answers.</strong>
+    Every character has one stat dragging everything else down.<br><br>
+    7 voice questions. We find your bottleneck. You get a 7-day protocol to level it up.<br><br>
+    <strong>No typing. Just talk.</strong>
   </div>
   <div class="divider"></div>
-  <a href="/quiz/" class="btn-gold">Reveal My Blueprint</a>
+  <a href="/quiz/" class="btn-gold">Start My Assessment</a>
+  <p class="sub-note">7 questions &middot; Voice powered &middot; Free</p>
 </div>
 </body>
 </html>

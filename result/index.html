@@ -3,557 +3,312 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
-<title>Your Divine Blueprint | King Azoulay</title>
+<title>Your Character Blueprint | King Azoulay</title>
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
-  --gold:#C9A84C;--gold-l:#E4C97B;--gold-d:#9A7530;--gold-deep:#7A5520;
-  --black:#0A0A0A;--dark:#111;--d2:#1A1A1A;--d3:#222;
-  --white:#F5F0E8;--gray:#888;
-  --green:#2E7D4F;--orange:#C47A2A;--red:#B02020;
+  --gold:#C9A84C;--gold-l:#E4C97B;--gold-d:#9A7530;
+  --black:#0A0A0A;--d2:#1A1A1A;--white:#F5F0E8;--gray:#888;
+  --red:#C47070;
 }
 html,body{background:var(--black);color:var(--white);font-family:'Inter',sans-serif;min-height:100vh;overflow-x:hidden}
-@keyframes fi{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
-#result-screen{padding:72px 24px 80px;display:flex;flex-direction:column;align-items:center;animation:fi .55s ease forwards}
-.r-wrap{width:100%;max-width:820px;text-align:left}
-.r-badge{display:inline-block;font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--black);background:var(--gold);padding:5px 14px;margin-bottom:18px}
-.r-title{font-family:'Cinzel',serif;font-size:clamp(28px,4.5vw,48px);font-weight:900;line-height:1.15;color:var(--white);margin-bottom:18px}
-.r-title em{font-style:normal;color:var(--gold)}
-.r-lead{font-size:15px;line-height:1.8;color:#BDB097;margin-bottom:48px;max-width:640px}
-.r-lead strong{color:var(--white)}
-.sec-label{font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--gold);border-top:1px solid #2A2A2A;padding-top:28px;margin-bottom:22px;margin-top:8px}
-
-/* JOURNEY */
-.journey{display:flex;align-items:flex-start;margin-bottom:48px;position:relative}
-.j-stage{flex:1;display:flex;flex-direction:column;align-items:center;position:relative}
-.j-track{position:absolute;top:13px;left:50%;width:100%;height:2px;background:#2A2A2A;z-index:0}
-.j-track.done{background:var(--gold-d)}
-.j-stage:last-child .j-track{display:none}
-.j-dot{width:26px;height:26px;border-radius:50%;border:2px solid #333;background:var(--black);position:relative;z-index:1;display:flex;align-items:center;justify-content:center}
-.j-dot.here{border-color:var(--gold);background:var(--gold)}
-.j-dot.done{border-color:var(--gold-d);background:var(--gold-d)}
-.j-dot-in{width:8px;height:8px;border-radius:50%;background:var(--black)}
-.j-name{font-size:9px;letter-spacing:1px;text-transform:uppercase;color:#444;margin-top:10px;text-align:center;line-height:1.4;max-width:72px}
-.j-name.here{color:var(--gold);font-weight:700}
-.j-name.done{color:var(--gold-d)}
-.j-here-tag{font-size:10px;font-style:italic;font-family:'Cinzel',serif;color:var(--gold);margin-top:4px}
-
-/* CONSTRAINT GRID */
-.cc-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:48px}
-@media(max-width:560px){.cc-grid{grid-template-columns:1fr}}
-.cc{background:var(--d2);border:1px solid #2A2A2A;padding:18px 20px}
-.cc.hot{border-color:var(--gold);background:rgba(201,168,76,.05)}
-.cc-btag{display:inline-block;font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;background:var(--gold);color:var(--black);padding:2px 8px;margin-bottom:8px}
-.cc-name{font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin-bottom:8px}
-.cc.hot .cc-name{color:var(--gold-l)}
-.cc-text{font-size:13px;line-height:1.6;color:#BDB097}
-
-/* SCORE BARS */
-.focus-hed{font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--white);margin-bottom:6px}
-.focus-sub{font-size:22px;font-family:'Cinzel',serif;font-weight:700;color:var(--gold);margin-bottom:24px}
-.s-row{display:flex;align-items:center;gap:12px;margin-bottom:8px}
-.s-name{font-size:10px;font-weight:700;letter-spacing:2px;color:#555;width:78px;flex-shrink:0;text-transform:uppercase}
-.s-name.hot{color:var(--white)}
-.s-blocks{display:flex;gap:3px;flex:1}
-.sb{flex:1;max-width:22px;height:16px;background:#222}
-.sb.g{background:var(--gold-d)}
-.sb.o{background:var(--orange)}
-.sb.r{background:var(--red)}
-.s-pct{font-size:11px;font-weight:700;color:#555;width:34px;text-align:right;flex-shrink:0}
-.s-pct.hot{color:var(--gold)}
-
-/* PCO */
-.pco-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:1px;background:#2A2A2A;margin-top:20px;margin-bottom:48px}
-@media(max-width:600px){.pco-grid{grid-template-columns:1fr}}
-.pco-item{background:var(--d2);padding:20px 18px}
-.pco-lbl{font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin-bottom:8px}
-.pco-txt{font-size:13px;line-height:1.65;color:#BDB097}
-.pco-txt em{font-family:'Cinzel',serif;font-style:italic;color:var(--white);font-size:15px;display:block;line-height:1.5;margin-top:4px}
-
-/* BRIDGE */
-.bridge{display:flex;align-items:stretch;margin-bottom:48px}
-.bridge-side{flex:1;background:var(--d2);border:1px solid #2A2A2A;padding:22px 18px}
-.bridge-side.right{border-color:var(--gold-d);background:rgba(201,168,76,.04)}
-.bridge-lbl{font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#555;margin-bottom:10px}
-.bridge-side.right .bridge-lbl{color:var(--gold)}
-.bridge-title{font-family:'Cinzel',serif;font-size:16px;font-weight:700;color:var(--white);margin-bottom:12px}
-.bridge-side.right .bridge-title{color:var(--gold-l)}
-.bridge-list{list-style:none}
-.bridge-list li{font-size:12px;color:#777;line-height:1.9;padding-left:14px;position:relative}
-.bridge-list li::before{content:'–';position:absolute;left:0;color:#3A3A3A}
-.bridge-mid{width:72px;flex-shrink:0;display:flex;flex-direction:column;align-items:center;justify-content:center;background:#0D0D0D;border-top:1px solid #222;border-bottom:1px solid #222;padding:10px 4px;gap:8px}
-.bridge-gap-txt{font-size:8px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#3A3A3A;writing-mode:vertical-rl}
-.bridge-arrow{font-size:14px;color:#2A2A2A}
-@media(max-width:560px){
-  .bridge{flex-direction:column}
-  .bridge-mid{width:100%;flex-direction:row;padding:8px 16px;border-left:1px solid #222;border-right:1px solid #222;border-top:none;border-bottom:none}
-  .bridge-gap-txt{writing-mode:horizontal-tb}
-}
-
-/* INTERACTIVE PROTOCOL */
-.proto-week{display:flex;gap:6px;margin-bottom:20px;flex-wrap:wrap}
-.proto-day-btn{flex:1;min-width:38px;padding:10px 4px;text-align:center;border:1px solid #252525;background:var(--d2);cursor:default;transition:all .2s;font-size:9px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:#333}
-.proto-day-btn.pdone{border-color:var(--gold-d);background:rgba(201,168,76,.07);color:var(--gold-d);cursor:pointer}
-.proto-day-btn.pactive{border-color:var(--gold);background:rgba(201,168,76,.05);color:var(--gold);cursor:pointer}
-.proto-day-btn:hover.pdone,.proto-day-btn:hover.pactive{background:rgba(201,168,76,.13)}
-.proto-day-btn .pdi{display:block;font-size:14px;margin-bottom:3px;line-height:1}
-.proto-card{background:var(--d2);border:1px solid #2A2A2A;padding:26px 22px;margin-bottom:16px}
-.proto-card-hd{display:flex;align-items:flex-start;gap:16px;margin-bottom:14px}
-.proto-card-num{font-family:'Cinzel',serif;font-size:52px;font-weight:900;color:#1C1C1C;line-height:1;flex-shrink:0;transition:color .2s;min-width:52px}
-.proto-card-num.live{color:var(--gold)}
-.proto-card-title{font-family:'Cinzel',serif;font-size:19px;font-weight:700;color:var(--white);line-height:1.2;margin-bottom:6px}
-.proto-card-mission{font-size:12px;color:var(--gold-d);font-style:italic;line-height:1.55}
-.proto-card-when{font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#444;padding-bottom:14px;border-bottom:1px solid #1C1C1C;margin-bottom:18px}
-.proto-steps{list-style:none;padding:0;margin:0 0 18px}
-.proto-step{display:flex;align-items:flex-start;gap:14px;padding:13px 0;border-bottom:1px solid #181818;cursor:pointer;transition:all .15s;-webkit-tap-highlight-color:transparent;user-select:none}
-.proto-step:last-child{border-bottom:none}
-.proto-step:active{background:rgba(255,255,255,.02)}
-.proto-step.pchecked{opacity:.4}
-.pstep-box{flex-shrink:0;width:22px;height:22px;border:1px solid #333;display:flex;align-items:center;justify-content:center;transition:all .2s;margin-top:2px}
-.proto-step:hover .pstep-box{border-color:var(--gold-d)}
-.proto-step.pchecked .pstep-box{border-color:var(--gold-d);background:rgba(201,168,76,.12)}
-.pstep-chk{font-size:10px;color:var(--gold);display:none}
-.proto-step.pchecked .pstep-chk{display:block}
-.pstep-txt{font-size:13px;color:#A0968A;line-height:1.65}
-.proto-step.pchecked .pstep-txt{text-decoration:line-through;color:#333}
-.proto-prog-row{display:flex;align-items:center;gap:12px;margin-bottom:14px}
-.proto-prog-bar{flex:1;height:2px;background:#1C1C1C}
-.proto-prog-fill{height:100%;background:var(--gold-d);transition:width .35s ease}
-.proto-prog-lbl{font-size:10px;font-weight:700;color:#444;letter-spacing:1px;flex-shrink:0;width:52px;text-align:right}
-.proto-avoid{font-size:11px;color:#7A3030;background:rgba(100,20,20,.14);border-left:2px solid #5A2020;padding:10px 14px;margin-bottom:10px;line-height:1.6;font-style:italic}
-.proto-reflect{font-size:11px;color:#6A5020;border-left:2px solid var(--gold-deep);padding:10px 14px;line-height:1.6;font-style:italic;margin-bottom:16px}
-.proto-complete-btn{width:100%;padding:15px;background:var(--gold);color:var(--black);font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;border:none;cursor:pointer;transition:all .2s;opacity:.2;pointer-events:none}
-.proto-complete-btn.pready{opacity:1;pointer-events:all;animation:pulsein .4s ease}
-.proto-complete-btn.pready:hover{background:var(--gold-l)}
-@keyframes pulsein{0%{transform:scale(.98)}60%{transform:scale(1.01)}100%{transform:scale(1)}}
-.proto-done-card{border:1px solid var(--gold-d);background:rgba(201,168,76,.04);padding:24px;text-align:center;margin-bottom:16px}
-.proto-done-title{font-family:'Cinzel',serif;font-size:20px;color:var(--gold);margin-bottom:8px}
-.proto-done-sub{font-size:13px;color:#777;line-height:1.6;margin-bottom:16px}
-.proto-pdf-note{text-align:center;margin-top:8px;margin-bottom:48px}
-
-/* LOCKED */
+.wrap{max-width:680px;margin:0 auto;padding:64px 24px 100px}
+.sec-label{font-size:9px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--gray);margin-bottom:16px;margin-top:48px}
+.result-header{text-align:center;margin-bottom:48px;padding-top:32px}
+.bottleneck-tag{display:inline-block;font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;background:var(--gold);color:var(--black);padding:6px 16px;margin-bottom:20px}
+.result-title{font-family:'Cinzel',serif;font-size:clamp(26px,5vw,46px);font-weight:900;line-height:1.1;color:var(--white);margin-bottom:16px}
+.result-title em{font-style:normal;color:var(--gold)}
+.result-lead{font-size:16px;line-height:1.75;color:#BDB097;max-width:540px;margin:0 auto}
+.greeting{font-size:13px;color:var(--gray);margin-bottom:8px}
+.stats-block{border:1px solid #222;padding:28px 24px;margin-bottom:8px}
+.stat-row{display:flex;align-items:center;gap:14px;margin-bottom:14px}
+.stat-row:last-child{margin-bottom:0}
+.stat-name{width:76px;font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--gray);flex-shrink:0}
+.stat-name.bot{color:var(--gold)}
+.stat-bar{flex:1;height:6px;background:#1A1A1A;overflow:hidden}
+.stat-fill{height:100%;width:0%;transition:width 1.2s ease}
+.stat-fill.low{background:var(--red)}
+.stat-fill.ok{background:var(--gold-d)}
+.stat-pct{width:34px;font-size:11px;font-weight:700;text-align:right;flex-shrink:0;color:var(--gray)}
+.stat-pct.bot{color:var(--red)}
+.bot-note{font-size:12px;color:var(--red);margin-top:16px;padding-top:16px;border-top:1px solid #1A1A1A}
+.proto-week{display:flex;gap:6px;justify-content:center;margin-bottom:24px;flex-wrap:wrap}
+.proto-day-btn{width:38px;height:38px;border:1px solid #2A2A2A;background:var(--d2);font-size:11px;font-weight:700;color:var(--gray);cursor:pointer;transition:all .2s;display:flex;align-items:center;justify-content:center}
+.proto-day-btn:hover:not(:disabled){border-color:var(--gold-d);color:var(--white)}
+.proto-day-btn.active{border-color:var(--gold);color:var(--gold);background:rgba(201,168,76,.08)}
+.proto-day-btn.done{background:rgba(201,168,76,.15);border-color:var(--gold-d);color:var(--gold)}
+.proto-day-btn:disabled{opacity:.3;cursor:default}
+.proto-card{background:var(--d2);border:1px solid #2A2A2A;padding:24px}
+.proto-day-label{font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin-bottom:6px}
+.proto-day-title{font-family:'Cinzel',serif;font-size:17px;font-weight:700;color:var(--white);margin-bottom:6px}
+.proto-day-mission{font-size:14px;color:#BDB097;line-height:1.6;margin-bottom:20px}
+.proto-when{font-size:11px;font-weight:600;letter-spacing:1px;text-transform:uppercase;color:var(--gold-d);margin-bottom:12px}
+.proto-steps{display:flex;flex-direction:column;gap:10px;margin-bottom:20px}
+.proto-step{display:flex;align-items:flex-start;gap:12px;cursor:pointer}
+.pstep-box{width:18px;height:18px;border:1px solid #444;flex-shrink:0;margin-top:2px;display:flex;align-items:center;justify-content:center;transition:all .2s}
+.pstep-box.chk{background:var(--gold);border-color:var(--gold)}
+.pstep-box.chk::after{content:'';display:block;width:5px;height:9px;border:2px solid var(--black);border-top:none;border-left:none;transform:rotate(45deg);margin-top:-2px}
+.pstep-txt{font-size:13px;line-height:1.6;color:#C8C0B0;transition:color .2s}
+.pstep-txt.done{color:#555;text-decoration:line-through}
+.proto-avoid{background:#1A1010;border-left:3px solid var(--red);padding:14px 16px;margin-bottom:14px;font-size:13px;color:#BDB097;line-height:1.6}
+.proto-avoid strong{color:var(--red);font-size:9px;letter-spacing:2px;text-transform:uppercase;display:block;margin-bottom:6px}
+.proto-reflect{background:#0F0F1A;border-left:3px solid var(--gold-d);padding:14px 16px;margin-bottom:20px;font-size:13px;color:#BDB097;line-height:1.6;font-style:italic}
+.proto-reflect strong{font-style:normal;color:var(--gold);font-size:9px;letter-spacing:2px;text-transform:uppercase;display:block;margin-bottom:6px}
+.proto-complete-btn{width:100%;padding:14px;background:var(--gold);color:var(--black);font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase;border:none;cursor:pointer;transition:background .2s}
+.proto-complete-btn:hover{background:var(--gold-l)}
+.proto-done-card{background:rgba(201,168,76,.08);border:1px solid var(--gold-d);padding:16px;text-align:center;font-size:13px;color:var(--gold);font-weight:600}
+.proto-prog-row{display:flex;align-items:center;gap:12px;margin-bottom:24px}
+.proto-prog-bar{flex:1;height:3px;background:#1A1A1A;overflow:hidden}
+.proto-prog-fill{height:100%;background:linear-gradient(90deg,var(--gold-d),var(--gold-l));transition:width .5s ease}
+.proto-prog-label{font-size:11px;color:var(--gray);white-space:nowrap}
 .locked-wrap{position:relative;border:1px solid #222;overflow:hidden;margin-bottom:40px;min-height:240px}
 .locked-blur{filter:blur(5px);pointer-events:none;padding:24px 24px 32px;opacity:.35}
 .locked-overlay{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;background:rgba(10,10,10,.88);gap:10px;padding:24px;text-align:center}
-.lock-icon{font-size:30px}
-.locked-hed{font-family:'Cinzel',serif;font-size:18px;font-weight:700;color:var(--white)}
-.locked-sub{font-size:13px;color:var(--gray);max-width:340px;line-height:1.6}
+.lock-icon{font-size:28px}
+.locked-hed{font-family:'Cinzel',serif;font-size:17px;font-weight:700;color:var(--white)}
+.locked-sub{font-size:13px;color:var(--gray);max-width:320px;line-height:1.6}
 .unlock-tag{font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--gold);border:1px solid var(--gold-d);padding:5px 14px;margin-top:4px}
-
-/* CTA */
 .cta-block{background:linear-gradient(135deg,#1A1508,#0F0F0F);border:1px solid var(--gold-d);padding:36px 40px;text-align:center;margin-bottom:16px}
-.cta-block h3{font-family:'Cinzel',serif;font-size:24px;color:var(--white);margin-bottom:10px}
+.cta-block h3{font-family:'Cinzel',serif;font-size:20px;color:var(--white);margin-bottom:10px}
 .cta-block p{font-size:14px;color:#BDB097;line-height:1.7;margin-bottom:24px;max-width:480px;margin-left:auto;margin-right:auto}
-.cta-note{font-size:11px;color:var(--gray);margin-top:24px}
+.cta-note{font-size:11px;color:var(--gray);margin-top:20px}
 .btn-gold{display:inline-block;padding:16px 44px;background:var(--gold);color:var(--black);font-size:13px;font-weight:700;letter-spacing:2px;text-transform:uppercase;border:none;cursor:pointer;transition:background .2s,transform .15s;text-decoration:none}
-.btn-gold:hover{background:var(--gold-l);transform:translateY(-2px)}
+.btn-gold:hover{background:var(--gold-l)}
 .btn-outline{display:inline-block;padding:13px 30px;background:transparent;color:var(--gold);font-size:12px;font-weight:600;letter-spacing:2px;text-transform:uppercase;border:1px solid var(--gold-d);cursor:pointer;transition:all .2s;text-decoration:none}
 .btn-outline:hover{background:rgba(201,168,76,.08)}
 @media(max-width:600px){.cta-block{padding:24px 20px}}
-
-/* ══════════════════════════════
-   PRINT STYLES
-══════════════════════════════ */
-#print-plan{display:none}
-@media print{
-  *{-webkit-print-color-adjust:exact!important;print-color-adjust:exact!important}
-  @page{size:letter portrait;margin:0}
-  body{background:#fff!important;color:#111!important}
-  #result-screen{display:none!important}
-  #print-plan{display:block!important}
-  .pp-page{width:100%;min-height:100vh;position:relative;page-break-after:always}
-  .pp-page:last-child{page-break-after:auto}
-  .pp-bar{background:#7A5520!important;display:flex!important;justify-content:space-between;align-items:center;padding:9px 28px}
-  .pp-bar-l{font-size:9px;letter-spacing:3px;text-transform:uppercase;color:rgba(255,255,255,.55)}
-  .pp-bar-r{font-size:9px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:#fff}
-  .pp-cover{background:#0A0A0A!important;display:flex!important;flex-direction:column;align-items:center;justify-content:flex-start;padding:60px 48px 40px;text-align:center}
-  .pp-cover-logo{width:80px;height:80px;margin-bottom:32px}
-  .pp-cover-eyebrow{font-size:10px;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:#C9A84C;margin-bottom:16px}
-  .pp-cover-title{font-family:'Cinzel',serif;font-size:42px;font-weight:900;color:#F5F0E8;line-height:1.1;margin-bottom:12px}
-  .pp-cover-title em{font-style:normal;color:#C9A84C}
-  .pp-cover-sub{font-size:13px;color:#888;letter-spacing:1px;margin-bottom:48px}
-  .pp-cover-journey{display:flex!important;align-items:center;gap:0;width:100%;max-width:460px;margin:0 auto}
-  .pp-j-stage{flex:1;display:flex!important;flex-direction:column;align-items:center;position:relative}
-  .pp-j-line{position:absolute;top:10px;left:50%;width:100%;height:2px;background:#333}
-  .pp-j-line.done{background:#9A7530!important}
-  .pp-j-stage:last-child .pp-j-line{display:none!important}
-  .pp-j-dot{width:20px;height:20px;border-radius:50%;border:2px solid #333!important;background:#0A0A0A!important;position:relative;z-index:1}
-  .pp-j-dot.here{border-color:#C9A84C!important;background:#C9A84C!important}
-  .pp-j-dot.done{border-color:#9A7530!important;background:#9A7530!important}
-  .pp-j-name{font-size:8px;letter-spacing:1px;text-transform:uppercase;color:#555;margin-top:8px;text-align:center;line-height:1.4}
-  .pp-j-name.here{color:#C9A84C;font-weight:700}
-  .pp-cover-footer{position:absolute;bottom:28px;left:0;right:0;text-align:center;font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:#9A7530}
-  .pp-body{padding:24px 32px 80px}
-  .pp-h1{font-family:'Cinzel',serif;font-size:38px;font-weight:900;color:#0A0A0A;line-height:1.1;margin-bottom:4px}
-  .pp-h1-sub{font-family:'Cinzel',serif;font-size:26px;font-style:italic;color:#555;margin-bottom:6px}
-  .pp-h1-note{font-size:11px;font-style:italic;color:#999;margin-bottom:20px}
-  .pp-sec-lbl{font-size:9px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:#9A7530;border-top:1px solid #E0D4C0;padding-top:14px;margin-bottom:12px;margin-top:4px}
-  .pp-cc-grid{display:grid!important;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:8px}
-  .pp-cc{border:1px solid #E0D4C0;padding:14px 16px;background:#FDFAF6!important}
-  .pp-cc.hot{border-color:#C9A84C!important;background:#FDF8EE!important}
-  .pp-cc-name{font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#9A7530;margin-bottom:6px}
-  .pp-cc-hot-tag{display:inline-block;font-size:8px;font-weight:700;letter-spacing:2px;background:#C9A84C!important;color:#fff;padding:1px 7px;margin-bottom:5px}
-  .pp-cc-text{font-size:12px;color:#555;line-height:1.5}
-  .pp-cc-text strong{color:#0A0A0A}
-  .pp-focus-hed{font-size:52px;font-family:'Cinzel',serif;font-weight:900;color:#0A0A0A;line-height:1;margin-bottom:2px}
-  .pp-focus-sub{font-family:'Cinzel',serif;font-size:28px;font-style:italic;color:#9A7530;margin-bottom:20px}
-  .pp-s-row{display:flex!important;align-items:center;gap:10px;margin-bottom:7px}
-  .pp-s-name{font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#999;width:78px;flex-shrink:0}
-  .pp-s-name.hot{color:#0A0A0A}
-  .pp-s-blocks{display:flex!important;gap:3px;flex:1}
-  .pp-sb{flex:1;max-width:22px;height:14px;background:#F0EAE0!important}
-  .pp-sb.g{background:#7A5520!important}
-  .pp-sb.o{background:#C47A2A!important}
-  .pp-sb.r{background:#B02020!important}
-  .pp-s-pct{font-size:10px;font-weight:700;color:#999;width:34px;text-align:right;flex-shrink:0}
-  .pp-s-pct.hot{color:#7A5520}
-  .pp-pco{display:grid!important;grid-template-columns:1fr 1fr 1fr;gap:1px;background:#E0D4C0;margin-top:16px}
-  .pp-pco-item{background:#fff!important;padding:16px 14px}
-  .pp-pco-lbl{font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#9A7530;margin-bottom:6px}
-  .pp-pco-txt{font-size:12px;color:#555;line-height:1.55}
-  .pp-pco-txt em{font-family:'Cinzel',serif;font-style:italic;color:#0A0A0A;font-size:14px;display:block;line-height:1.5;margin-top:4px}
-  .pp-day{display:flex!important;align-items:flex-start;gap:12px;margin-bottom:14px;page-break-inside:avoid}
-  .pp-chk{width:22px;height:22px;border:1.5px solid #C9A84C!important;flex-shrink:0;margin-top:2px}
-  .pp-dnum{font-size:9px;font-weight:700;color:#C9A84C;width:28px;flex-shrink:0;text-align:center;padding-top:3px;line-height:1.3}
-  .pp-dbody strong{display:block;font-size:13px;font-weight:700;color:#0A0A0A;margin-bottom:4px}
-  .pp-day-mission{font-style:italic;color:#9A7530;font-size:11px;margin-bottom:8px;line-height:1.5}
-  .pp-day-when{font-size:9px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:#9A7530;margin-bottom:5px;margin-top:2px}
-  .pp-day-steps{list-style:none;padding:0;margin:0 0 6px}
-  .pp-day-steps li{font-size:11px;color:#555;line-height:1.65;padding-left:14px;position:relative;margin-bottom:2px}
-  .pp-day-steps li::before{content:'→';position:absolute;left:0;color:#AAA;font-size:9px}
-  .pp-day-avoid{font-size:10px;color:#B02020;font-style:italic;border-left:1.5px solid #E8C8C8;padding-left:8px;margin:5px 0;line-height:1.5}
-  .pp-day-reflect{font-size:10px;color:#7A5520;border-left:1.5px solid #E0D4C0;padding-left:8px;font-style:italic;line-height:1.5;margin-top:3px}
-  .pp-notes{border:1px solid #E0D4C0;padding:14px;min-height:50px;margin-top:4px}
-  .pp-notes-hint{font-size:11px;color:#CCC}
-  .pp-locked{background:#0A0A0A!important;color:#fff;padding:60px 48px;text-align:center;display:flex!important;flex-direction:column;align-items:center;justify-content:center;min-height:100vh}
-  .pp-locked-coming{font-size:14px;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:#9A7530;margin-bottom:28px}
-  .pp-locked-hed{font-family:'Cinzel',serif;font-size:52px;font-weight:900;color:#F5F0E8;line-height:1.05;margin-bottom:24px}
-  .pp-locked-hed em{font-style:normal;color:#C9A84C}
-  .pp-locked-blur-wrap{width:100%;max-width:420px;background:#1A1A1A!important;border:1px solid #2A2A2A;padding:24px;margin:0 auto 28px;filter:blur(4px);opacity:.35}
-  .pp-locked-bar-row{display:flex!important;align-items:center;gap:10px;margin-bottom:8px}
-  .pp-locked-bar-name{width:78px;height:10px;background:#2A2A2A!important;flex-shrink:0}
-  .pp-locked-bar-blocks{display:flex!important;gap:3px;flex:1}
-  .pp-locked-bar-block{flex:1;max-width:22px;height:14px;background:#2A2A2A!important}
-  .pp-locked-bar-block.f{background:#444!important}
-  .pp-lock-badge{font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:#C9A84C;border:1px solid #9A7530;padding:6px 18px;margin-bottom:12px}
-  .pp-lock-sub{font-size:14px;color:#888;max-width:400px;line-height:1.7;margin-bottom:32px}
-  .pp-lock-cta{display:inline-block;padding:16px 40px;background:#C9A84C!important;color:#0A0A0A;font-size:13px;font-weight:700;letter-spacing:2px;text-transform:uppercase}
-  .pp-locked-footer{position:absolute;bottom:24px;left:0;right:0;text-align:center;font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:#9A7530}
-}
 </style>
 </head>
 <body>
-
-<div id="result-screen">
-  <div class="r-wrap" id="result-content"></div>
-</div>
-
-<!-- PRINT PLAN -->
-<div id="print-plan">
-  <div class="pp-page pp-cover">
-    <svg class="pp-cover-logo" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="pg1" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="#C9A84C"/><stop offset="100%" stop-color="#8A6018"/></linearGradient></defs><circle cx="100" cy="100" r="100" fill="#0A0A0A"/><circle cx="100" cy="100" r="93" fill="none" stroke="url(#pg1)" stroke-width="3.5"/><path d="M77,78 L77,59 L88,72 L100,44 L112,72 L123,59 L123,78 Z" fill="url(#pg1)"/><rect x="74" y="74" width="52" height="12" rx="2" fill="url(#pg1)"/><circle cx="87" cy="80" r="2.5" fill="#0A0A0A"/><circle cx="100" cy="80" r="2.5" fill="#0A0A0A"/><circle cx="113" cy="80" r="2.5" fill="#0A0A0A"/><polygon points="107,90 93,90 46,163 64,163" fill="url(#pg1)"/><polygon points="93,90 107,90 136,163 154,163" fill="url(#pg1)"/><rect x="71" y="126" width="58" height="11" rx="1" fill="url(#pg1)"/><rect x="38" y="157" width="32" height="9" rx="1" fill="url(#pg1)"/><rect x="130" y="157" width="32" height="9" rx="1" fill="url(#pg1)"/></svg>
-    <p class="pp-cover-eyebrow">King Azoulay</p>
-    <div class="pp-cover-title" id="pp-cover-title">Your Divine<br><em>Blueprint Report</em></div>
-    <p class="pp-cover-sub" id="pp-cover-sub">THE BODY PROTOCOL</p>
-    <div class="pp-cover-journey">
-      <div class="pp-j-stage"><div class="pp-j-line done"></div><div class="pp-j-dot done"></div><div class="pp-j-name done">Asleep</div></div>
-      <div class="pp-j-stage"><div class="pp-j-line done"></div><div class="pp-j-dot here"></div><div class="pp-j-name here">Waking Up<br><em style="color:#C9A84C;font-style:italic;font-size:9px">You are here</em></div></div>
-      <div class="pp-j-stage"><div class="pp-j-line"></div><div class="pp-j-dot"></div><div class="pp-j-name">Breaking Through</div></div>
-      <div class="pp-j-stage"><div class="pp-j-dot"></div><div class="pp-j-name">Living the Blueprint</div></div>
-    </div>
-    <div class="pp-cover-footer">KINGAZOULAY.COM</div>
-  </div>
-  <div class="pp-page pp-content">
-    <div class="pp-bar"><span class="pp-bar-l">PAGE 2</span><span class="pp-bar-r">YOUR DIVINE BLUEPRINT REPORT</span></div>
-    <div class="pp-body">
-      <div class="pp-h1">At Your Stage:</div>
-      <div class="pp-h1-sub" id="pp-p2-sub">You Already Know This...</div>
-      <div class="pp-h1-note" id="pp-p2-note"></div>
-      <div class="pp-sec-lbl">YOUR CURRENT CONSTRAINTS</div>
-      <div class="pp-cc-grid" id="pp-cc-grid"></div>
-    </div>
-    <div class="pp-cover-footer">KINGAZOULAY.COM</div>
-  </div>
-  <div class="pp-page pp-content">
-    <div class="pp-bar"><span class="pp-bar-l">PAGE 3</span><span class="pp-bar-r">YOUR DIVINE BLUEPRINT REPORT</span></div>
-    <div class="pp-body">
-      <div class="pp-focus-hed">YOUR FOCUS</div>
-      <div class="pp-focus-sub" id="pp-focus-sub">is your body</div>
-      <div id="pp-scores"></div>
-      <div class="pp-pco" id="pp-pco"></div>
-    </div>
-    <div class="pp-cover-footer">KINGAZOULAY.COM</div>
-  </div>
-  <div class="pp-page pp-content">
-    <div class="pp-bar"><span class="pp-bar-l">PAGE 4</span><span class="pp-bar-r">YOUR DIVINE BLUEPRINT REPORT</span></div>
-    <div class="pp-body">
-      <div class="pp-h1">"HOW TO WIN"</div>
-      <div class="pp-h1-sub">Your 7-Day Activation Protocol</div>
-      <div class="pp-sec-lbl">CHECK OFF EACH DAY AS YOU COMPLETE IT</div>
-      <div id="pp-days"></div>
-      <div class="pp-sec-lbl">NOTES</div>
-      <div class="pp-notes"><span class="pp-notes-hint">Use this space to track your progress and daily reflections.</span></div>
-    </div>
-    <div class="pp-cover-footer">KINGAZOULAY.COM</div>
-  </div>
-  <div class="pp-page pp-locked">
-    <p class="pp-locked-coming">This Is What Is Coming Next...</p>
-    <div class="pp-locked-hed">Your <em>Wealth</em><br>Blueprint</div>
-    <div class="pp-locked-blur-wrap">
-      <div class="pp-locked-bar-row"><div class="pp-locked-bar-name"></div><div class="pp-locked-bar-blocks"><div class="pp-locked-bar-block f"></div><div class="pp-locked-bar-block f"></div><div class="pp-locked-bar-block f"></div><div class="pp-locked-bar-block f"></div><div class="pp-locked-bar-block f"></div><div class="pp-locked-bar-block"></div><div class="pp-locked-bar-block"></div><div class="pp-locked-bar-block"></div><div class="pp-locked-bar-block"></div><div class="pp-locked-bar-block"></div></div></div>
-      <div class="pp-locked-bar-row"><div class="pp-locked-bar-name"></div><div class="pp-locked-bar-blocks"><div class="pp-locked-bar-block f"></div><div class="pp-locked-bar-block f"></div><div class="pp-locked-bar-block f"></div><div class="pp-locked-bar-block f"></div><div class="pp-locked-bar-block f"></div><div class="pp-locked-bar-block f"></div><div class="pp-locked-bar-block f"></div><div class="pp-locked-bar-block"></div><div class="pp-locked-bar-block"></div><div class="pp-locked-bar-block"></div></div></div>
-      <div class="pp-locked-bar-row"><div class="pp-locked-bar-name"></div><div class="pp-locked-bar-blocks"><div class="pp-locked-bar-block f"></div><div class="pp-locked-bar-block f"></div><div class="pp-locked-bar-block f"></div><div class="pp-locked-bar-block"></div><div class="pp-locked-bar-block"></div><div class="pp-locked-bar-block"></div><div class="pp-locked-bar-block"></div><div class="pp-locked-bar-block"></div><div class="pp-locked-bar-block"></div><div class="pp-locked-bar-block"></div></div></div>
-    </div>
-    <div class="pp-lock-badge">UNLOCKS AT THE WEBINAR</div>
-    <p class="pp-lock-sub" id="pp-lock-sub"></p>
-    <a href="#session" class="pp-lock-cta">JOIN THE FREE SESSION</a>
-    <div class="pp-locked-footer">KINGAZOULAY.COM</div>
-  </div>
-</div>
+<div class="wrap" id="result-wrap"></div>
 
 <script>
-// ── CONFIG ──────────────────────────────────────────────
-// Paste your GoHighLevel webhook URL here (Settings > Integrations > Webhooks)
-const WEBHOOK_URL = '';
-// ────────────────────────────────────────────────────────
+const WEBHOOK_URL = ''; // ── CONFIG ── Paste your GoHighLevel webhook URL here
 
-const SVG_LOGO = `<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="rg1" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="#F2D060"/><stop offset="45%" stop-color="#C9A84C"/><stop offset="100%" stop-color="#8A6018"/></linearGradient><linearGradient id="rg2" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="#F0CE58"/><stop offset="100%" stop-color="#9A7530"/></linearGradient></defs><circle cx="100" cy="100" r="100" fill="#0A0A0A"/><circle cx="100" cy="100" r="93" fill="none" stroke="url(#rg2)" stroke-width="3.5"/><path d="M77,78 L77,59 L88,72 L100,44 L112,72 L123,59 L123,78 Z" fill="url(#rg1)"/><rect x="74" y="74" width="52" height="12" rx="2" fill="url(#rg1)"/><circle cx="87" cy="80" r="2.5" fill="#0A0A0A"/><circle cx="100" cy="80" r="2.5" fill="#0A0A0A"/><circle cx="113" cy="80" r="2.5" fill="#0A0A0A"/><polygon points="107,90 93,90 46,163 64,163" fill="url(#rg1)"/><polygon points="93,90 107,90 136,163 154,163" fill="url(#rg1)"/><rect x="71" y="126" width="58" height="11" rx="1" fill="url(#rg1)"/><rect x="38" y="157" width="32" height="9" rx="1" fill="url(#rg1)"/><rect x="130" y="157" width="32" height="9" rx="1" fill="url(#rg1)"/></svg>`;
+const stored     = JSON.parse(localStorage.getItem('ka_result')||'null');
+const storedUser = JSON.parse(localStorage.getItem('ka_user')||'null');
+if(!stored){ window.location.replace('/'); }
 
-const R = {
-  body:{
-    badge:"Your Divine Diagnosis",
-    title:"Your Blueprint Is Blocked by <em>Your Body</em>",
-    lead:"God doesn't give billion-dollar plans to people who can't carry them. The vision you have demands a body that can hold it. <strong>Right now, your body is the bottleneck. Not because you're weak. Because no one showed you how to use it as your first weapon.</strong>",
-    coverSub:"THE BODY PROTOCOL",
-    p2sub:"You Already Know This...",
-    p2note:"Some days you feel it. Other days your body pulls you back down before you even start.",
-    pillars:[
-      {name:"BODY",pct:15,hot:true,screen:"This is your bottleneck. God's signal comes through a disciplined body first.",print:{b:"This is your bottleneck.",t:"Your physical state is the direct channel to God's plan for you."}},
-      {name:"DIRECTION",pct:55,screen:"You have direction but no physical vessel to carry it forward.",print:{b:"Direction exists,",t:"but you have no vessel to carry it. The body unlocks the path."}},
-      {name:"MIND",pct:72,screen:"Your thinking is strong. It stays theoretical until your body learns to execute.",print:{b:"Sharp mind,",t:"but it stays theoretical without the body to execute on it."}},
-      {name:"MONEY",pct:48,screen:"Your income ceiling is tied to your energy ceiling. One unlocks the other.",print:{b:"Income exists,",t:"but it's capped by your energy output. Discipline changes this."}},
-      {name:"FAITH",pct:68,screen:"Your faith is real. Your body hasn't aligned with it yet.",print:{b:"Faith is strong,",t:"but your body hasn't aligned with what you believe yet."}},
-      {name:"IDENTITY",pct:58,screen:"You know who you're becoming. He needs a body that proves it.",print:{b:"Identity is forming,",t:"but the man you're becoming needs a body that matches."}}
-    ],
-    pco:{
-      problem:"Your body is draining your access to God's frequency. Energy, discipline, physical strength. These are not separate from the spiritual. They are the vessel.",
-      cause:"Nobody taught you that your body is your first business. You built the vision and skipped the foundation.",
-      outcome:"Imagine waking up with energy that scares people. When discipline becomes your identity. That's when the blueprint comes alive."
-    },
-    bridge:{leftTitle:"You Right Now",left:["Drained by the morning","Good ideas, no execution engine","Watching others move at a speed you can't match"],rightTitle:"God's Blueprint for You",right:["A body that executes without thinking","Physical discipline that flows into every area","The energy to carry the plan you were built for"],gap:"YOUR BODY"},
+const curResult = stored.type;
+let _proto = null, _protoDay = 0;
+
+const STAT_SCORES = {
+  fit:     {fit:22, fight:68, freedom:72, faith:65, family:70},
+  fight:   {fit:65, fight:24, freedom:70, faith:62, family:68},
+  freedom: {fit:68, fight:64, freedom:21, faith:66, family:72},
+  faith:   {fit:70, fight:66, freedom:68, faith:23, family:64},
+  family:  {fit:65, fight:70, freedom:64, faith:68, family:22}
+};
+
+const RESULTS = {
+  fit:{
+    badge:'BOTTLENECK DETECTED: FIT',
+    title:'The <em>Fit</em> Protocol',
+    lead:"Your body is the machine that runs everything else. Right now it is running on low. You cannot build a life at full speed from a body running at half capacity.",
+    lockedSub:"Your strength score, wealth readiness, and performance ceiling unlock at the free session.",
+    ctaTitle:"Level up your whole character.",
+    ctaBody:"King Azoulay's free live session breaks down the direct link between physical discipline and every other stat in your life. Come ready to move.",
     days:[
-      {n:"01",title:"Document Your Starting Point",mission:"You cannot build on what you refuse to see."},
-      {n:"02",title:"Own Your First Hour",mission:"Every morning you pick up your phone first, you hand your day to someone else."},
-      {n:"03",title:"Find Your Line",mission:"Your body has a stopping point it invented. Today you go past it."},
-      {n:"04",title:"The Food Decision",mission:"What you eat is a daily vote for who you believe you are."},
-      {n:"05",title:"Build an Environment That Commands You",mission:"Discipline is not about willpower. It is about removing the option to quit."},
-      {n:"06",title:"Compound the Effort",mission:"Consistency over two sessions is where discipline is born."},
-      {n:"07",title:"The After Photo and The Decision",mission:"Day 7 is not the end of the protocol. It is the moment you decide if this was an experiment or a beginning."}
-    ],
-    printDays:[
-      {n:"01",title:"Document Your Starting Point",mission:"You cannot build on what you refuse to see.",when:"First thing in the morning. Before eating. Before your phone.",steps:["Walk to a room with natural light. Take two photos: one from the front, one from the side. No pump, no flex, no filter. Title them Day 1 and save them.","Sit down and answer these three questions in writing. What is your body costing you right now? What would your body give you at its best? What single habit is doing the most damage? Write real answers, not general ones.","Decide your wake-up time for the next six days. Not the comfortable time. The time that shows you are serious. Write it on paper and set the alarm tonight.","Drink one full glass of water right now. That is the first act of discipline this week."],avoid:"Do not skip the writing. The photos prove where you started. The writing proves you were honest with yourself. Both matter.",reflection:"What is my body actually costing me right now, in specific terms? Not vague. Specific."},
-      {n:"02",title:"Own Your First Hour",mission:"Every morning you pick up your phone first, you hand your day to someone else.",when:"The moment your alarm goes off. The entire first sixty minutes.",steps:["When the alarm goes off, do not negotiate. Feet on the floor before your brain catches up. No snooze. Not once.","First sixty minutes: no phone, no screen, no news, no social media. Put your phone in another room the night before if you have to.","Drink one glass of cold water immediately. Then silence, prayer, or stillness. Nothing external enters your mind for sixty minutes.","In that stillness, write one sentence in a notebook: what would make today a real win? One sentence. Then close the notebook.","Before you touch anything else, do ten minutes of movement. Push-ups, a walk, stretching. Move before the world gets access to you."],avoid:"Do not check your phone during the sixty-minute window for any reason. One exception destroys the habit.",reflection:"What would change in my day if I owned every first hour this week?"},
-      {n:"03",title:"Find Your Line",mission:"Your body has a stopping point it invented. Today you go past it.",when:"Morning. Within ninety minutes of waking up. Before eating.",steps:["Complete this circuit in order: push-ups to the point your body says stop, then rest sixty seconds. Bodyweight squats to the point your body says stop, then rest sixty seconds. Plank hold until your body shakes and stops, then rest sixty seconds.","Do not count reps. Track only time. Write down how long you held each position.","When your body says stop on each movement, add ten seconds. That ten seconds is non-negotiable.","After the circuit, write one word describing how you feel right now. Just one word. Keep it. You will read it again on Day 7."],avoid:"Do not modify the exercises or skip the ten extra seconds. That extra ten seconds is the only part of this workout that matters.",reflection:"At what exact point did I want to stop, and what made me keep going past it?"},
-      {n:"04",title:"The Food Decision",mission:"What you eat is a daily vote for who you believe you are.",when:"Morning audit at breakfast. The decision happens once and holds for the remaining four days.",steps:["Write down everything you ate yesterday. Every item. No skipping anything.","Look at the list. Circle one item you know is stealing from your energy. You already know which one it is. Sugar, alcohol, fast food, late-night eating. You know.","Write this sentence: Starting today, I am removing [item] for the rest of this week. Not reducing. Removing.","For every meal today, eat protein before anything else. Eggs, meat, fish. Whatever you eat, protein goes in first.","Drink three liters of water today. Set a phone reminder every two hours to check your intake.","After dinner, write one word: did you hold the decision? Yes or no."],avoid:"Do not try to fix your entire diet today. One deliberate decision made fully is worth ten half-decisions made loosely.",reflection:"What does the food I choose every day say about what I believe I deserve?"},
-      {n:"05",title:"Build an Environment That Commands You",mission:"Discipline is not about willpower. It is about removing the option to quit.",when:"Morning setup takes fifteen minutes. Evening prep before sleep takes ten minutes.",steps:["Walk through your home or workspace. Find two physical things that belong to your old habits. Move them out of sight or remove them completely. Visible temptation is a daily tax on your willpower.","Lay out your workout clothes tonight before you sleep. When you wake up tomorrow, there is no decision to make. The structure made it for you.","Write down the name of one person who operates at the physical level you are building toward. Study how they live. Let that be your reference point this week.","Tonight, watch one piece of content that reminds you why this week matters. Something from King Azoulay, a speech, a moment that fires you up. Watch it before you sleep."],avoid:"Do not rely on motivation to carry you through this week. Motivation is a feeling. Environment is a system. Build the system.",reflection:"What in my current environment is silently working against who I am trying to become?"},
-      {n:"06",title:"Compound the Effort",mission:"Consistency over two sessions is where discipline is born.",when:"Same time as Day 3. Morning, before the day has any demands on you.",steps:["Repeat the Day 3 circuit in full. Same movements, same rules.","After completing it, add one full extra round. You have already done this circuit before. Your body knows it is survivable.","After the circuit, walk for twenty minutes with no phone. Think about what your life looks like in ninety days if this week becomes permanent.","Come back and write two things: what improved since Day 3, and what you will build on next week.","Say this sentence out loud before you end the day: I can be commanded by my own decisions."],avoid:"Do not measure success today by how different your body looks. Measure it by whether you showed up and executed. That is the only metric that matters right now.",reflection:"What would the most disciplined version of me look like in ninety days if I never stopped doing this?"},
-      {n:"07",title:"The After Photo and The Decision",mission:"Day 7 is not the end of the protocol. It is the moment you decide if this was an experiment or a beginning.",when:"Morning. Before anything else. Before eating, before your phone.",steps:["Take the after photo. Same room, same angle, same lighting as Day 1. Do not skip this step.","Place the two photos side by side and look at them for sixty seconds.","Write: what changed this week? Not just in the body. In your mind, your discipline, your self-respect. Be specific.","Write a short paragraph directly to the person in the Day 1 photo. What do you want him to know? What did he not yet understand that you understand now?","Make one permanent decision right now. Which habit from this week becomes who you are from today forward? The wake-up time, the food cut, the circuit. Write it down. One habit. Not five. One.","The free session is your next step. Bring what you found this week. King Azoulay shows what comes after this."],avoid:"Do not minimize what changed this week because the physical difference is small. Seven consecutive days of discipline is rare. Honor it.",reflection:"Which habit from this week am I committing to permanently, and what specifically will I do to protect it?"}
-    ],
-    lockedSub:"Once your body is aligned, the next layer of God's plan for your finances becomes visible. King Azoulay reveals it live.",
-    ctaTitle:"The free session goes deeper.",
-    ctaBody:"King Azoulay's free live session shows exactly how your body connects to the wealth and life God designed for you. And the system to activate both at the same time."
+      {n:"01",title:"Take the Baseline",mission:"You cannot improve what you refuse to measure. Today is about honesty.",when:"First thing in the morning, before anything else.",
+       steps:["Take a photo. Front and side. Same spot you will use again on Day 7. Do not skip this.","Write down three words that describe how your body feels right now. Be specific.","Write down the one physical habit you have been avoiding the longest. Name it exactly.","Drink one full glass of water before you eat anything today. That is your first act of physical discipline."],
+       avoid:"Do not turn today into a plan. Just take the baseline. The protocol does the rest.",reflection:"What has avoiding my physical health actually cost me?"},
+      {n:"02",title:"Own Your Morning",mission:"Movement before the world gets access to you changes everything that comes after.",when:"The moment your alarm goes off. No negotiation.",
+       steps:["Feet on the floor before your brain argues. No snooze. Not once.","Ten minutes of movement before you touch your phone. Push-ups, a walk, anything physical.","Drink water. Eat something real within the first hour.","Write one sentence: what would it feel like to own every morning this week?"],
+       avoid:"Do not check your phone until after you have moved. One exception breaks the habit.",reflection:"What does my morning say about the person I am becoming?"},
+      {n:"03",title:"Find Your Line",mission:"Your body invented a stopping point. Today you go past it.",when:"Morning. Before eating. Within ninety minutes of waking.",
+       steps:["Push-ups until your body says stop. Rest sixty seconds.","Bodyweight squats until your body says stop. Rest sixty seconds.","Plank until your body shakes and stops. Rest sixty seconds.","When your body says stop on each movement, add ten more seconds. That ten seconds is the only part that matters.","Write one word describing how you feel right now."],
+       avoid:"Do not count reps. Track only time.",reflection:"At exactly what point did I want to quit, and what made me keep going?"},
+      {n:"04",title:"Cut One Thing",mission:"The body you want and the habits you have right now cannot both exist.",when:"Decision made in the morning. Executed all day.",
+       steps:["Identify the one food or drink doing the most damage to your energy. Write it down.","Cut it completely today. Not reduced. Cut.","Replace it with water or something clean.","At the end of the day write what you noticed about your energy."],
+       avoid:"Do not try to cut five things. One cut executed beats ten cuts planned.",reflection:"What am I feeding my body that I would be embarrassed to admit?"},
+      {n:"05",title:"Fix Your Recovery",mission:"Sleep is not rest. Sleep is when your body actually builds.",when:"This protocol starts the night before.",
+       steps:["Decide what time you are sleeping tonight and commit to it.","Phone leaves the bedroom or goes face down across the room.","Ten minutes before bed with no screen. Sit in quiet, pray, or breathe.","When you wake up, write down whether you feel different after one night of intentional recovery."],
+       avoid:"Do not underestimate this day because it feels passive. Recovery is where gains happen.",reflection:"What would change if I protected my sleep the way I protect my phone?"},
+      {n:"06",title:"Show Up Again",mission:"Consistency is the only thing that separates a workout from a lifestyle.",when:"Same time as Day 3. Non-negotiable.",
+       steps:["Repeat the Day 3 circuit completely.","After finishing, add one full extra round. Your body survived Day 3. It survives this.","Walk fifteen minutes with no phone. Think about who you are becoming.","Write two things: what improved since Day 3, and one thing to build on next week."],
+       avoid:"Do not measure success by how your body looks. Measure it by whether you showed up.",reflection:"What does doing this twice in one week say about who I am becoming?"},
+      {n:"07",title:"The After",mission:"Day 7 is not the end. It is the moment you decide if this was an experiment or a beginning.",when:"Morning. Same conditions as Day 1.",
+       steps:["Take the after photo. Same room, same angle, same lighting as Day 1.","Place both photos side by side and look at them for sixty seconds.","Write what changed. Not just the body. The discipline, the self-respect, the proof.","Write one sentence to the person in the Day 1 photo.","Choose one habit from this week to make permanent. One. Write it down.","The free session is your next step. Bring what you found this week."],
+       avoid:"Do not minimize what changed because the physical difference looks small. Seven days of discipline is rare. Honor it.",reflection:"Which habit from this week am I committing to permanently?"}
+    ]
   },
-  direction:{
-    badge:"Your Divine Diagnosis",
-    title:"Your Blueprint Is Blocked by <em>Scattered Energy</em>",
-    lead:"God gave you the fire. What you're missing is the focus. <strong>You have more raw potential than most people in the room. The problem was never effort. It was direction.</strong> You've been burning real energy in ten lanes and arriving nowhere.",
-    coverSub:"THE DIRECTION PROTOCOL",
-    p2sub:"You Keep Telling Yourself...",
-    p2note:"Once I pick the right thing, everything will fall into place. But the next thing always looks just as good as the last one.",
-    pillars:[
-      {name:"BODY",pct:62,screen:"Your body can handle what's coming. It's waiting for a target.",print:{b:"Physical capacity is there,",t:"but it has no target. Movement without momentum."}},
-      {name:"DIRECTION",pct:12,hot:true,screen:"This is your bottleneck. Scattered energy is wasted potential.",print:{b:"This is your bottleneck.",t:"Scattered energy is wasted potential. Picking one lane changes everything."}},
-      {name:"MIND",pct:58,screen:"Your mind runs fast but in all directions. Focus turns thinking into results.",print:{b:"Fast mind,",t:"but running in all directions. Focus is what converts thinking into results."}},
-      {name:"MONEY",pct:45,screen:"Money follows direction. A clear lane is what your revenue is waiting for.",print:{b:"Revenue exists,",t:"but it comes in random bursts. A clear lane makes it consistent."}},
-      {name:"FAITH",pct:74,screen:"Strong faith. God gave you multiple gifts. Pick the one He's calling you toward.",print:{b:"Faith is strong,",t:"God gave you multiple gifts. The work is picking which one He's calling you toward."}},
-      {name:"IDENTITY",pct:52,screen:"You know who you are. Pick the lane that matches that version of you.",print:{b:"Identity is clear,",t:"you just haven't chosen which version of yourself to lead with."}}
-    ],
-    pco:{
-      problem:"Your potential has no container. You have gifts, energy, and belief. But they are scattered across every idea that excites you. Scattered energy never builds anything.",
-      cause:"You've been taught that more options equal more opportunity. The opposite is true. The man who picks one direction and refuses to stop is the most dangerous man alive.",
-      outcome:"Imagine having one lane. One mission. Every ounce of energy going into one direction. That's when God's blueprint stops being a blur and starts becoming a map."
-    },
-    bridge:{leftTitle:"You Right Now",left:["Moving in ten directions at once","Starting everything, finishing nothing","Energy spent but no compound progress"],rightTitle:"God's Blueprint for You",right:["One lane, one mission, no second-guessing","Every action building on the last","Momentum that compounds into something nobody can ignore"],gap:"YOUR DIRECTION"},
+
+  fight:{
+    badge:'BOTTLENECK DETECTED: FIGHT',
+    title:'The <em>Fight</em> Protocol',
+    lead:"Your biggest opponent is not outside. It is the version of you that quits, doubts, and overthinks. Every other stat suffers because of this one.",
+    lockedSub:"Your mental performance score, discipline ceiling, and wealth readiness unlock at the free session.",
+    ctaTitle:"The mind is the first battlefield.",
+    ctaBody:"King Azoulay's free live session goes deep on why high-potential people stay stuck in their own head, and the exact method he uses to break through.",
     days:[
-      {n:"01",title:"The Inventory",mission:"You cannot navigate out of scattered without first seeing exactly how scattered you are."},
-      {n:"02",title:"The One Thing Decision",mission:"God's plan for you is not ten things. It is one thing, done with everything you have."},
-      {n:"03",title:"The No Sprint",mission:"Every yes to the wrong thing is a no to your one thing."},
-      {n:"04",title:"The Deep Work Block",mission:"You have never seen what you are capable of until you have worked three uninterrupted hours on one thing."},
-      {n:"05",title:"Map the 90-Day Path",mission:"A direction without milestones is just a wish."},
-      {n:"06",title:"Build the Container",mission:"Your best work does not happen by accident. It happens because you built a structure that produces it."},
-      {n:"07",title:"The Commitment Declaration",mission:"The only thing left is the decision: is this an experiment, or is this who you are now?"}
-    ],
-    printDays:[
-      {n:"01",title:"The Inventory",mission:"You cannot navigate out of scattered without first seeing exactly how scattered you are.",when:"Evening, after the day is done and the distractions have quieted. Set aside forty-five minutes.",steps:["Open a blank page. Write every project, idea, responsibility, conversation, and commitment that currently holds space in your head. Everything. Do not filter or edit. Get it all out.","Go back through the list. Next to each item write one letter: Y if it directly moves your one thing forward, N if it is noise.","Count the N's. Write that number at the top of the page. That number is the size of the problem.","Do not cancel or remove anything tonight. Tonight is only about seeing. Seeing clearly is harder than it sounds."],avoid:"Do not justify the N's while you are writing. Write first. Evaluate later.",reflection:"How many items on my list are there because I said yes when I should have said no?"},
-      {n:"02",title:"The One Thing Decision",mission:"God's plan for you is not ten things. It is one thing, done with everything you have.",when:"Morning. Before the day's distractions begin. Bring your Day 1 list.",steps:["Write ten things you could build or pursue in the next twelve months. Not obligations. Things that genuinely excite you.","Cross out nine of them. Keep exactly one. The one that is hardest to cross off is almost always the right answer.","On a fresh page, write this question and answer it fully: If I gave this one thing everything I had for ninety days, what would my life look like? Take your time. Write a real answer.","Tell one person what your one thing is today. Say it out loud to them. Not in writing. Speaking it creates a different kind of accountability."],avoid:"Do not pick the safe option. The thing you are most afraid to commit to is usually the one God is calling you toward.",reflection:"If I gave this one thing every hour I currently spend scattered, what would exist in ninety days?"},
-      {n:"03",title:"The No Sprint",mission:"Every yes to the wrong thing is a no to your one thing.",when:"Start in the morning with the decision. Execute through the day. This takes courage, not time.",steps:["Go back to your Day 1 list of N's. Identify the three that consume the most of your time and energy.","Cancel, decline, or delegate at least one of them today. Not this week. Today.","For each N item you decide to keep, write the exact reason in two sentences. If you cannot write a strong reason, it is going.","Block a two-hour window on your calendar for tomorrow morning labeled NON-NEGOTIABLE. Your one thing goes in that block."],avoid:"Do not soften the no when you deliver it. Be respectful but clear. A weak no is just a delayed yes.",reflection:"What did I say no to today, and what did that decision make room for?"},
-      {n:"04",title:"The Deep Work Block",mission:"You have never seen what you are capable of until you have worked three uninterrupted hours on one thing.",when:"5:00 AM or 5:30 AM. Before the house wakes up. Before the demands begin.",steps:["The night before, set your alarm and place your phone in another room. Prepare your workspace so there is nothing to set up in the morning.","When you wake up, go directly to your workspace. No phone. No email. No music with lyrics. Nothing that competes with thought.","Work exclusively on your one thing for three hours. Not planning, not reading about it. Building, creating, executing something that will exist after today.","When the three hours end, write down what you built. Then compare it honestly to what a typical scattered three-hour stretch produces.","That difference is what noise costs you every single day."],avoid:"Do not start the block by checking what happened overnight. Start directly in the work. Looking at your phone first is the fastest way to destroy focused output.",reflection:"What did I accomplish in three focused hours that I would not have accomplished in a scattered full day?"},
-      {n:"05",title:"Map the 90-Day Path",mission:"A direction without milestones is just a wish.",when:"Morning, after your deep work block. This session takes sixty to ninety minutes.",steps:["Write what your one thing looks like in ninety days if it is working. Be specific: numbers, visible proof, exact outcomes.","Break that ninety-day picture into three monthly milestones. Write each one in past tense as if already complete: By end of Month 1, I have...","Take Month 1. Break it into four weekly targets.","Take Week 1. Write five specific daily actions that will happen every day this week without exception.","Write this map somewhere you will see it every morning. Phone wallpaper, notebook cover, above your desk. Wherever you look first."],avoid:"Do not set targets that require perfect conditions. Your map needs to survive a hard week, not just a good one.",reflection:"What is the one milestone in the next thirty days that, if I hit it, would prove this direction is real?"},
-      {n:"06",title:"Build the Container",mission:"Your best work does not happen by accident. It happens because you built a structure that produces it.",when:"Evening, as a planning session for the week ahead.",steps:["Identify the one time of day when you think most clearly. That window becomes sacred. Block it every day for your one thing. No meetings. No exceptions.","Design the physical setup for that block. What needs to be removed from the space? What needs to be present? Build the exact conditions that produce your best work.","Start a simple daily tracking habit: one sentence per day in a notebook asking what you did today that moved your one thing forward. That sentence keeps you honest.","Tell one more person what you are building and what your ninety-day target is. The more people who know, the harder it becomes to quietly retreat back to scattered."],avoid:"Do not build a tracking system so complex that maintaining it becomes the work. Simple and consistent beats complicated and abandoned.",reflection:"What is the one constraint that, if removed, would double my output on my one thing?"},
-      {n:"07",title:"The Commitment Declaration",mission:"The only thing left is the decision: is this an experiment, or is this who you are now?",when:"Morning. Before anyone else is awake. The most important thirty minutes of this week.",steps:["Read back everything you wrote this week. The inventory, the one thing decision, the 90-day map, the milestones.","Write a one-paragraph declaration in present tense with no conditionals: I am building ____. I protect my time because ____. I chose this direction because ____.","Make one concrete move on your one thing today. Not planning. Not research. Something that physically exists after today that did not exist before.","The free session is your next step. Bring your one thing and your ninety-day map. King Azoulay will show you where God's blueprint builds on top of what you have already started."],avoid:"Do not re-open the list of N's today. The decision is made. You are not going back to scattered. That chapter is closed.",reflection:"What would the most focused version of me do differently starting tomorrow?"}
-    ],
-    lockedSub:"Once your direction is locked in, the next layer reveals exactly which moves God built into your financial blueprint. King Azoulay shows it live.",
-    ctaTitle:"The free session gives you the map.",
-    ctaBody:"King Azoulay's free live session reveals how God's plan becomes a specific, executable direction. And why most people never find it until someone forces them to stop and look."
+      {n:"01",title:"Name Your Enemy",mission:"You cannot fight what you refuse to name. Today you identify the exact pattern stopping you.",when:"Morning. Quiet. No distractions.",
+       steps:["Write the one thought pattern that kills your momentum most. Specific. Not 'fear' but 'I tell myself it will not work before I even start.'","Write the last three times this pattern showed up and what happened.","Write what it has cost you. Money, time, opportunities. Be honest.","Read it out loud. Once."],
+       avoid:"Do not write about what you want to change. Write about what you are actually doing.",reflection:"If this pattern disappeared tomorrow, what becomes possible?"},
+      {n:"02",title:"Do It Before You Feel Like It",mission:"Discipline is not a feeling. It is a decision made before the feeling arrives.",when:"Before 8am. Before checking your phone.",
+       steps:["Pick one hard thing to do before 8am. Something you would normally avoid.","Do it before your brain argues. Move toward it the moment you wake up.","Write down what it felt like before, during, and after.","Set your alarm fifteen minutes earlier tomorrow."],
+       avoid:"Do not wait until you feel motivated. The feeling follows action, not the other way around.",reflection:"What did doing the hard thing early prove about myself?"},
+      {n:"03",title:"Face What You Have Been Avoiding",mission:"The thing you keep skipping is the thing holding everything else back.",when:"Today. Not tomorrow.",
+       steps:["Write down the one task or decision you have been avoiding the longest.","Set a timer for thirty minutes.","Work on it for those thirty minutes with no other tabs, no phone, nothing else.","Write one sentence about what you did when the timer ends."],
+       avoid:"Do not redefine avoiding to mean something easier. You know exactly what it is.",reflection:"Why have I been avoiding this, and what has that avoidance actually protected me from?"},
+      {n:"04",title:"Cut the Input",mission:"Your mind cannot perform when it is full of everyone else's noise.",when:"All day. Starts the moment you wake up.",
+       steps:["No social media before noon. Not a quick check. Nothing.","No news. No opinions. No content not tied to something you are building.","In the silence, write what thoughts come up naturally.","At the end of the day, write what you noticed about your clarity."],
+       avoid:"Do not replace social media with something equally passive. The point is the silence.",reflection:"What do I actually think about when the noise stops?"},
+      {n:"05",title:"Build the Proof",mission:"Your mind argues you cannot. Your track record argues otherwise. Build the evidence.",when:"Thirty minutes. Morning or evening.",
+       steps:["Write every time you followed through on something hard in the last year.","Write every skill you developed through effort, not talent.","Write one person who believed in your capability before you did.","Read the list slowly. These are facts. The doubt is the lie."],
+       avoid:"Do not dismiss small wins. Proof is proof regardless of scale.",reflection:"What does this list prove about who I actually am under pressure?"},
+      {n:"06",title:"Hold the Line",mission:"Consistency is the proof that Day 2 and Day 3 were not accidents.",when:"Same conditions as Day 2 and Day 3.",
+       steps:["Repeat the hard early morning action from Day 2.","Put another thirty minutes into the avoided task from Day 3.","Write what feels different about doing this a second time.","Say this out loud before the day ends: I keep my word to myself."],
+       avoid:"Do not reward yourself by relaxing the standard. The standard is the reward.",reflection:"What changes when I prove to myself twice in a row that I follow through?"},
+      {n:"07",title:"Declare the Identity",mission:"You are not building better habits. You are becoming a different person.",when:"Morning. Before the day begins.",
+       steps:["Read everything you wrote this week.","Write one paragraph in present tense: I am the kind of man who does the hard thing first. I protect my focus because. I was built for this because.","Make one real decision today. Something the old version of you kept postponing.","The free session is your next step. Bring your declaration."],
+       avoid:"Do not let Day 7 be only journaling. A real decision means a real move today.",reflection:"Who is the person I declared myself to be today, and what does he do tomorrow?"}
+    ]
   },
-  identity:{
-    badge:"Your Divine Diagnosis",
-    title:"Your Blueprint Is Blocked by <em>What You Believe About Yourself</em>",
-    lead:"The plan God wrote for you doesn't have your doubts in it. <strong>You've built a picture of who you want to become. You can see it. You've felt it. The problem is you haven't decided to become that person yet. Fully. Without an exit plan.</strong>",
-    coverSub:"THE IDENTITY PROTOCOL",
-    p2sub:"You Keep Asking Yourself...",
-    p2note:"Am I the one this is meant for? Is the life I want actually available to me? And you never answer the question directly.",
-    pillars:[
-      {name:"BODY",pct:58,screen:"Your body can carry the life you want. It needs a mind that believes you deserve it.",print:{b:"Physical capacity is there,",t:"but it needs a mind that believes the destination is real."}},
-      {name:"DIRECTION",pct:52,screen:"You see the direction. You just haven't given yourself full permission to walk it.",print:{b:"Direction is visible,",t:"but you haven't given yourself full permission to walk it yet."}},
-      {name:"MIND",pct:68,screen:"Strong thinking. It's being used against you instead of for you right now.",print:{b:"Strong mind,",t:"but currently running a doubt loop instead of a belief loop."}},
-      {name:"MONEY",pct:48,screen:"The income you want requires you to believe you deserve it first.",print:{b:"Income potential exists,",t:"but the income you want requires belief before it arrives."}},
-      {name:"FAITH",pct:55,screen:"You believe in God's plan for others. The breakthrough is believing it's yours.",print:{b:"Faith is present,",t:"but you believe God's plan applies to others more than to you."}},
-      {name:"IDENTITY",pct:10,hot:true,screen:"This is your bottleneck. Until you settle this, every other area waits.",print:{b:"This is your bottleneck.",t:"Until you settle who you are and who you're allowed to become, everything else waits."}}
-    ],
-    pco:{
-      problem:"The most expensive lie you own is the one that says the life you're chasing is for someone else. You've repeated it so many times it started feeling like the truth.",
-      cause:"Nobody showed you how to build an identity before they showed you how to build a business. You got the strategy. You skipped the foundation.",
-      outcome:"Imagine the day you stop questioning whether it's for you. When you walk into rooms and take up the space you were always supposed to take. Everything changes after that decision."
-    },
-    bridge:{leftTitle:"You Right Now",left:["Knowing the path, doubting the destination","Shrinking in rooms you were built to lead","Waiting for proof before you commit fully"],rightTitle:"God's Blueprint for You",right:["Certainty that the plan was written with your name on it","Taking up the space God gave you without apology","Identity that doesn't need external proof to move forward"],gap:"YOUR IDENTITY"},
+
+  freedom:{
+    badge:'BOTTLENECK DETECTED: FREEDOM',
+    title:'The <em>Freedom</em> Protocol',
+    lead:"Money or time. One of them owns you right now. Maybe both. Nothing else levels up until you take that back.",
+    lockedSub:"Your wealth readiness score, income ceiling, and time freedom index unlock at the free session.",
+    ctaTitle:"You were not designed for survival.",
+    ctaBody:"King Azoulay's free live session breaks down the exact system he used to go from trapped to free, and why most people never make the move that changes everything.",
     days:[
-      {n:"01",title:"Name the Voice",mission:"You cannot defeat a belief you have not named."},
-      {n:"02",title:"The Identity Gap",mission:"The gap between who you are and who God built you to be is not filled by doing more. It is filled by deciding differently."},
-      {n:"03",title:"One Full Day as Him",mission:"Identity does not change through thinking. It changes through action your body experiences."},
-      {n:"04",title:"The Evidence File",mission:"Doubt survives on selective memory. Today you attack it directly."},
-      {n:"05",title:"Speak It",mission:"The version of you that has the life you want does not whisper his goals. He states them."},
-      {n:"06",title:"Protect What You Are Building",mission:"You cannot build a new identity inside an environment that only knows the old one."},
-      {n:"07",title:"The Decision",mission:"Day 7 is not the end of the protocol. It is the moment you stop experimenting and start becoming."}
-    ],
-    printDays:[
-      {n:"01",title:"Name the Voice",mission:"You cannot defeat a belief you have not named.",when:"Evening. When the house is quiet and you have thirty uninterrupted minutes.",steps:["Sit away from screens. Think about the full version of your dream life. Not the edited version. The real one.","Let your mind respond. Notice every thought that follows the vision. Write every sentence down exactly as it appears: But I am not ready. What if it does not work. People like me do not. I do not deserve this.","Read the list back slowly. Every sentence.","At the bottom of the page, write this and read it out loud: These beliefs were not written by God. They were written by fear. Read it three times."],avoid:"Do not argue with the voices as you write them. Do not correct them or justify them. Just write them down exactly as they appear.",reflection:"Where did these beliefs come from? Whose voice is actually running my mind?"},
-      {n:"02",title:"The Identity Gap",mission:"The gap between who you are and who God built you to be is not filled by doing more. It is filled by deciding differently.",when:"Morning. Before the day pulls you back into old patterns.",steps:["Draw two columns on a page. Label the left: WHO I AM RIGHT NOW. Label the right: WHO GOD BUILT ME TO BE.","Fill the left column with your actual current habits, self-talk, and behavior. Be specific and honest. No softening.","Fill the right column with no limitations and no doubts. What does that man do, how does he carry himself, what does he say yes and no to?","Study the two columns. Circle three specific behaviors in the right column you could begin tomorrow.","Pick one of the three. Write: Starting tomorrow, I do this. One behavior. One decision."],avoid:"Be specific on both sides. Vague columns produce vague results and vague decisions.",reflection:"Which one behavior from the right column, if I started tomorrow, would have the biggest impact on my life?"},
-      {n:"03",title:"One Full Day as Him",mission:"Identity does not change through thinking. It changes through action your body experiences.",when:"Starts the second your feet hit the floor. Runs through until you go to sleep.",steps:["From the moment you wake up, move as the version of you in the right column. Ask: how does he start his morning? Do that exactly.","Every decision today, what to eat, how to respond to stress, what to say yes or no to: ask what the right-column version of you would choose. Then choose it.","When the old voice shows up and it will: say out loud, That is the old version. He does not run this anymore.","Tonight, write five specific things you did today that the old version of you would not have done."],avoid:"Do not wait for motivation to feel like the new version. Act first. The feeling follows the action. Never the other way around.",reflection:"What five specific actions did I take today that the old version of me would not have taken?"},
-      {n:"04",title:"The Evidence File",mission:"Doubt survives on selective memory. Today you attack it directly.",when:"Morning. After your first glass of water and before you open your phone.",steps:["Write ten times in your life when you did something that scared you and it worked. Go back as far as you need to.","For each one, write two things: what you were afraid of before, and what actually happened after.","Read the entire list out loud from start to finish. All ten. Do not skip this step. Do not read it in your head. Speak it.","At the bottom of the page write: I have evidence. I have been choosing to ignore it. Then put this page somewhere you see it every day."],avoid:"Do not only count the major wins. Small wins count. The goal is volume of evidence, not size of wins.",reflection:"What does this list of evidence say about the person I already am, right now?"},
-      {n:"05",title:"Speak It",mission:"The version of you that has the life you want does not whisper his goals. He states them.",when:"Morning. In private, before your first conversation with another person.",steps:["Stand in front of a mirror. Alone. Phone in another room.","Say your real goal out loud. Not the safe, edited version. The full, exact goal. The one that makes you slightly uncomfortable to say.","Then say this three times: I was created for this. God wrote this plan before I was born. I am becoming this now.","After the mirror exercise, text one person your goal in writing. No vague language, no softening. The exact thing you just said in the mirror.","Notice the discomfort of saying it and sending it. That discomfort is the distance between who you are and who you are becoming. It closes each time you act."],avoid:"Do not soften the goal when you say it out loud or when you text it. The editing is the problem. State it exactly.",reflection:"What happens in your body when you say your real goal out loud? What does that feeling tell you?"},
-      {n:"06",title:"Protect What You Are Building",mission:"You cannot build a new identity inside an environment that only knows the old one.",when:"Throughout the day. Morning: identify. Afternoon: reduce. Evening: replenish.",steps:["Identify two voices in your life, people, social accounts, recurring conversations, that reinforce who you used to be. Name them specifically.","Reduce contact with at least one of them this week. Not permanently. Just enough to stop feeding the old version of yourself.","Find one person who is already living at the level you are building toward. Watch how they speak, move, and make decisions. Let that become your new reference point.","Re-read your evidence file from Day 4. If anything happened this week that qualifies as new evidence, add it."],avoid:"Do not try to fix or change the people who reinforce the old version of you. Just reduce the input. You cannot renovate while the old tenant is still inside.",reflection:"What am I allowing into my mind on a daily basis that is working against who I am becoming?"},
-      {n:"07",title:"The Decision",mission:"Day 7 is not the end of the protocol. It is the moment you stop experimenting and start becoming.",when:"Morning. Do this before anything else. This is the most important thirty minutes of this week.",steps:["Read everything you wrote this week: the voice audit, the identity gap, the evidence file, the declarations.","Write one paragraph in present tense with no conditionals: I am ____. I build ____. I protect ____. I was created for ____.","Compare the person who started Day 1 with the person writing this paragraph on Day 7. Something shifted. Name it in one sentence.","Make one bold decision today. Something you have been postponing because the old version of you was not sure he deserved it. Make it today. Not tomorrow.","The free session is your next step. God's blueprint does not stop here. It builds. Bring what you found this week."],avoid:"Do not let Day 7 be only a journaling session. A real decision means a real move. Something that costs you something today.",reflection:"What decision have I been postponing because the old version of me did not believe he deserved it?"}
-    ],
-    lockedSub:"Once you settle your identity, the next layer reveals God's exact financial blueprint for who you're becoming. King Azoulay shows it live.",
-    ctaTitle:"The free session is where it becomes permanent.",
-    ctaBody:"King Azoulay's free live session breaks down the spiritual and mental root of why high-potential people stay stuck. And the exact framework God gave him to help them break through."
+      {n:"01",title:"The Honest Number",mission:"You cannot build freedom on a number you refuse to look at.",when:"Morning. Quiet. No interruptions.",
+       steps:["Write exactly how much money you have right now. Every account. No rounding.","Write exactly how much goes out every month. Every bill, every subscription.","Write the gap between what comes in and what it costs to live.","Write one sentence: this is where I actually am, and I am not looking away anymore."],
+       avoid:"Do not soften the number. What is real right now.",reflection:"What has not knowing this number actually cost me?"},
+      {n:"02",title:"Find the Bleeding",mission:"Before you add income, stop the loss.",when:"Afternoon. Go through your last thirty days of transactions.",
+       steps:["Go through your bank and card statements from the last thirty days.","Write every charge that did not move your life forward.","Add up the total. Write the number.","Circle the single biggest non-essential expense. Cancel or cut it today."],
+       avoid:"Do not justify. You are not being punished. You are getting honest.",reflection:"What am I paying for that keeps me comfortable instead of free?"},
+      {n:"03",title:"The One Move",mission:"You do not need a business plan. You need one income action.",when:"Morning. Two hours. No phone.",
+       steps:["Write every way you could produce income with skills you already have. Fifteen minutes. Do not stop.","Circle the one that could move fastest with the least setup.","Write exactly what the first physical step of that option looks like.","Execute that step today. Something that exists after today that did not exist before."],
+       avoid:"Do not plan the entire business. Execute one action.",reflection:"What skill do I already have that someone would pay for?"},
+      {n:"04",title:"The Time Audit",mission:"Time is the only currency you cannot make back. Find out where yours actually goes.",when:"Today. Track everything.",
+       steps:["From the moment you wake up, track every thirty-minute block.","At the end of the day divide your activities into three categories: building, maintaining, wasting.","Add up the hours in each category.","Write one hour per day you could reclaim starting tomorrow."],
+       avoid:"Do not judge the audit. Just see it clearly.",reflection:"If I could buy back two hours per day, what would I build with them?"},
+      {n:"05",title:"Cut the Anchor",mission:"One thing is keeping you where you are. Name it and remove it.",when:"Morning decision. Executed today.",
+       steps:["Write down the single biggest thing anchoring you to where you are. The job, the commitment, the relationship taking more than it gives.","Write what your life looks like in six months if this anchor is gone.","Write what your life looks like in six months if it stays.","Make one concrete move today toward removing it."],
+       avoid:"Do not wait for the perfect moment to remove what is holding you back.",reflection:"What am I afraid happens if I actually get free?"},
+      {n:"06",title:"The 90-Day Map",mission:"Freedom is not a feeling. It is a direction.",when:"Morning. Ninety minutes. No interruptions.",
+       steps:["Write what financial freedom looks like for you in specific numbers: monthly income, debts gone, time owned per week.","Write where you need to be in ninety days to be on track.","Put a date on the next step of your Day 3 move.","Write one sentence about why this matters beyond the money."],
+       avoid:"Do not make the map complicated. One direction, one first move, one date.",reflection:"What becomes possible for my family when I am financially free?"},
+      {n:"07",title:"Make the Move",mission:"This week ends with action. Not a plan. A move.",when:"Morning. First thing.",
+       steps:["Read everything you wrote this week.","Take one action from your Day 3 or Day 6 plan today. Something that did not exist before today.","Write down what you did and what it proves about the direction you are moving.","The free session is your next step. Bring your one move and your ninety-day map."],
+       avoid:"Do not end this week with only clarity. Clarity without action is educated comfort.",reflection:"What did making the move today prove that planning never could?"}
+    ]
+  },
+
+  faith:{
+    badge:'BOTTLENECK DETECTED: FAITH',
+    title:'The <em>Faith</em> Protocol',
+    lead:"You are not stuck because of what you lack. You are stuck because you do not fully trust the direction you are moving. That changes now.",
+    lockedSub:"Your purpose alignment score, direction clarity, and calling confidence unlock at the free session.",
+    ctaTitle:"There is a specific plan for your life.",
+    ctaBody:"King Azoulay's free live session breaks down how to find it, trust it, and start moving in it. This is not motivation. This is method.",
+    days:[
+      {n:"01",title:"The Quiet",mission:"You cannot hear direction in noise. Today you get quiet enough to listen.",when:"Morning. Thirty minutes. Phone in another room.",
+       steps:["Sit in complete silence for ten minutes. No music, no content. Just you.","Write what comes up when the noise is gone. Thoughts, fears, desires.","Write three things you actually believe about your life right now.","Write one thing you want to believe but are afraid to."],
+       avoid:"Do not fill the silence with productivity. The quiet is the work today.",reflection:"What do I actually hear when I stop filling the space?"},
+      {n:"02",title:"The Inventory",mission:"Before you move forward with clarity, you need to see what you actually believe right now.",when:"Morning. Forty-five minutes.",
+       steps:["Write what you believe about your potential. Honest, not aspirational.","Write what you believe about whether there is a specific plan for your life.","Write where those beliefs came from. Who told you that? What experience created it?","Circle one belief that is running your life that was given to you, not chosen."],
+       avoid:"Do not write what you wish you believed. Write what you actually believe right now.",reflection:"Whose voice am I living by that is not my own?"},
+      {n:"03",title:"Find the Evidence",mission:"Life has already shown you the direction. You stopped looking.",when:"Morning. Reflect on the last five years.",
+       steps:["Write every moment in the last five years where something felt exactly right. A conversation, a project, a moment where you were fully alive.","Write the common thread. What were you doing? Who were you serving?","Write one moment where a door opened at the right time without you forcing it.","Write: based on the evidence of my own life, here is where I am being guided."],
+       avoid:"Do not dismiss small moments. The pattern is in the details.",reflection:"If I trusted the evidence of my own life, what direction does it point?"},
+      {n:"04",title:"Choose One Direction",mission:"The inability to commit to one direction is fear dressed up as options.",when:"Morning. The most important decision of this week.",
+       steps:["Write every path or direction you are currently considering or avoiding.","Read each one and write one word next to it: alive or dead.","Choose the one that made you write alive.","Write five reasons this direction is already supported by the evidence from Day 3."],
+       avoid:"Do not choose the safest option. Choose the one that makes you come alive.",reflection:"What would I pursue if I knew it was backed?"},
+      {n:"05",title:"Name the Doubt",mission:"The thing blocking your faith is specific. Not 'I do not believe.' Something exact.",when:"Morning. Quiet.",
+       steps:["Write the exact doubt keeping you from moving in the direction you chose yesterday.","Write where that doubt came from. What failure or experience planted it.","Write what it would cost you if that doubt is wrong. What have you already lost believing it?","Write one sentence that challenges the doubt with evidence from your own life."],
+       avoid:"Do not spiritualize the doubt to avoid naming it. Name it exactly.",reflection:"What if the doubt is the lie and the direction is the truth?"},
+      {n:"06",title:"Build the Practice",mission:"Belief without daily action is just a feeling. Build the habit.",when:"Today. Build it and do it.",
+       steps:["Choose one daily practice that connects you to your direction. Prayer, a focused work hour, a specific conversation.","Do it today, fully, for the first time.","Write what felt different about moving intentionally toward your direction.","Commit to doing it every day for the next thirty days."],
+       avoid:"Do not build a complicated practice. One simple action done consistently is enough.",reflection:"What daily habit would prove, through repetition, that I believe in the direction I chose?"},
+      {n:"07",title:"Write Your Mission",mission:"You cannot build toward something you have never put into words.",when:"Morning. Thirty minutes.",
+       steps:["Read everything you wrote this week.","Write your mission in one sentence in present tense. Not 'I want to' or 'I am trying to.' Start with: I am the man who.","Write what the next ninety days look like if you actually live by that sentence.","The free session is your next step. Bring your mission sentence and your direction."],
+       avoid:"Do not wait until the sentence is perfect. Write it and refine through action.",reflection:"What does my life look like in one year if I actually live by the mission I just wrote?"}
+    ]
+  },
+
+  family:{
+    badge:'BOTTLENECK DETECTED: FAMILY',
+    title:'The <em>Family</em> Protocol',
+    lead:"You are building in a bubble. The people around you either do not see the version you are becoming or they are actively pulling you away from it.",
+    lockedSub:"Your relationship capital score, circle quality index, and legacy readiness unlock at the free session.",
+    ctaTitle:"The people around you are your superpower or your ceiling.",
+    ctaBody:"King Azoulay's free live session breaks down how to build a circle that accelerates you and a family legacy that actually lasts.",
+    days:[
+      {n:"01",title:"The Circle Audit",mission:"You cannot outgrow a circle you refuse to evaluate.",when:"Morning. Honest and private.",
+       steps:["Write the five people you spend the most time with.","Next to each name write one word: growing or static. No grey area.","Write who in your circle is actively building and who is just existing.","Write: based on this circle, who am I most likely to become in five years?"],
+       avoid:"Do not soften the audit to protect feelings. This is private. Be honest.",reflection:"If I become the average of the five people I spend the most time with, what does that make me?"},
+      {n:"02",title:"The Real Conversation",mission:"There is one conversation you have been avoiding. Today you have it.",when:"Today. Not next week.",
+       steps:["Write down the one conversation you have been avoiding with someone important.","Write what you would say if there were no consequences and no filters.","Have the conversation today. Not the perfect version. The real one.","Write what happened and what changed."],
+       avoid:"Do not script it so much that it becomes a performance. Say what needs to be said.",reflection:"What has avoiding this conversation cost both of us?"},
+      {n:"03",title:"Show Up",mission:"Presence is the first form of love. Today you give it fully.",when:"Today. Scheduled and protected.",
+       steps:["Choose the one person who most needs your full presence right now.","Block two hours for them today. Phone away. No agenda. Just present.","Ask one real question and actually listen. Do not fix. Listen.","Write what you noticed when you were actually present."],
+       avoid:"Do not multitask during this time. Divided presence is not presence.",reflection:"Who in my life has needed me to just show up and I keep making them wait?"},
+      {n:"04",title:"Identify the Drain",mission:"One relationship is costing you more than it is giving. You already know which one.",when:"Morning. Private reflection.",
+       steps:["Write the one relationship that consistently leaves you drained or smaller.","Write exactly how it drains you. Specific behaviors and patterns.","Write what it would look like to change the dynamic or create distance.","Make one decision about this relationship today."],
+       avoid:"Do not let loyalty become an excuse to stay in something pulling you down.",reflection:"What am I protecting by keeping a draining relationship exactly as it is?"},
+      {n:"05",title:"Invest Deliberately",mission:"The relationships that carry your life forward require intentional investment.",when:"Today. Scheduled.",
+       steps:["Identify one person in your circle who is ahead of you in an area you want to grow.","Reach out today with something specific: a question, a resource, a genuine acknowledgment.","Write what you want to learn from them and ask for one conversation.","Write what you have to offer in return."],
+       avoid:"Do not reach out with nothing to give. Think about what you bring to the exchange.",reflection:"Who has built what I am trying to build, and what is stopping me from learning from them directly?"},
+      {n:"06",title:"Lead",mission:"The people around you are watching how you live. You are either an example or an excuse.",when:"All day. Every interaction.",
+       steps:["Today act as if the version of you that you are becoming is already here.","In every interaction, be the most intentional person in the room.","At the end of the day write three moments where you led instead of reacted.","Write one way your standard lifted the people around you today."],
+       avoid:"Do not wait to lead until you feel credible. Lead now with what you have.",reflection:"What does it look like when I am the example instead of waiting for one?"},
+      {n:"07",title:"Set the Standard",mission:"You teach people how to treat you by what you accept. Decide what you accept.",when:"Morning. The most important decision of this week.",
+       steps:["Write what you will and will not accept in your closest relationships from this point forward.","Write what kind of father, partner, friend, or leader you are committing to be.","Share one of those standards with one important person in your life today.","The free session is your next step. Bring what you discovered about your circle this week."],
+       avoid:"Do not set standards you are not willing to hold for yourself first.",reflection:"What standard am I setting for my family by the way I am living right now?"}
+    ]
   }
 };
 
-// ── LOAD SESSION ─────────────────────────────────────────
-const storedResult = JSON.parse(localStorage.getItem('ka_result')||'null');
-const storedUser   = JSON.parse(localStorage.getItem('ka_user')||'null');
-if(!storedResult){ window.location.replace('/'); }
-const curResult = storedResult.type;
-const r = R[curResult];
+const r    = RESULTS[curResult];
+const stat = STAT_SCORES[curResult];
+const uName = storedUser && storedUser.name ? storedUser.name : null;
 
-// ── RENDER RESULT ─────────────────────────────────────────
-function blocks(pct){
-  const filled=Math.round(pct/10);
-  const cls=pct>=65?'g':pct>=35?'o':'r';
-  let h='';
-  for(let i=0;i<10;i++) h+=`<span class="sb${i<filled?' '+cls:''}"></span>`;
-  return h;
+function fakeRow(){ return `<div style="display:flex;gap:3px;margin-bottom:10px">${Array(10).fill('<div style="flex:1;height:6px;background:#222"></div>').join('')}</div>`; }
+
+function statBars(){
+  const LABELS = {fit:'FIT',fight:'FIGHT',freedom:'FREEDOM',faith:'FAITH',family:'FAMILY'};
+  return Object.entries(LABELS).map(([k,l]) => {
+    const pct = stat[k], bot = k === curResult;
+    return `<div class="stat-row">
+      <div class="stat-name${bot?' bot':''}">${l}</div>
+      <div class="stat-bar"><div class="stat-fill${bot?' low':' ok'}" data-pct="${pct}"></div></div>
+      <div class="stat-pct${bot?' bot':''}">${pct}%</div>
+    </div>`;
+  }).join('');
 }
 
-const ccHTML = r.pillars.map(p=>`
-  <div class="cc${p.hot?' hot':''}">
-    ${p.hot?'<div class="cc-btag">Your Bottleneck</div>':''}
-    <div class="cc-name">${p.name}</div>
-    <div class="cc-text">${p.screen}</div>
-  </div>`).join('');
-
-const scoresHTML = r.pillars.map(p=>`
-  <div class="s-row">
-    <div class="s-name${p.hot?' hot':''}">${p.name}</div>
-    <div class="s-blocks">${blocks(p.pct)}</div>
-    <div class="s-pct${p.hot?' hot':''}">${p.pct}%</div>
-  </div>`).join('');
-
-const br = r.bridge;
-const leftItems  = br.left.map(x=>`<li>${x}</li>`).join('');
-const rightItems = br.right.map(x=>`<li>${x}</li>`).join('');
-
-const fakeBlocks=()=>{const f=Math.floor(Math.random()*6)+3;let h='';for(let i=0;i<10;i++)h+=`<span class="sb${i<f?' g':''}"></span>`;return h;}
-
-const greeting = storedUser && storedUser.name ? `<p style="font-size:12px;color:var(--gold-d);letter-spacing:2px;text-transform:uppercase;margin-bottom:8px">${storedUser.name.toUpperCase()}</p>` : '';
-
-document.getElementById('result-content').innerHTML = `
-  ${greeting}
-  <div class="r-badge">${r.badge}</div>
-  <h1 class="r-title">${r.title}</h1>
-  <p class="r-lead">${r.lead}</p>
-
-  <div class="sec-label">Your Journey Position</div>
-  <div class="journey">
-    <div class="j-stage"><div class="j-track done"></div><div class="j-dot done"><div class="j-dot-in"></div></div><div class="j-name done">Asleep</div></div>
-    <div class="j-stage"><div class="j-track done"></div><div class="j-dot here"><div class="j-dot-in"></div></div><div class="j-name here">Waking Up<br><span class="j-here-tag">You are here</span></div></div>
-    <div class="j-stage"><div class="j-track"></div><div class="j-dot"><div class="j-dot-in"></div></div><div class="j-name">Breaking Through</div></div>
-    <div class="j-stage"><div class="j-dot"><div class="j-dot-in"></div></div><div class="j-name">Living the Blueprint</div></div>
+document.getElementById('result-wrap').innerHTML = `
+  <div class="result-header">
+    ${uName?`<p class="greeting">Hey ${uName}.</p>`:''}
+    <div class="bottleneck-tag">${r.badge}</div>
+    <h1 class="result-title">${r.title}</h1>
+    <p class="result-lead">${r.lead}</p>
   </div>
 
-  <div class="sec-label">Your Current Reality</div>
-  <div class="cc-grid">${ccHTML}</div>
-
-  <div class="sec-label">Your Focus</div>
-  <div class="focus-hed">YOUR FOCUS</div>
-  <div class="focus-sub">is your ${curResult}</div>
-  ${scoresHTML}
-  <div class="pco-grid">
-    <div class="pco-item"><div class="pco-lbl">The Problem</div><div class="pco-txt">${r.pco.problem}</div></div>
-    <div class="pco-item"><div class="pco-lbl">The Cause</div><div class="pco-txt">${r.pco.cause}</div></div>
-    <div class="pco-item"><div class="pco-lbl">When Solved</div><div class="pco-txt"><em>${r.pco.outcome}</em></div></div>
+  <div class="sec-label">Your Character Stats</div>
+  <div class="stats-block">
+    ${statBars()}
+    <p class="bot-note">Your <strong>${curResult.toUpperCase()}</strong> stat is your current bottleneck. Level this up first and everything else moves.</p>
   </div>
 
-  <div class="sec-label">The Gap</div>
-  <div class="bridge">
-    <div class="bridge-side">
-      <div class="bridge-lbl">You Right Now</div>
-      <div class="bridge-title">${br.leftTitle}</div>
-      <ul class="bridge-list">${leftItems}</ul>
-    </div>
-    <div class="bridge-mid">
-      <div class="bridge-arrow">↔</div>
-      <div class="bridge-gap-txt">${br.gap}</div>
-      <div class="bridge-arrow">↔</div>
-    </div>
-    <div class="bridge-side right">
-      <div class="bridge-lbl">God's Blueprint for You</div>
-      <div class="bridge-title">${br.rightTitle}</div>
-      <ul class="bridge-list">${rightItems}</ul>
-    </div>
+  <div class="sec-label">Your 7-Day Training Arc</div>
+  <div class="proto-prog-row">
+    <div class="proto-prog-bar"><div class="proto-prog-fill" id="proto-prog-fill" style="width:0%"></div></div>
+    <div class="proto-prog-label" id="proto-prog-label">0 of 7 complete</div>
   </div>
+  <div class="proto-week" id="proto-week"></div>
+  <div class="proto-card" id="proto-card"></div>
 
-  <div class="sec-label">Your 7-Day Activation Protocol</div>
-  <div id="proto-week" class="proto-week"></div>
-  <div id="proto-card" class="proto-card"></div>
-  <div class="proto-pdf-note">
-    <button class="btn-outline" onclick="window.print()" style="font-size:11px;padding:10px 24px">Download Printable PDF Version</button>
-  </div>
-
-  <div class="sec-label" style="margin-top:40px">What Is Coming Next</div>
+  <div class="sec-label" style="margin-top:48px">What Is Coming Next</div>
   <div class="locked-wrap">
-    <div class="locked-blur">
-      <div class="s-row"><div class="s-name">WEALTH</div><div class="s-blocks">${fakeBlocks()}</div><div class="s-pct">??%</div></div>
-      <div class="s-row"><div class="s-name">INCOME</div><div class="s-blocks">${fakeBlocks()}</div><div class="s-pct">??%</div></div>
-      <div class="s-row"><div class="s-name">SYSTEMS</div><div class="s-blocks">${fakeBlocks()}</div><div class="s-pct">??%</div></div>
-      <div class="s-row"><div class="s-name">LEGACY</div><div class="s-blocks">${fakeBlocks()}</div><div class="s-pct">??%</div></div>
-    </div>
+    <div class="locked-blur">${fakeRow()}${fakeRow()}${fakeRow()}</div>
     <div class="locked-overlay">
-      <div class="lock-icon">🔒</div>
-      <div class="locked-hed">Your Wealth Blueprint</div>
+      <div class="lock-icon">&#x1F512;</div>
+      <div class="locked-hed">Your Full Character Report</div>
       <div class="locked-sub">${r.lockedSub}</div>
       <div class="unlock-tag">Unlocks at the Free Session</div>
     </div>
@@ -563,225 +318,117 @@ document.getElementById('result-content').innerHTML = `
     <h3>${r.ctaTitle}</h3>
     <p>${r.ctaBody}</p>
     <a href="#session" class="btn-gold">Join the Free Session</a>
-    <p class="cta-note">Free. Live. You get real value before anyone asks for anything.</p>
+    <p class="cta-note">Free. Live. Real value before anyone asks you for anything.</p>
   </div>
-  <button class="btn-outline" onclick="window.print()" style="margin-bottom:12px">Download My Full Blueprint Report (PDF)</button><br>
-  <button class="btn-outline" onclick="retake()" style="margin-top:8px">Retake the Quiz</button>
+  <button class="btn-outline" onclick="retake()" style="margin-top:8px">Retake the Assessment</button>
 `;
 
-buildPrint(r);
+setTimeout(() => {
+  document.querySelectorAll('.stat-fill').forEach(el => { el.style.width = el.dataset.pct + '%'; });
+}, 120);
+
 initProtocol(r);
 
-// ── BUILD PRINT ────────────────────────────────────────────
-function buildPrint(r){
-  document.getElementById('pp-cover-sub').textContent = r.coverSub;
-  document.getElementById('pp-p2-sub').textContent    = r.p2sub;
-  document.getElementById('pp-p2-note').textContent   = r.p2note;
-  document.getElementById('pp-focus-sub').textContent = `is your ${curResult}`;
-  document.getElementById('pp-lock-sub').textContent  = r.lockedSub;
-
-  document.getElementById('pp-cc-grid').innerHTML = r.pillars.map(p=>`
-    <div class="pp-cc${p.hot?' hot':''}">
-      ${p.hot?'<div class="pp-cc-hot-tag">YOUR BOTTLENECK</div>':''}
-      <div class="pp-cc-name">${p.name}</div>
-      <div class="pp-cc-text"><strong>${p.print.b}</strong> ${p.print.t}</div>
-    </div>`).join('');
-
-  function ppBlocks(pct){
-    const filled=Math.round(pct/10);
-    const cls=pct>=65?'g':pct>=35?'o':'r';
-    let h='';for(let i=0;i<10;i++) h+=`<span class="pp-sb${i<filled?' '+cls:''}"></span>`;
-    return h;
-  }
-  document.getElementById('pp-scores').innerHTML = r.pillars.map(p=>`
-    <div class="pp-s-row">
-      <div class="pp-s-name${p.hot?' hot':''}">${p.name}</div>
-      <div class="pp-s-blocks">${ppBlocks(p.pct)}</div>
-      <div class="pp-s-pct${p.hot?' hot':''}">${p.pct}%</div>
-    </div>`).join('');
-
-  document.getElementById('pp-pco').innerHTML = `
-    <div class="pp-pco-item"><div class="pp-pco-lbl">The Problem</div><div class="pp-pco-txt">${r.pco.problem}</div></div>
-    <div class="pp-pco-item"><div class="pp-pco-lbl">The Cause</div><div class="pp-pco-txt">${r.pco.cause}</div></div>
-    <div class="pp-pco-item"><div class="pp-pco-lbl">When Solved</div><div class="pp-pco-txt"><em>${r.pco.outcome}</em></div></div>`;
-
-  document.getElementById('pp-days').innerHTML = r.printDays.map(d=>`
-    <div class="pp-day">
-      <div class="pp-chk"></div>
-      <div class="pp-dnum">Day<br>${parseInt(d.n)}</div>
-      <div class="pp-dbody">
-        <strong>${d.title}</strong>
-        <div class="pp-day-mission">${d.mission}</div>
-        <div class="pp-day-when">When: ${d.when}</div>
-        <ul class="pp-day-steps">${d.steps.map(s=>`<li>${s}</li>`).join('')}</ul>
-        <div class="pp-day-avoid">Avoid: ${d.avoid}</div>
-        <div class="pp-day-reflect">Tonight: ${d.reflection}</div>
-      </div>
-    </div>`).join('');
-}
-
-// ── INTERACTIVE PROTOCOL ──────────────────────────────────
-let _proto = null;
-let _protoDay = 0;
-
 function initProtocol(r){
-  const key = 'ka_proto_'+curResult;
+  const key = 'ka_proto_' + curResult;
   const saved = JSON.parse(localStorage.getItem(key)||'null');
-  const daysCompleted = saved ? saved.daysCompleted : [];
-  const stepsChecked  = saved ? saved.stepsChecked  : {};
-  _proto = {r, daysCompleted, stepsChecked, key};
+  _proto = {
+    r,
+    key,
+    daysCompleted: saved ? saved.daysCompleted : [],
+    stepsChecked:  saved ? saved.stepsChecked  : {}
+  };
   _protoDay = 0;
   for(let i=0;i<7;i++){
-    if(daysCompleted.includes(i)) _protoDay = Math.min(i+1,6);
+    if(_proto.daysCompleted.includes(i)) _protoDay = Math.min(i+1,6);
   }
   _renderWeek();
   _renderDay();
 }
 
 function _saveProto(){
-  localStorage.setItem(_proto.key, JSON.stringify({
-    daysCompleted: _proto.daysCompleted,
-    stepsChecked:  _proto.stepsChecked
-  }));
+  localStorage.setItem(_proto.key, JSON.stringify({daysCompleted:_proto.daysCompleted, stepsChecked:_proto.stepsChecked}));
 }
 
 function _renderWeek(){
-  const {r, daysCompleted} = _proto;
-  const maxUnlocked = daysCompleted.length ? Math.max(...daysCompleted)+1 : 0;
-  document.getElementById('proto-week').innerHTML = r.printDays.map((d,i)=>{
-    const done   = daysCompleted.includes(i);
+  const maxU = _proto.daysCompleted.length > 0 ? Math.min(Math.max(..._proto.daysCompleted)+1, 6) : 0;
+  document.getElementById('proto-week').innerHTML = _proto.r.days.map((d,i) => {
+    const done = _proto.daysCompleted.includes(i);
+    const locked = i > maxU;
     const active = i === _protoDay;
-    const locked = !done && i > maxUnlocked;
-    let cls = 'proto-day-btn';
-    if(done) cls += ' pdone'; else if(active) cls += ' pactive';
-    const icon   = done ? '✓' : (active ? '→' : '·');
-    const onclick = (!locked || active) ? `onclick="goDay(${i})"` : '';
-    return `<div class="${cls}" ${onclick}><span class="pdi">${icon}</span>D${i+1}</div>`;
+    let cls = 'proto-day-btn' + (done?' done':locked?'':active?' active':'');
+    return `<button class="${cls}" onclick="goDay(${i})" ${locked?'disabled':''}>${i+1}</button>`;
   }).join('');
+  const c = _proto.daysCompleted.length;
+  document.getElementById('proto-prog-fill').style.width = ((c/7)*100)+'%';
+  document.getElementById('proto-prog-label').textContent = `${c} of 7 complete`;
 }
 
 function _renderDay(){
-  const {r, daysCompleted, stepsChecked} = _proto;
-  const d       = r.printDays[_protoDay];
-  const isDone  = daysCompleted.includes(_protoDay);
-  const checked = stepsChecked[_protoDay] || [];
-  const allDone = checked.length === d.steps.length;
-  const pct     = d.steps.length ? Math.round((checked.length/d.steps.length)*100) : 0;
-
-  const stepsHTML = d.steps.map((s,i)=>{
-    const on = checked.includes(i);
-    return `<li class="proto-step${on?' pchecked':''}" onclick="toggleStep(${_protoDay},${i})">
-      <div class="pstep-box"><span class="pstep-chk">✓</span></div>
-      <span class="pstep-txt">${s}</span>
-    </li>`;
-  }).join('');
-
-  let bottom = '';
-  if(isDone){
-    const isLast = _protoDay === 6;
-    bottom = `<div class="proto-done-card">
-      <div class="proto-done-title">Day ${_protoDay+1} Complete.</div>
-      <div class="proto-done-sub">${isLast
-        ? 'You finished the full protocol. The free session is your next step.'
-        : 'Keep the momentum. Day '+(_protoDay+2)+' is unlocked and ready.'}</div>
-      ${!isLast ? `<button class="btn-gold" style="font-size:11px;padding:12px 28px;letter-spacing:2px" onclick="goDay(${_protoDay+1})">Start Day ${_protoDay+2} →</button>` : ''}
-    </div>`;
-  } else {
-    bottom = `
-      <div class="proto-avoid"><strong style="font-style:normal;color:#B07070">Avoid:</strong> ${d.avoid}</div>
-      <div class="proto-reflect"><strong style="font-style:normal;color:var(--gold-d)">Tonight:</strong> ${d.reflection}</div>
-      <div class="proto-prog-row">
-        <div class="proto-prog-bar"><div class="proto-prog-fill" style="width:${pct}%"></div></div>
-        <span class="proto-prog-lbl">${checked.length} / ${d.steps.length}</span>
-      </div>
-      <button class="proto-complete-btn${allDone?' pready':''}" onclick="completeDay(${_protoDay})">Mark Day ${_protoDay+1} Complete</button>`;
-  }
+  const day = _proto.r.days[_protoDay];
+  const checked = _proto.stepsChecked[_protoDay] || [];
+  const done = _proto.daysCompleted.includes(_protoDay);
+  const allChk = checked.length >= day.steps.length;
 
   document.getElementById('proto-card').innerHTML = `
-    <div class="proto-card-hd">
-      <div class="proto-card-num${isDone?'':' live'}">${String(_protoDay+1).padStart(2,'0')}</div>
-      <div>
-        <div class="proto-card-title">${d.title}</div>
-        <div class="proto-card-mission">${d.mission}</div>
-      </div>
+    <p class="proto-day-label">Day ${_protoDay+1} of 7</p>
+    <h3 class="proto-day-title">${day.title}</h3>
+    <p class="proto-day-mission">${day.mission}</p>
+    <p class="proto-when">${day.when}</p>
+    <div class="proto-steps">
+      ${day.steps.map((s,i)=>`
+        <div class="proto-step" onclick="toggleStep(${i})">
+          <div class="pstep-box${checked.includes(i)?' chk':''}"></div>
+          <span class="pstep-txt${checked.includes(i)?' done':''}">${s}</span>
+        </div>`).join('')}
     </div>
-    <div class="proto-card-when">When: ${d.when}</div>
-    <ul class="proto-steps">${stepsHTML}</ul>
-    ${bottom}`;
+    <div class="proto-avoid"><strong>Avoid</strong>${day.avoid}</div>
+    <div class="proto-reflect"><strong>Reflect</strong>${day.reflection}</div>
+    ${done
+      ? `<div class="proto-done-card">&#10003; Day ${_protoDay+1} complete. Keep going.</div>`
+      : `<button class="proto-complete-btn" onclick="completeDay()" style="display:${allChk?'block':'none'}">Mark Day ${_protoDay+1} Complete</button>`
+    }`;
 }
 
 function goDay(i){
-  const {daysCompleted} = _proto;
-  const maxUnlocked = daysCompleted.length ? Math.max(...daysCompleted)+1 : 0;
-  if(i > maxUnlocked && !daysCompleted.includes(i)) return;
+  const maxU = _proto.daysCompleted.length > 0 ? Math.min(Math.max(..._proto.daysCompleted)+1, 6) : 0;
+  if(i > maxU) return;
   _protoDay = i;
   _renderWeek();
   _renderDay();
-  document.getElementById('proto-week').scrollIntoView({behavior:'smooth',block:'nearest'});
 }
 
-function toggleStep(dayIdx, stepIdx){
-  if(_proto.daysCompleted.includes(dayIdx)) return;
-  const arr = _proto.stepsChecked[dayIdx] || [];
-  const pos = arr.indexOf(stepIdx);
-  if(pos > -1) arr.splice(pos,1); else arr.push(stepIdx);
-  _proto.stepsChecked[dayIdx] = arr;
+function toggleStep(i){
+  if(_proto.daysCompleted.includes(_protoDay)) return;
+  if(!_proto.stepsChecked[_protoDay]) _proto.stepsChecked[_protoDay] = [];
+  const idx = _proto.stepsChecked[_protoDay].indexOf(i);
+  if(idx > -1) _proto.stepsChecked[_protoDay].splice(idx,1);
+  else _proto.stepsChecked[_protoDay].push(i);
   _saveProto();
   _renderDay();
 }
 
-function completeDay(dayIdx){
-  const {daysCompleted, stepsChecked, r} = _proto;
-  if((stepsChecked[dayIdx]||[]).length < r.printDays[dayIdx].steps.length) return;
-  if(!daysCompleted.includes(dayIdx)) daysCompleted.push(dayIdx);
+function completeDay(){
+  if(!_proto.daysCompleted.includes(_protoDay)) _proto.daysCompleted.push(_protoDay);
   _saveProto();
-
-  // Fire GHL webhook on day completion
   const user = JSON.parse(localStorage.getItem('ka_user')||'{}');
-  const d    = r.printDays[dayIdx];
-  fireWebhook({
-    event:                'day_completed',
-    email:                user.email || '',
-    first_name:           user.name  || '',
-    result_type:          curResult,
-    day_number:           dayIdx+1,
-    day_title:            d.title,
-    days_completed_count: daysCompleted.length,
-    completed_at:         new Date().toISOString(),
-    source:               'divine-blueprint-quiz'
-  });
-
-  if(daysCompleted.length === 7){
-    fireWebhook({
-      event:       'protocol_completed',
-      email:       user.email || '',
-      first_name:  user.name  || '',
-      result_type: curResult,
-      completed_at:new Date().toISOString(),
-      source:      'divine-blueprint-quiz'
-    });
-  }
-
+  fireWebhook({event:'day_completed',email:user.email||'',first_name:user.name||'',result_type:curResult,day_number:_protoDay+1,day_title:_proto.r.days[_protoDay].title,days_completed_count:_proto.daysCompleted.length,completed_at:new Date().toISOString(),source:'character-blueprint-quiz'});
+  if(_proto.daysCompleted.length===7) fireWebhook({event:'protocol_completed',email:user.email||'',first_name:user.name||'',result_type:curResult,completed_at:new Date().toISOString(),source:'character-blueprint-quiz'});
+  if(_protoDay < 6) _protoDay++;
   _renderWeek();
   _renderDay();
-}
-
-async function fireWebhook(payload){
-  if(!WEBHOOK_URL) return;
-  try {
-    await fetch(WEBHOOK_URL, {
-      method: 'POST',
-      headers: {'Content-Type':'application/json'},
-      body: JSON.stringify(payload)
-    });
-  } catch(e){}
 }
 
 function retake(){
   localStorage.removeItem('ka_result');
   localStorage.removeItem('ka_user');
-  ['body','direction','identity'].forEach(k=>localStorage.removeItem('ka_proto_'+k));
-  window.location.href = '/';
+  ['fit','fight','freedom','faith','family'].forEach(k => localStorage.removeItem('ka_proto_'+k));
+  window.location.replace('/');
+}
+
+async function fireWebhook(payload){
+  if(!WEBHOOK_URL) return;
+  try{ await fetch(WEBHOOK_URL,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)}); }catch(e){}
 }
 </script>
 </body>

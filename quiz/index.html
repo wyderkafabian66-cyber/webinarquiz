@@ -3,12 +3,12 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
-<title>Your Divine Blueprint Quiz | King Azoulay</title>
+<title>Character Assessment | King Azoulay</title>
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
-  --gold:#C9A84C;--gold-l:#E4C97B;--gold-d:#9A7530;--gold-deep:#7A5520;
+  --gold:#C9A84C;--gold-l:#E4C97B;--gold-d:#9A7530;
   --black:#0A0A0A;--dark:#111;--d2:#1A1A1A;--d3:#222;
   --white:#F5F0E8;--gray:#888;
 }
@@ -18,31 +18,35 @@ html,body{background:var(--black);color:var(--white);font-family:'Inter',sans-se
 .screen.active{display:flex}
 @keyframes fi{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
 
-/* LOGO */
-.logo-wrap{width:70px;height:70px;margin:0 auto 24px}
-.logo-wrap svg{width:100%;height:100%}
+#question-screen{max-width:680px;margin:0 auto;width:100%}
+.q-counter{font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:32px}
+.q-text{font-family:'Cinzel',serif;font-size:clamp(17px,2.8vw,26px);font-weight:700;line-height:1.35;color:var(--white);margin-bottom:40px;max-width:580px}
 
-/* QUESTION */
-#question-screen{max-width:700px;margin:0 auto}
-.q-counter{font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:36px}
-.q-text{font-family:'Cinzel',serif;font-size:clamp(22px,3.5vw,34px);font-weight:700;line-height:1.25;color:var(--white);margin-bottom:44px;max-width:600px}
-.opts{display:flex;flex-direction:column;gap:12px;width:100%;max-width:580px}
-.opt{background:var(--d2);border:1px solid #2A2A2A;padding:18px 22px;text-align:left;cursor:pointer;font-size:14px;line-height:1.5;color:#C8C0B0;transition:all .2s;position:relative;overflow:hidden}
-.opt::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--gold);transform:scaleY(0);transition:transform .2s}
-.opt:hover{border-color:var(--gold-d);color:var(--white);background:#1E1E1E}
-.opt:hover::before,.opt.sel::before{transform:scaleY(1)}
-.opt.sel{border-color:var(--gold);color:var(--white);background:rgba(201,168,76,.07)}
-.opt-inner{display:flex;align-items:flex-start;gap:16px}
-.opt-ltr{flex-shrink:0;width:24px;height:24px;border:1px solid #444;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:var(--gray);transition:all .2s}
-.opt:hover .opt-ltr,.opt.sel .opt-ltr{border-color:var(--gold);color:var(--gold);background:rgba(201,168,76,.1)}
-.next-wrap{margin-top:36px;width:100%;max-width:580px;text-align:right}
+.voice-wrap{width:100%;max-width:540px;display:flex;flex-direction:column;align-items:center;gap:16px}
+.mic-btn{width:72px;height:72px;border-radius:50%;background:var(--d2);border:2px solid #333;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all .2s;position:relative;flex-shrink:0}
+.mic-btn:hover{border-color:var(--gold-d);background:#222}
+.mic-btn.recording{border-color:var(--gold);background:rgba(201,168,76,.12);animation:pulse 1.2s ease-in-out infinite}
+.mic-btn svg{width:28px;height:28px;fill:var(--gray);transition:fill .2s}
+.mic-btn:hover svg,.mic-btn.recording svg{fill:var(--gold)}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(201,168,76,.4)}50%{box-shadow:0 0 0 16px rgba(201,168,76,0)}}
+.voice-hint{font-size:13px;color:var(--gray);letter-spacing:.5px}
+.transcript-wrap{width:100%;background:var(--d2);border:1px solid #2A2A2A;padding:18px 20px;min-height:80px;display:none;text-align:left}
+.transcript-label{font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin-bottom:8px}
+.transcript-text{font-size:14px;line-height:1.7;color:var(--white)}
+.rerecord-btn{font-size:11px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:var(--gray);background:none;border:1px solid #333;padding:6px 16px;cursor:pointer;transition:all .2s;display:none}
+.rerecord-btn:hover{border-color:var(--gold-d);color:var(--gold)}
+.txt-fallback{width:100%;background:var(--d2);border:1px solid #2A2A2A;padding:16px 18px;color:var(--white);font-size:14px;font-family:'Inter',sans-serif;outline:none;resize:vertical;min-height:120px;line-height:1.6;display:none}
+.txt-fallback:focus{border-color:var(--gold-d)}
+.txt-fallback::placeholder{color:#555}
+.no-speech-note{font-size:11px;color:#555;display:none}
+
+.next-wrap{margin-top:32px;width:100%;max-width:540px;text-align:right}
 #btn-next{padding:14px 36px;background:var(--gold);color:var(--black);font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase;border:none;cursor:pointer;transition:all .2s;opacity:0;pointer-events:none;transform:translateY(4px)}
 #btn-next.vis{opacity:1;pointer-events:all;transform:translateY(0)}
 #btn-next:hover{background:var(--gold-l)}
 
-/* EMAIL CAPTURE */
 #email-screen{max-width:520px;margin:0 auto}
-.email-hed{font-family:'Cinzel',serif;font-size:clamp(26px,4vw,40px);font-weight:900;line-height:1.15;color:var(--white);margin-bottom:14px}
+.email-hed{font-family:'Cinzel',serif;font-size:clamp(22px,3.5vw,36px);font-weight:900;line-height:1.15;color:var(--white);margin-bottom:14px}
 .email-hed em{font-style:normal;color:var(--gold)}
 .email-sub{font-size:15px;color:#BDB097;line-height:1.7;max-width:420px;margin:0 auto 28px}
 .email-form{display:flex;flex-direction:column;gap:12px;width:100%;max-width:420px;margin:0 auto}
@@ -55,9 +59,8 @@ html,body{background:var(--black);color:var(--white);font-family:'Inter',sans-se
 .err-msg{font-size:12px;color:#C47070;display:none;margin-top:-4px}
 .err-msg.show{display:block}
 
-/* LOADING */
 #loading-screen{gap:20px}
-.loading-label{font-family:'Cinzel',serif;font-size:16px;color:var(--gold);letter-spacing:4px;text-transform:uppercase;margin-bottom:24px}
+.loading-label{font-family:'Cinzel',serif;font-size:14px;color:var(--gold);letter-spacing:4px;text-transform:uppercase;margin-bottom:24px}
 .loading-bar-wrap{width:260px;height:2px;background:#222;overflow:hidden}
 .loading-bar-fill{height:100%;background:linear-gradient(90deg,var(--gold-d),var(--gold-l));width:0%;animation:lf 2.4s ease forwards}
 @keyframes lf{0%{width:0}60%{width:72%}85%{width:90%}100%{width:100%}}
@@ -70,100 +73,188 @@ html,body{background:var(--black);color:var(--white);font-family:'Inter',sans-se
 <div id="question-screen" class="screen active">
   <p class="q-counter" id="q-counter">Question 1 of 7</p>
   <p class="q-text" id="q-text"></p>
-  <div class="opts" id="opts"></div>
-  <div class="next-wrap"><button id="btn-next" onclick="nextQ()">Next →</button></div>
+  <div class="voice-wrap">
+    <button class="mic-btn" id="btn-mic" onclick="toggleRecording()">
+      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 1a4 4 0 0 1 4 4v6a4 4 0 0 1-8 0V5a4 4 0 0 1 4-4zm-1 18.93V22h2v-2.07A8 8 0 0 0 20 12h-2a6 6 0 0 1-12 0H4a8 8 0 0 0 7 7.93z"/></svg>
+    </button>
+    <p class="voice-hint" id="voice-hint">Tap to speak your answer</p>
+    <div class="transcript-wrap" id="transcript-wrap">
+      <p class="transcript-label">Your answer</p>
+      <p class="transcript-text" id="transcript-text"></p>
+    </div>
+    <button class="rerecord-btn" id="btn-rerecord" onclick="reRecord()">Re-record</button>
+    <textarea id="txt-fallback" class="txt-fallback" placeholder="Type your answer here..."></textarea>
+    <p class="no-speech-note" id="no-speech-note">Voice not supported in this browser. Type above.</p>
+  </div>
+  <div class="next-wrap"><button id="btn-next" onclick="nextQ()">Next &rarr;</button></div>
 </div>
 
 <div id="email-screen" class="screen">
-  <div class="logo-wrap"><svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="g1" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="#F2D060"/><stop offset="45%" stop-color="#C9A84C"/><stop offset="100%" stop-color="#8A6018"/></linearGradient><linearGradient id="g2" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="#F0CE58"/><stop offset="100%" stop-color="#9A7530"/></linearGradient></defs><circle cx="100" cy="100" r="100" fill="#0A0A0A"/><circle cx="100" cy="100" r="93" fill="none" stroke="url(#g2)" stroke-width="3.5"/><path d="M77,78 L77,59 L88,72 L100,44 L112,72 L123,59 L123,78 Z" fill="url(#g1)"/><rect x="74" y="74" width="52" height="12" rx="2" fill="url(#g1)"/><circle cx="87" cy="80" r="2.5" fill="#0A0A0A"/><circle cx="100" cy="80" r="2.5" fill="#0A0A0A"/><circle cx="113" cy="80" r="2.5" fill="#0A0A0A"/><polygon points="107,90 93,90 46,163 64,163" fill="url(#g1)"/><polygon points="93,90 107,90 136,163 154,163" fill="url(#g1)"/><rect x="71" y="126" width="58" height="11" rx="1" fill="url(#g1)"/><rect x="38" y="157" width="32" height="9" rx="1" fill="url(#g1)"/><rect x="130" y="157" width="32" height="9" rx="1" fill="url(#g1)"/></svg></div>
-  <p class="q-counter">Your Blueprint is Ready</p>
-  <h2 class="email-hed">One last thing.<br><em>Where do I send this?</em></h2>
-  <p class="email-sub">Drop your details and I'll show you what God built you for. You'll also get first access to the free session invite.</p>
+  <div style="width:60px;height:60px;margin:0 auto 24px"><svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="g1" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="#F2D060"/><stop offset="45%" stop-color="#C9A84C"/><stop offset="100%" stop-color="#8A6018"/></linearGradient><linearGradient id="g2" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="#F0CE58"/><stop offset="100%" stop-color="#9A7530"/></linearGradient></defs><circle cx="100" cy="100" r="100" fill="#0A0A0A"/><circle cx="100" cy="100" r="93" fill="none" stroke="url(#g2)" stroke-width="3.5"/><path d="M77,78 L77,59 L88,72 L100,44 L112,72 L123,59 L123,78 Z" fill="url(#g1)"/><rect x="74" y="74" width="52" height="12" rx="2" fill="url(#g1)"/><circle cx="87" cy="80" r="2.5" fill="#0A0A0A"/><circle cx="100" cy="80" r="2.5" fill="#0A0A0A"/><circle cx="113" cy="80" r="2.5" fill="#0A0A0A"/><polygon points="107,90 93,90 46,163 64,163" fill="url(#g1)"/><polygon points="93,90 107,90 136,163 154,163" fill="url(#g1)"/><rect x="71" y="126" width="58" height="11" rx="1" fill="url(#g1)"/><rect x="38" y="157" width="32" height="9" rx="1" fill="url(#g1)"/><rect x="130" y="157" width="32" height="9" rx="1" fill="url(#g1)"/></svg></div>
+  <p class="q-counter">Assessment Complete</p>
+  <h2 class="email-hed">Bottleneck identified.<br><em>Where do I send the results?</em></h2>
+  <p class="email-sub">Enter your details and I will show you exactly which stat is holding you back and the 7-day protocol to fix it.</p>
   <form id="email-form" onsubmit="submitEmail(event)" class="email-form" novalidate>
     <input type="text" id="inp-name" placeholder="Your first name (optional)" class="inp" autocomplete="given-name"/>
     <input type="email" id="inp-email" placeholder="Your email address" class="inp" required autocomplete="email"/>
     <p class="err-msg" id="err-msg">Please enter a valid email address.</p>
-    <button type="submit" class="btn-submit">Unlock My Blueprint →</button>
+    <button type="submit" class="btn-submit">Unlock My Blueprint &rarr;</button>
   </form>
-  <p class="email-note">No spam. Just your results and the free session invite when it goes live.</p>
+  <p class="email-note">No spam. Just your character blueprint and your 7-day training arc.</p>
 </div>
 
 <div id="loading-screen" class="screen">
-  <p class="loading-label">Reading Your Blueprint</p>
+  <p class="loading-label">Analyzing Your Character</p>
   <div class="loading-bar-wrap"><div class="loading-bar-fill"></div></div>
-  <p class="loading-sub">Analyzing your answers...</p>
+  <p class="loading-sub">Identifying your bottleneck stat...</p>
 </div>
 
 <script>
+const WEBHOOK_URL = ''; // Paste your GoHighLevel webhook URL here
+
 const QUESTIONS = [
-  { text:"When you look in the mirror right now, what do you see first?", options:[
-    {label:"A body that doesn't match the vision I have for my life. My physical state is holding me back.",type:"body"},
-    {label:"Someone with real potential but no clear direction. I have energy and nowhere to point it.",type:"direction"},
-    {label:"Someone who still doesn't fully believe they deserve the life they keep dreaming about.",type:"identity"}
-  ]},
-  { text:"You get inspired. A real goal hits you. What usually happens next?", options:[
-    {label:"I feel it, but my body doesn't have the energy or discipline to sustain it. I run out of gas.",type:"body"},
-    {label:"I start moving in five different directions at once and end up exactly where I started.",type:"direction"},
-    {label:"I talk myself out of it. I find the reason it won't work. Then I watch someone else do it.",type:"identity"}
-  ]},
-  { text:"Be honest. Your morning looks like...", options:[
-    {label:"Barely making it out of bed. No structure, no workout, no discipline. Just surviving the day.",type:"body"},
-    {label:"I'm up but reacting. Phone, notifications, someone else's agenda. I own nothing in my first hour.",type:"direction"},
-    {label:"I go through the motions but I don't feel like the person I'm supposed to become.",type:"identity"}
-  ]},
-  { text:"When God puts an opportunity directly in front of you, what happens?", options:[
-    {label:"I feel it, but my body is too drained to act. I need rest more than I need anything else.",type:"body"},
-    {label:"I feel it, but I don't know which move to make first. The opportunity passes while I'm thinking.",type:"direction"},
-    {label:"I feel it, and then I convince myself it was meant for someone else. Not me. Not yet.",type:"identity"}
-  ]},
-  { text:"The people around you right now, your inner circle...", options:[
-    {label:"Good people. But nobody in my circle is building a body, staying disciplined, or pushing physical limits.",type:"body"},
-    {label:"Everyone is scattered. No shared mission. Nobody around me is locked in on a single direction.",type:"direction"},
-    {label:"They don't fully see the version of me I'm trying to become. And sometimes, neither do I.",type:"identity"}
-  ]},
-  { text:"If God showed you your exact blueprint today, what would your first reaction be?", options:[
-    {label:"I'm not physically ready for what that life requires. That level demands a body I don't have yet.",type:"body"},
-    {label:"I wouldn't know where to start. Too many options, too much noise. I need one clear first step.",type:"direction"},
-    {label:"I'd question whether it was really meant for me. I want it. But do I deserve it?",type:"identity"}
-  ]},
-  { text:"What do you want most right now? Be real with yourself.", options:[
-    {label:"A body that commands respect. The physical foundation that makes everything else possible.",type:"body"},
-    {label:"Clarity. One direction. One lane. Stop second-guessing and start executing.",type:"direction"},
-    {label:"The unshakeable belief that I was built for the life I keep imagining. That it's for me.",type:"identity"}
-  ]}
+  "Right now, what part of your life feels like it is dragging everything else down? Be honest.",
+  "What is the one thing you keep telling yourself you will fix but you never actually touch?",
+  "Walk me through yesterday. What part of the day hit you wrong?",
+  "When you think about where you want to be in one year, what is the biggest thing standing in the way?",
+  "Who in your life are you not fully showing up for right now?",
+  "If your life was a video game, which stat would have the lowest bar on your character right now?",
+  "What does actually winning look like for you? Describe it."
 ];
 
-let curQ = 0, answers = [], sel = null;
+const KEYWORDS = {
+  fit:     ['body','health','energy','tired','exhausted','gym','workout','diet','weight','sleep','fit','physical','exercise','shape','food','eating','rest','run','sport','pain','sick','stamina','fat','nutrition','strength','training'],
+  fight:   ['discipline','focus','fear','confident','confidence','mindset','quit','quitting','lazy','procrastinate','motivation','motivated','struggle','mental','mind','overthink','doubt','myself','scared','anxiety','head','thoughts','consistent','consistency','giving','control','distracted','weak'],
+  freedom: ['money','financial','broke','debt','wealth','income','business','free','freedom','trapped','time','work','job','career','rich','poor','independent','entrepreneur','bills','savings','invest','afford','stress','cash','finances','salary','hustle','boss'],
+  faith:   ['god','faith','believe','purpose','meaning','lost','direction','spiritual','pray','soul','trust','calling','mission','reason','why','plan','path','empty','guidance','destiny','designed','confused','belief','prayer'],
+  family:  ['family','kids','children','wife','husband','partner','relationship','marriage','father','mother','parents','alone','lonely','isolated','disconnected','love','home','community','friends','people','bond','together','support','close','present','missing','connection']
+};
+
+let curQ = 0, transcripts = [], curTranscript = '', isRecording = false, recognition = null;
+let speechSupported = !!(window.SpeechRecognition || window.webkitSpeechRecognition);
+
+if(speechSupported){
+  const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
+  recognition = new SR();
+  recognition.continuous = true;
+  recognition.interimResults = true;
+  recognition.lang = 'en-US';
+
+  recognition.onresult = (e) => {
+    let interim = '';
+    for(let i = e.resultIndex; i < e.results.length; i++){
+      if(e.results[i].isFinal) curTranscript += e.results[i][0].transcript + ' ';
+      else interim += e.results[i][0].transcript;
+    }
+    document.getElementById('transcript-text').textContent = (curTranscript + interim).trim();
+  };
+
+  recognition.onend = () => {
+    if(isRecording){ try{ recognition.start(); }catch(err){} }
+    else { onRecordingDone(); }
+  };
+
+  recognition.onerror = (e) => {
+    if(e.error === 'no-speech' || e.error === 'aborted') return;
+    isRecording = false;
+    showTextFallback();
+  };
+} else {
+  document.addEventListener('DOMContentLoaded', showTextFallback);
+}
+
+function toggleRecording(){
+  if(!speechSupported){ showTextFallback(); return; }
+  isRecording ? stopRecording() : startRecording();
+}
+
+function startRecording(){
+  curTranscript = '';
+  isRecording = true;
+  document.getElementById('btn-mic').classList.add('recording');
+  document.getElementById('voice-hint').textContent = 'Listening... tap again to stop';
+  document.getElementById('transcript-wrap').style.display = 'block';
+  document.getElementById('transcript-text').textContent = '';
+  document.getElementById('btn-next').classList.remove('vis');
+  document.getElementById('btn-rerecord').style.display = 'none';
+  try{ recognition.start(); }catch(err){}
+}
+
+function stopRecording(){
+  isRecording = false;
+  try{ recognition.stop(); }catch(err){}
+}
+
+function onRecordingDone(){
+  document.getElementById('btn-mic').classList.remove('recording');
+  if(curTranscript.trim()){
+    document.getElementById('voice-hint').textContent = 'Got it.';
+    document.getElementById('btn-rerecord').style.display = 'inline-block';
+    document.getElementById('btn-next').classList.add('vis');
+  } else {
+    document.getElementById('voice-hint').textContent = "Didn't catch that. Try again.";
+  }
+}
+
+function reRecord(){
+  curTranscript = '';
+  document.getElementById('transcript-text').textContent = '';
+  document.getElementById('btn-rerecord').style.display = 'none';
+  document.getElementById('btn-next').classList.remove('vis');
+  startRecording();
+}
+
+function showTextFallback(){
+  speechSupported = false;
+  document.getElementById('btn-mic').style.display = 'none';
+  document.getElementById('voice-hint').style.display = 'none';
+  const fb = document.getElementById('txt-fallback');
+  fb.style.display = 'block';
+  document.getElementById('no-speech-note').style.display = 'block';
+  fb.oninput = () => {
+    curTranscript = fb.value;
+    document.getElementById('btn-next').classList.toggle('vis', !!curTranscript.trim());
+  };
+}
+
+function scoreText(text){
+  const words = text.toLowerCase().split(/\W+/);
+  const s = {fit:0,fight:0,freedom:0,faith:0,family:0};
+  words.forEach(w => {
+    if(!w || w.length < 3) return;
+    Object.entries(KEYWORDS).forEach(([cat,kws]) => {
+      if(kws.some(kw => w === kw || w.startsWith(kw) || kw.startsWith(w))) s[cat]++;
+    });
+  });
+  return s;
+}
 
 function renderQ(){
-  const q = QUESTIONS[curQ];
   document.getElementById('q-counter').textContent = `Question ${curQ+1} of ${QUESTIONS.length}`;
-  document.getElementById('q-text').textContent = q.text;
-  const list = document.getElementById('opts');
-  list.innerHTML = '';
-  ['A','B','C'].forEach((ltr,i)=>{
-    const d = document.createElement('div');
-    d.className = 'opt';
-    d.innerHTML = `<div class="opt-inner"><span class="opt-ltr">${ltr}</span><span>${q.options[i].label}</span></div>`;
-    d.addEventListener('click', ()=>selectOpt(d, q.options[i].type));
-    list.appendChild(d);
-  });
+  document.getElementById('q-text').textContent = QUESTIONS[curQ];
+  curTranscript = '';
+  isRecording = false;
+  const mic = document.getElementById('btn-mic');
+  mic.classList.remove('recording');
+  mic.style.display = speechSupported ? '' : 'none';
+  document.getElementById('voice-hint').style.display = speechSupported ? '' : 'none';
+  document.getElementById('voice-hint').textContent = 'Tap to speak your answer';
+  document.getElementById('transcript-wrap').style.display = 'none';
+  document.getElementById('transcript-text').textContent = '';
+  document.getElementById('btn-rerecord').style.display = 'none';
   document.getElementById('btn-next').classList.remove('vis');
-  sel = null;
+  const fb = document.getElementById('txt-fallback');
+  fb.style.display = speechSupported ? 'none' : 'block';
+  fb.value = '';
   updateProgress();
 }
 
-function selectOpt(el, type){
-  document.querySelectorAll('.opt').forEach(o=>o.classList.remove('sel'));
-  el.classList.add('sel');
-  sel = type;
-  document.getElementById('btn-next').classList.add('vis');
-}
-
 function nextQ(){
-  if(!sel) return;
-  answers.push(sel);
-  if(curQ < QUESTIONS.length-1){
+  const text = curTranscript.trim() || document.getElementById('txt-fallback').value.trim();
+  if(!text) return;
+  if(isRecording) stopRecording();
+  transcripts.push(text);
+  if(curQ < QUESTIONS.length - 1){
     curQ++;
     const qs = document.getElementById('question-screen');
     qs.style.animation = 'none'; qs.offsetHeight; qs.style.animation = '';
@@ -184,50 +275,33 @@ function submitEmail(e){
   const email = document.getElementById('inp-email').value.trim();
   const name  = document.getElementById('inp-name').value.trim();
   const err   = document.getElementById('err-msg');
-  if(!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){
-    err.classList.add('show'); return;
-  }
+  if(!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){ err.classList.add('show'); return; }
   err.classList.remove('show');
 
-  const counts = {body:0,direction:0,identity:0};
-  answers.forEach(a=>counts[a]++);
-  const result = Object.keys(counts).reduce((a,b)=>counts[a]>=counts[b]?a:b);
+  const total = {fit:0,fight:0,freedom:0,faith:0,family:0};
+  transcripts.forEach(t => { const s = scoreText(t); Object.keys(total).forEach(k => total[k] += s[k]); });
 
-  const user   = {name, email, savedAt: new Date().toISOString()};
-  const stored = {type: result, answers, savedAt: new Date().toISOString()};
-  localStorage.setItem('ka_user',   JSON.stringify(user));
-  localStorage.setItem('ka_result', JSON.stringify(stored));
+  const result = Object.keys(total).reduce((a,b) => total[a] >= total[b] ? a : b);
+  const labels = {fit:'The Fit Protocol',fight:'The Fight Protocol',freedom:'The Freedom Protocol',faith:'The Faith Protocol',family:'The Family Protocol'};
 
-  fireWebhook({
-    event:        'quiz_completed',
-    first_name:   name,
-    email:        email,
-    result_type:  result,
-    result_label: {body:'The Body Protocol',direction:'The Direction Protocol',identity:'The Identity Protocol'}[result],
-    completed_at: stored.savedAt,
-    source:       'divine-blueprint-quiz'
-  });
+  localStorage.setItem('ka_user',   JSON.stringify({name, email, savedAt: new Date().toISOString()}));
+  localStorage.setItem('ka_result', JSON.stringify({type:result, scores:total, savedAt: new Date().toISOString()}));
+
+  fireWebhook({event:'quiz_completed',first_name:name,email,result_type:result,result_label:labels[result],completed_at:new Date().toISOString(),source:'character-blueprint-quiz'});
 
   document.getElementById('email-screen').classList.remove('active');
   document.getElementById('loading-screen').classList.add('active');
   document.getElementById('progress-bar').style.width = '100%';
-  setTimeout(()=>{ window.location.href = '/result/'; }, 2600);
+  setTimeout(() => window.location.href = '/result/', 2600);
 }
 
 async function fireWebhook(payload){
-  const WEBHOOK_URL = ''; // Paste your GoHighLevel webhook URL here
   if(!WEBHOOK_URL) return;
-  try {
-    await fetch(WEBHOOK_URL, {
-      method: 'POST',
-      headers: {'Content-Type': 'application/json'},
-      body: JSON.stringify(payload)
-    });
-  } catch(e){}
+  try{ await fetch(WEBHOOK_URL,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)}); }catch(err){}
 }
 
 function updateProgress(){
-  document.getElementById('progress-bar').style.width = ((curQ/QUESTIONS.length)*100)+'%';
+  document.getElementById('progress-bar').style.width = ((curQ / QUESTIONS.length)*100)+'%';
 }
 
 renderQ();
